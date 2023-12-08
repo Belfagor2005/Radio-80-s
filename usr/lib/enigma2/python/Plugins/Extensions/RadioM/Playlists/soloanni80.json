@@ -1,0 +1,100 @@
+[
+    {
+        "name": "soloanni80",
+        "display_name": "Soloanni 80",
+        "spoken_name": null,
+        "page_url": "https://laut.fm/soloanni80",
+        "stream_url": "https://stream.laut.fm/soloanni80",
+        "api_urls": {
+            "station": "https://api.laut.fm/station/soloanni80",
+            "current_song": "https://api.laut.fm/station/soloanni80/current_song",
+            "last_songs": "https://api.laut.fm/station/soloanni80/last_songs",
+            "next_artists": "https://api.laut.fm/station/soloanni80/next_artists",
+            "playlists": "https://api.laut.fm/station/soloanni80/playlists",
+            "schedule": "https://api.laut.fm/station/soloanni80/schedule",
+            "listeners": "https://api.laut.fm/station/soloanni80/listeners"
+        },
+        "format": "Musica DANCE, MEDLEY & MEGAMIX '70-'80 (Original Long Version).",
+        "description": "Dance, Megamix & Medley Anni 70-80.",
+        "djs": "MAXMELIX",
+        "location": "Italy",
+        "lat": 42.6384,
+        "lng": 12.6743,
+        "color": "",
+        "updated_at": "2023-04-14 13:14:15 +0000",
+        "genres": [
+            "Disco",
+            "80er",
+            "70er",
+            "Dance",
+            "Funk",
+            "Soul"
+        ],
+        "active": true,
+        "third_parties": {
+            "website": {
+                "url": "https://soloanni80.blogspot.com/"
+            },
+            "twitter": {
+                "name": "twitter.com › maxmelix",
+                "url": "https://twitter.com/twitter.com › maxmelix"
+            },
+            "facebook": {
+                "page": "https://www.facebook.com/maxmelix.80"
+            },
+            "phonostar": {
+                "url": "https://www.phonostar.de/radio/lautfm/soloanni80"
+            },
+            "radiode": {
+                "url": "https://www.radio.de/s/lautfm-soloanni80"
+            }
+        },
+        "images": {
+            "station": "https://assets.laut.fm/9091d0c69b29f86ed4998f71861ac226",
+            "station_80x80": "https://assets.laut.fm/9091d0c69b29f86ed4998f71861ac226?t=_80x80",
+            "station_120x120": "https://assets.laut.fm/9091d0c69b29f86ed4998f71861ac226?t=_120x120",
+            "station_640x640": "https://assets.laut.fm/9091d0c69b29f86ed4998f71861ac226?t=_640x640"
+        },
+        "current_playlist": {
+            "id": 239416,
+            "name": "Rotation",
+            "day": "sat",
+            "hour": 6,
+            "end_time": 1,
+            "description": "The best music 70-80-90",
+            "color": "#666666",
+            "length": 937345,
+            "shuffled": true,
+            "starts_at": "2023-04-15 06:00:00 +0200",
+            "started_at": "2023-04-15 06:00:00 +0200",
+            "ends_at": "2023-04-16 01:00:00 +0200"
+        },
+        "next_playlist": {
+            "id": 241582,
+            "name": "RELAX",
+            "day": "sun",
+            "hour": 1,
+            "end_time": 6,
+            "description": "",
+            "color": "#d46643",
+            "length": 257914,
+            "shuffled": true,
+            "starts_at": "2023-04-16 01:00:00 +0200",
+            "started_at": "2023-04-16 01:00:00 +0200",
+            "ends_at": "2023-04-16 06:00:00 +0200"
+        },
+        "top_artists": [
+            "JINGLE",
+            "Various",
+            "Whispers",
+            "Elton John",
+            "Yes",
+            "Toto Cutugno",
+            "Salsoul Orchestra",
+            "Sade",
+            "Sabrina",
+            "Numonics"
+        ],
+        "position": 843
+    }
+]
