@@ -1,0 +1,10 @@
+Package: enigma2-plugin-extensions-radiom
+Version: 1.0_r0
+Section: extra
+Priority: optional
+Architecture: all
+Maintainer: lulu
+Description: Enigma2 Plugin RadioM
+Source: None
+Homepage: RadioM
+OE: 2.x
