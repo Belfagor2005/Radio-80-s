@@ -27,33 +27,30 @@ from .PicLoader import PicLoader
 from enigma import getDesktop, eTimer
 import os
 import sys
-import json
+# import json
 import six
-# import re
-# import time
 import requests
+import codecs
+version = '1.0_r1'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
-DESKHEIGHT = getDesktop(0).size().height()
-version = '1.0_r1'  # edit lululla
-
-SKIN_PATH = THISPLUG
+skin_path = THISPLUG
 HD = getDesktop(0).size()
 iconpic = 'plugin.png'
 screenWidth = getDesktop(0).size().width()
 
 
 def fhd(num, factor=1.5):
-    if screenWidth and screenWidth == 1920:
+    if screenWidth and screenWidth >= 1920:
         prod = num * factor
     else:
         prod = num
     return int(round(prod))
 
 
-if HD.width() > 1280:
-    SKIN_PATH = THISPLUG + '/skin/fhd'
+if HD.width() >= 1280:
+    skin_path = THISPLUG + '/skin/fhd'
 else:
-    SKIN_PATH = THISPLUG + '/skin/hd'
+    skin_path = THISPLUG + '/skin/hd'
 
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0',
@@ -74,7 +71,7 @@ def geturl(url):
 class radioList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        if DESKHEIGHT > 1000:
+        if HD.width() >= 1280:
             self.l.setItemHeight(50)
             self.l.setFont(0, gFont('Regular', 38))
         else:
@@ -95,11 +92,9 @@ def RListEntry(download):
     colsel = 0xf07655
     backcol = 0x000000
     backsel = 0x000000
-    if DESKHEIGHT > 1000:
-        # res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
+    if HD.width() >= 1280:
         res.append(MultiContentEntryText(pos=(0, 0), size=(1900, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        # res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(0, 0), size=(1000, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
@@ -116,13 +111,11 @@ def showlist(data, list):
 
 class radiom1(Screen):
     def __init__(self, session):
-        global srefOld
+        skin = os.path.join(skin_path, 'radiom.xml')
+        with codecs.open(skin, "r", encoding="utf-8") as f:
+            self.skin = f.read()
         Screen.__init__(self, session)
         self.session = session
-        skin = SKIN_PATH + '/radiom.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
         self.list = []
         self['list'] = radioList([])
         self['info'] = Label()
@@ -132,14 +125,10 @@ class radiom1(Screen):
         self.currentList = 'list'
         self["logo"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
-        # self.picload = ePicLoad()
         self.picload = PicLoader()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
-        # self.picload.PictureData.get().append(self.showback)
-        self.picload.startDecode(SKIN_PATH + "/ft.jpg")
-        srefOld = self.session.nav.getCurrentlyPlayingServiceReference()
+        self.picload.startDecode(skin_path + "/ft.jpg")
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions',
@@ -161,23 +150,22 @@ class radiom1(Screen):
         self.pics = []
         self.names.append('PLAYLIST')
         self.urls.append('http://75.119.158.76:8090/radio.mp3')
-        self.pics.append(SKIN_PATH + "/ft.jpg")
+        self.pics.append(skin_path + "/ft.jpg")
         self.names.append('RADIO 80')
         self.urls.append('http://laut.fm/fm-api/stations/soloanni80')
-        self.pics.append(SKIN_PATH + "/80s.png")
+        self.pics.append(skin_path + "/80s.png")
         self.names.append('80ER')
         self.urls.append('http://laut.fm/fm-api/stations/80er')
-        self.pics.append(SKIN_PATH + "/80er.png")
+        self.pics.append(skin_path + "/80er.png")
         self.names.append('SCHLAGER-RADIO')
         self.urls.append('http://laut.fm/fm-api/stations/schlager-radio')
-        self.pics.append(SKIN_PATH + "/shclager.png")
+        self.pics.append(skin_path + "/shclager.png")
         self.names.append('1000OLDIES')
         self.urls.append('http://laut.fm/fm-api/stations/1000oldies')
-        self.pics.append(SKIN_PATH + "/1000oldies.png")
+        self.pics.append(skin_path + "/1000oldies.png")
         self.names.append('RADIO CYRUS')
         self.urls.append('http://75.119.158.76:8090/radio.mp3')
-        self.pics.append(SKIN_PATH + "/ft.jpg")
-        # self.urls.append('http://laut.fm/fm-api/stations/80er,schlager-radio,1000oldies,soloanni80')
+        self.pics.append(skin_path + "/ft.jpg")
         showlist(self.names, self['list'])
 
     def okClicked(self):
@@ -200,14 +188,9 @@ class radiom1(Screen):
             return
         pic = self.pics[idx]
         sc = AVSwitch().getFramebufferScale()
-        # self.picload = ePicLoad()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
-        # self.picload.PictureData.get().append(self.showback)
         self.picload = PicLoader()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
-
         self.picload.startDecode(pic)
 
     def showback(self, picInfo=None):
@@ -242,12 +225,10 @@ class radiom1(Screen):
 
 class radiom2(Screen):
     def __init__(self, session):
+        skin = os.path.join(skin_path, 'radiom.xml')
+        with codecs.open(skin, "r", encoding="utf-8") as f:
+            self.skin = f.read()
         Screen.__init__(self, session)
-        self.session = session
-        skin = SKIN_PATH + '/radiom.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
         self.list = []
         self['list'] = radioList([])
         self['info'] = Label()
@@ -256,13 +237,10 @@ class radiom2(Screen):
         self['key_green'] = Button(_('Select'))
         self["logo"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
-        # self.picload = ePicLoad()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
-        # self.picload.PictureData.get().append(self.showback)
         self.picload = PicLoader()
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(SKIN_PATH + "/ft.jpg")
+        self.picload.startDecode(skin_path + "/ft.jpg")
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions'], {
@@ -306,12 +284,10 @@ class radiom2(Screen):
 
 class radiom3(Screen):
     def __init__(self, session, name):
+        skin = os.path.join(skin_path, 'radiom.xml')
+        with codecs.open(skin, "r", encoding="utf-8") as f:
+            self.skin = f.read()
         Screen.__init__(self, session)
-        self.session = session
-        skin = SKIN_PATH + '/radiom.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
         self.name = name
         self.list = []
         self['list'] = radioList([])
@@ -321,13 +297,10 @@ class radiom3(Screen):
         self['key_green'] = Button(_('Select'))
         self["logo"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
-        # self.picload = ePicLoad()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
-        # self.picload.PictureData.get().append(self.showback)
         self.picload = PicLoader()
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(SKIN_PATH + "/ft.jpg")
+        self.picload.startDecode(skin_path + "/ft.jpg")
         self['setupActions'] = ActionMap(['SetupActions', 'ColorActions',
                                           'TimerEditActions'], {'red': self.close,
                                                                 'green': self.okClicked,
@@ -378,12 +351,11 @@ class radiom3(Screen):
 
 class radiom80(Screen):
     def __init__(self, session, name, url, pic):
+        skin = os.path.join(skin_path, 'radiom80.xml')
+        with codecs.open(skin, "r", encoding="utf-8") as f:
+            self.skin = f.read()
         Screen.__init__(self, session)
         self.session = session
-        skin = SKIN_PATH + '/radiom80.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
         self.name = name
         self.url = url
         self.pic = pic
@@ -398,9 +370,6 @@ class radiom80(Screen):
         self['djs'] = Label()
         self["logo"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
-        # self.picload = ePicLoad()
-        # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
-        # self.picload.PictureData.get().append(self.showback)
         self.picload = PicLoader()
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
@@ -417,22 +386,20 @@ class radiom80(Screen):
         self['key_green'] = Button(_('Select'))
         self['key_green'].hide()
         self.player = '1'
-        # self['setupActions'] = ActionMap(['OkActions',
         self['actions'] = ActionMap(['OkActions',
-                                          'SetupActions',
-                                          'ColorActions',
-                                          'EPGSelectActions',
-                                          'InfoActions',
-                                          'CancelActions'], {
-                                                            'red': self.cancel,
-                                                            'back': self.cancel,
-                                                            'blue': self.typeplayer,
-                                                            'green': self.openPlay,
-                                                            'info': self.countdown,
-                                                            'cancel': self.cancel,
-                                                            'ok': self.openPlay,
-                                                            }, -2)
-        # self.onLayoutFinish.append(self.openTest)
+                                     'SetupActions',
+                                     'ColorActions',
+                                     'EPGSelectActions',
+                                     'InfoActions',
+                                     'CancelActions'], {
+                                                        'red': self.cancel,
+                                                        'back': self.cancel,
+                                                        'blue': self.typeplayer,
+                                                        'green': self.openPlay,
+                                                        'info': self.countdown,
+                                                        'cancel': self.cancel,
+                                                        'ok': self.openPlay,
+                                                        }, -2)
         self.onShow.append(self.openTest)
 
     def typeplayer(self):
@@ -457,9 +424,6 @@ class radiom80(Screen):
         if self.okcoverdown == 'success':
             pic = '/tmp/artist.jpg'
             sc = AVSwitch().getFramebufferScale()
-            # self.picload = ePicLoad()
-            # self.picload.setPara((fhd(430), fhd(430), sc[0], sc[1], 0, 0, "#00000000"))
-            # self.picload.PictureData.get().append(self.showback)
             self.picload = PicLoader()
             self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
             self.picload.addCallback(self.showback)
@@ -556,7 +520,6 @@ class radiom80(Screen):
         description = ''
         djs = ''
         if a == 0:
-            # referer = 'https://laut.fm'
             from requests.adapters import HTTPAdapter
             hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
             adapter = HTTPAdapter()
@@ -568,13 +531,6 @@ class radiom80(Screen):
             if r.status_code == requests.codes.ok:
                 y = r.json()
                 print('data y: ', y)
-                # remove this line: subjects = json.loads(result).read()
-                # and do like this : return json.dumps(result , indent=4)
-                # y = json.loads(res)
-                # print('result:', y)
-                # y = json.dumps(result, indent=4)
-                # print('y:', y)
-                # try:
                 for cat in y:
                     print('cat: ', cat)
                     if "stream_url" in cat:
@@ -624,8 +580,6 @@ class radiom80(Screen):
                         self.urls.append(stream_url)
                 print('current_song = ', current_song)
                 self['info'].setText(_('Select and Play'))
-                # except:
-                    # self['info'].setText(_('Nothing ... Retry'))
                 self['key_green'].show()
                 showlist(self.names, self['list'])
 
@@ -648,10 +602,6 @@ class radiom80(Screen):
             self.artist = ' '
             delta = ' '
             r = ' '
-            # content = getUrl(url)
-            # if six.PY3:
-                # content = six.ensure_str(content)
-            # data = json.loads(content)
             from requests.adapters import HTTPAdapter
             hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
             adapter = HTTPAdapter()
@@ -666,9 +616,6 @@ class radiom80(Screen):
                 if "title" in data:
                     title = data["title"]
                     title = title.replace('()', '')
-                    # self.downloadCover(title)
-                # 2023-12-02 01:00:00 +0100
-                # import datetime
                 from datetime import datetime as dt
                 if "started_at" in data:
                     start = data["started_at"]
@@ -686,7 +633,7 @@ class radiom80(Screen):
                 delta = self.ends - self.start
                 print('delta: ', delta)
                 # delta:  0:01:00
-                self.duration  = delta.total_seconds()
+                self.duration = delta.total_seconds()
                 print('difference in seconds:', self.duration)
                 # difference in seconds: 60.0
                 if "artist" in data:
@@ -712,11 +659,10 @@ class radiom80(Screen):
             self.selectpic()
             self.openTest2()
             print('Countdown finished.')
-        except Exceptions as e:
+        except Exception as e:
             print(e)
 
     def openTest2(self):
-        # current = 500.0
         print('duration mmm: ', self.duration)
         print(type(self.duration))
         if self.duration >= 0.0:
