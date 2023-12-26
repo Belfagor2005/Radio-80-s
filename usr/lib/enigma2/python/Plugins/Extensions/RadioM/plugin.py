@@ -639,7 +639,7 @@ class radiom80(Screen):
                 if "artist" in data:
                     self.artist = data["artist"]["name"]
                     self.downloadCover(self.artist)
-                comeback = ('Artist: ' + self.artist + '\n' + 'Title: ' + title + '\n' + 'Start: ' + start + '\nEnd: ' + ends + '\nDuration sec.: ' + str(self.duration))
+                comeback = ('Artist: ' + str(self.artist) + '\n' + 'Title: ' + str(title) + '\n' + 'Start: ' + str(start) + '\nEnd: ' + str(ends) + '\nDuration sec.: ' + str(self.duration))
                 print('comeback:\n', comeback)
         except Exception as e:
             print(e)
@@ -663,20 +663,35 @@ class radiom80(Screen):
             print(e)
 
     def openTest2(self):
-        print('duration mmm: ', self.duration)
-        print(type(self.duration))
-        if self.duration >= 0.0:
-            value_str = str(self.duration)
-            conv = value_str.split('.')[0]
-            print('conv mmm: ', conv)
-            current = int(float(conv))
-            print('current mmm: ', current)
-            self.timer = eTimer()
-            try:
-                self.timer_conn = self.timer.timeout.connect(self.countdown)
-            except:
-                self.timer.callback.append(self.countdown)
-            self.timer.start(current, False)
+    
+        # if 'soloanni80' in self.url:
+            # value_str = 100.0
+            # conv = value_str.split('.')[0]
+            # print('conv mmm: ', conv)
+            # current = int(float(conv))
+            # print('current mmm: ', current)
+            # self.timer = eTimer()
+            # try:
+                # self.timer_conn = self.timer.timeout.connect(self.countdown)
+            # except:
+                # self.timer.callback.append(self.countdown)
+            # self.timer.start(current, False)    
+
+        # else:
+            print('duration mmm: ', self.duration)
+            print(type(self.duration))
+            if self.duration >= 0.0:
+                value_str = str(self.duration)
+                conv = value_str.split('.')[0]
+                print('conv mmm: ', conv)
+                current = int(float(conv)) * 60
+                print('current mmm: ', current)
+                self.timer = eTimer()
+                try:
+                    self.timer_conn = self.timer.timeout.connect(self.countdown)
+                except:
+                    self.timer.callback.append(self.countdown)
+                self.timer.start(current, False)
 
     def openPlay(self):
         idx = self['list'].getSelectionIndex()
