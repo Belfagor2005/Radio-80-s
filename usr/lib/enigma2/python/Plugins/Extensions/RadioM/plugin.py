@@ -31,7 +31,7 @@ import sys
 import six
 import requests
 import codecs
-version = '1.0_r1'
+version = '1.0_r2'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 HD = getDesktop(0).size()
@@ -369,6 +369,7 @@ class radiom80(Screen):
         self['description'] = Label()
         self['djs'] = Label()
         self["logo"] = Pixmap()
+        self.player = '1'
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
@@ -385,7 +386,6 @@ class radiom80(Screen):
         self['key_blue'] = Button(_('Player 1'))
         self['key_green'] = Button(_('Select'))
         self['key_green'].hide()
-        self.player = '1'
         self['actions'] = ActionMap(['OkActions',
                                      'SetupActions',
                                      'ColorActions',
@@ -406,6 +406,9 @@ class radiom80(Screen):
         if self.player == '1':
             self["key_blue"].setText(_("Player 2"))
             self.player = '2'
+        elif self.player == '2':
+            self["key_blue"].setText(_("Player 3"))
+            self.player = '3'
         else:
             self["key_blue"].setText(_("Player 1"))
             self.player = '1'
@@ -578,6 +581,7 @@ class radiom80(Screen):
                         self['djs'].setText(_('Dj: ') + djs)
                         self.names.append(display_name)
                         self.urls.append(stream_url)
+                        self.countdown()
                 print('current_song = ', current_song)
                 self['info'].setText(_('Select and Play'))
                 self['key_green'].show()
@@ -663,35 +667,20 @@ class radiom80(Screen):
             print(e)
 
     def openTest2(self):
-    
-        # if 'soloanni80' in self.url:
-            # value_str = 100.0
-            # conv = value_str.split('.')[0]
-            # print('conv mmm: ', conv)
-            # current = int(float(conv))
-            # print('current mmm: ', current)
-            # self.timer = eTimer()
-            # try:
-                # self.timer_conn = self.timer.timeout.connect(self.countdown)
-            # except:
-                # self.timer.callback.append(self.countdown)
-            # self.timer.start(current, False)    
-
-        # else:
-            print('duration mmm: ', self.duration)
-            print(type(self.duration))
-            if self.duration >= 0.0:
-                value_str = str(self.duration)
-                conv = value_str.split('.')[0]
-                print('conv mmm: ', conv)
-                current = int(float(conv)) * 60
-                print('current mmm: ', current)
-                self.timer = eTimer()
-                try:
-                    self.timer_conn = self.timer.timeout.connect(self.countdown)
-                except:
-                    self.timer.callback.append(self.countdown)
-                self.timer.start(current, False)
+        print('duration mmm: ', self.duration)
+        print(type(self.duration))
+        if self.duration >= 0.0:
+            value_str = str(self.duration)
+            conv = value_str.split('.')[0]
+            print('conv mmm: ', conv)
+            current = int(float(conv)) * 60
+            print('current mmm: ', current)
+            self.timer = eTimer()
+            try:
+                self.timer_conn = self.timer.timeout.connect(self.countdown)
+            except:
+                self.timer.callback.append(self.countdown)
+            self.timer.start(current, False)
 
     def openPlay(self):
         idx = self['list'].getSelectionIndex()
@@ -707,8 +696,10 @@ class radiom80(Screen):
                 self.session.open(Playstream2, name, url)
             else:
                 url = url.replace(':', '%3a').replace(' ', '%20')
-                # ref = '4097:0:1:0:0:0:0:0:0:0:' + str(url)  # tv
-                ref = '4097:0:2:0:0:0:0:0:0:0:' + str(url)  # radio
+                if self.player == '3':
+                    ref = '4097:0:1:0:0:0:0:0:0:0:' + str(url)  # tv
+                else:
+                    ref = '4097:0:2:0:0:0:0:0:0:0:' + str(url)  # radio
                 print('final reference:   ', ref)
                 sref = eServiceReference(ref)
                 sref.setName(name)
