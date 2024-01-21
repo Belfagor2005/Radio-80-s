@@ -1,20 +1,20 @@
-<screen name="HD1" position="0,0" size="1280,720" title="RadioM" flags="wfNoBorder" backgroundColor="transparent">
-    <eLabel text="RadioM" font="Regular;50" position="0,0" size="463,58" zPosition="4" halign="center" foregroundColor="blue" backgroundColor="#000000" transparent="1" />
-    <widget name="logo" position="756,117" size="430,430" zPosition="0" alphatest="blend" transparent="1" />
-    <eLabel position="0,0" zPosition="1" size="475,550" backgroundColor="#000000" />
-    <eLabel position="-6,-8" zPosition="-1" size="474,554" backgroundColor="#ffffff" />
-    <widget name="list" position="14,96" size="449,400" zPosition="4" scrollbarMode="showOnDemand" />
-    <widget name="info" position="0,58" zPosition="4" size="463,40" font="Regular; 24" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />
-    <widget name="current_song" position="704,550" zPosition="4" size="570,107" font="Regular; 22" foregroundColor="#ffffff" transparent="0" halign="left" valign="center" />
-    <widget name="listeners" position="0,657" zPosition="4" size="700,50" font="Regular;38" foregroundColor="#ffffff" transparent="0" halign="left" valign="center" render="Label" />
-    <widget name="format" position="0,550" zPosition="4" size="700,58" font="Regular; 24" foregroundColor="#ffffff" transparent="0" halign="left" valign="center" />
-    <widget name="description" position="704,657" zPosition="4" size="570,50" font="Regular; 22" foregroundColor="#ffffff" transparent="0" halign="left" valign="center" />
-    <widget name="djs" position="0,607" zPosition="4" size="700,50" font="Regular; 34" foregroundColor="#ffffff" transparent="0" halign="left" valign="center" />
-    <ePixmap name="red" position="8,507" zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-    <ePixmap name="green" position="167,507" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-    <ePixmap name="blue" position="322,508" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-    <ePixmap position="14,12" size="100,36" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/plugin.png" transparent="1" alphatest="blend" zPosition="5" />
-    <widget name="key_red" position="10,508" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
-    <widget name="key_green" position="163,508" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
-    <widget name="key_blue" position="317,508" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
+<screen name="radiom80" position="0,0" size="1280,720" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
+    <!-- <ePixmap position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/hd/foreg.jpg" scale="1" zPosition="-2" /> -->
+    <ePixmap                    position="0,453" size="1280,266" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/hd/80bar.png" alphatest="blend" zPosition="-1" />
+    <widget name="back"         position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/soloanni80/skin/hd/foreg.jpg" scale="1" zPosition="-2" />
+    <widget name="logo"         position="13,465" size="240,240" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
+    <widget name="info"         position="253,480" size="0,0" font="Regular;26" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
+    <widget name="format"       position="266,476" size="1000,26" font="Regular;22" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
+    <widget name="list"         position="266,506" size="400,33" zPosition="4" scrollbarMode="showOnDemand" foregroundColorSelected="#ffffff" backgroundColorSelected="#1b3c85" transparent="1" />
+    <widget name="description"  position="266,544" zPosition="4" size="633,92" font="Regular; 20" foregroundColor="#a0a0a0" backgroundColor="#000000" transparent="1" halign="left" valign="center" />
+    <widget name="djs"          position="266,636" zPosition="4" size="666,33" font="Regular; 20" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" />
+    <widget name="current_song" position="586,526" zPosition="4" size="666,120" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="#000000" halign="right" valign="center" transparent="1" />
+    <widget name="listeners"    position="586,673" zPosition="4" render="Label" size="666,26" font="Regular; 20" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="right" valign="center" />
+    <eLabel position="266,666"  zPosition="1" size="986,2" backgroundColor="#404040" />
+    <eLabel position="266,680"  zPosition="1" size="20,20" backgroundColor="red" cornerRadius="10" />
+    <widget name="key_red"      position="293,680" size="133,21" valign="center" halign="left" zPosition="4" foregroundColor="#ffffff" backgroundColor="#000000" font="Regular;20" transparent="1" />
+    <eLabel position="453,680"  zPosition="1" size="20,20" backgroundColor="green" cornerRadius="10" />
+    <widget name="key_green"    position="486,680" size="133,21" valign="center" halign="left" zPosition="4" foregroundColor="#ffffff" backgroundColor="#000000" font="Regular;20" transparent="1" />
+    <eLabel position="653,680"  zPosition="1" size="20,20" backgroundColor="blue" cornerRadius="10" />
+    <widget name="key_blue"     position="680,680" size="133,21" valign="center" halign="left" zPosition="4" foregroundColor="#ffffff" backgroundColor="#000000" font="Regular;20" transparent="1" />
 </screen>

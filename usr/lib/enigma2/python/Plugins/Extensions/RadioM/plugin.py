@@ -22,7 +22,7 @@ from Screens.InfoBarGenerics import InfoBarMenu, \
     InfoBarSeek, InfoBarNotifications, InfoBarShowHide
 from Screens.Screen import Screen
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from enigma import eServiceReference  # , ePicLoad
+from enigma import eServiceReference  #, gPixmapPtr  # , ePicLoad
 from .PicLoader import PicLoader
 from enigma import getDesktop, eTimer
 import os
@@ -31,7 +31,7 @@ import sys
 import six
 import requests
 import codecs
-version = '1.0_r2'
+version = '1.0_r3'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 HD = getDesktop(0).size()
@@ -47,7 +47,7 @@ def fhd(num, factor=1.5):
     return int(round(prod))
 
 
-if HD.width() >= 1280:
+if screenWidth >= 1920:
     skin_path = THISPLUG + '/skin/fhd'
 else:
     skin_path = THISPLUG + '/skin/hd'
@@ -71,12 +71,12 @@ def geturl(url):
 class radioList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        if HD.width() >= 1280:
+        if screenWidth >= 1920:
             self.l.setItemHeight(50)
             self.l.setFont(0, gFont('Regular', 38))
         else:
-            self.l.setItemHeight(50)
-            self.l.setFont(0, gFont('Regular', 24))
+            self.l.setItemHeight(40)
+            self.l.setFont(0, gFont('Regular', 36))
 
 
 def RListEntry(download):
@@ -92,10 +92,10 @@ def RListEntry(download):
     colsel = 0xf07655
     backcol = 0x000000
     backsel = 0x000000
-    if HD.width() >= 1280:
+    if screenWidth >= 1920:
         res.append(MultiContentEntryText(pos=(0, 0), size=(1900, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryText(pos=(0, 0), size=(1000, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(1000, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -107,6 +107,27 @@ def showlist(data, list):
         plist.append(RListEntry(name))
         icount = icount+1
     list.setList(plist)
+
+
+def resizePoster(x, y, dwn_poster):
+    try:
+        from PIL import Image
+        img = Image.open(dwn_poster)
+        # width, height = img.size
+        # ratio = float(width) / float(height)
+        # new_height = int(isz.split(",")[1])
+        # new_width = int(ratio * new_height)
+        new_width = x
+        new_height = y
+        try:
+            rimg = img.resize((new_width, new_height), Image.LANCZOS)
+        except:
+            rimg = img.resize((new_width, new_height), Image.ANTIALIAS)
+        img.close()
+        rimg.save(dwn_poster)
+        rimg.close()
+    except Exception as e:
+        print("ERROR:{}".format(e))
 
 
 class radiom1(Screen):
@@ -124,11 +145,23 @@ class radiom1(Screen):
         self['info'].setText('HOME RADIO VIEW')
         self.currentList = 'list'
         self["logo"] = Pixmap()
+        self["back"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        # self.picload.addCallback(self.showback)
+        # self.picload.startDecode(skin_path + "/ft.jpg")
+        pic = skin_path + "/ft.jpg"
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 640
+            y = 640
+        resizePoster(x, y, pic)
+        self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
+        # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(skin_path + "/ft.jpg")
+        self.picload.startDecode(pic)
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions',
@@ -189,7 +222,14 @@ class radiom1(Screen):
         pic = self.pics[idx]
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 640
+            y = 640
+        resizePoster(x, y, pic)
+        self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
+        # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.addCallback(self.showback)
         self.picload.startDecode(pic)
 
@@ -236,11 +276,25 @@ class radiom2(Screen):
         self['key_red'] = Button(_('Exit'))
         self['key_green'] = Button(_('Select'))
         self["logo"] = Pixmap()
+        self["back"] = Pixmap()
+        self["back"].hide()
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        # self.picload.addCallback(self.showback)
+        # self.picload.startDecode(skin_path + "/ft.jpg")
+        picture = skin_path + "/ft.jpg"
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 640
+            y = 640
+        resizePoster(x, y, picture)
+        # self.picload.setPara([fhd(340), fhd(340), sc[0], sc[1], 0, 1, "FF000000"])
+        self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(skin_path + "/ft.jpg")
+        self.picload.startDecode(picture)
+
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions'], {
@@ -296,11 +350,23 @@ class radiom3(Screen):
         self['key_red'] = Button(_('Exit'))
         self['key_green'] = Button(_('Select'))
         self["logo"] = Pixmap()
+        self["back"] = Pixmap()
+        self["back"].hide()
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        picture = skin_path + "/ft.jpg"
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 640
+            y = 640
+        resizePoster(x, y, picture)
+        # self.picload.setPara([fhd(340), fhd(340), sc[0], sc[1], 0, 1, "FF000000"])
+        self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(skin_path + "/ft.jpg")
+        self.picload.startDecode(picture)
+
         self['setupActions'] = ActionMap(['SetupActions', 'ColorActions',
                                           'TimerEditActions'], {'red': self.close,
                                                                 'green': self.okClicked,
@@ -369,12 +435,22 @@ class radiom80(Screen):
         self['description'] = Label()
         self['djs'] = Label()
         self["logo"] = Pixmap()
+        self["back"] = Pixmap()
+        self["back"].hide()
         self.player = '1'
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+        picture = pic.replace("\n", "").replace("\r", "")
+        x = 240
+        y = 240
+        if screenWidth >= 1920:
+            x = 340
+            y = 340
+        resizePoster(x, y, picture)
+        # self.picload.setPara([fhd(340), fhd(340), sc[0], sc[1], 0, 1, "FF000000"])
+        self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(pic)
+        self.picload.startDecode(self.pic)
         self.srefOld = self.session.nav.getCurrentlyPlayingServiceReference()
         self.is_playing = False
         try:
@@ -383,7 +459,7 @@ class radiom80(Screen):
             self.init_aspect = 0
         self.new_aspect = self.init_aspect
         self['key_red'] = Button(_('Exit'))
-        self['key_blue'] = Button(_('Player 1'))
+        self['key_blue'] = Button(_('Player 1-2-3'))
         self['key_green'] = Button(_('Select'))
         self['key_green'].hide()
         self['actions'] = ActionMap(['OkActions',
@@ -403,14 +479,14 @@ class radiom80(Screen):
         self.onShow.append(self.openTest)
 
     def typeplayer(self):
-        if self.player == '1':
-            self["key_blue"].setText(_("Player 2"))
-            self.player = '2'
-        elif self.player == '2':
-            self["key_blue"].setText(_("Player 3"))
+        if self.player == '2':
+            self["key_blue"].setText(_("Player 3-2-1"))
             self.player = '3'
+        elif self.player == '1':
+            self["key_blue"].setText(_("Player 2-3-1"))
+            self.player = '2'
         else:
-            self["key_blue"].setText(_("Player 1"))
+            self["key_blue"].setText(_("Player 1-2-3"))
             self.player = '1'
 
     def showback(self, picInfo=None):
@@ -420,15 +496,19 @@ class radiom80(Screen):
                 self["logo"].instance.setPixmap(ptr.__deref__())
                 self["logo"].instance.show()
         except Exception as err:
-            self["logo"].instance.hide()
-            print("ERROR showImage:", err)
+            # self["logo"].instance.hide()
+            print("ERROR showback:", err)
 
     def selectpic(self):
         if self.okcoverdown == 'success':
             pic = '/tmp/artist.jpg'
+            x = self["logo"].instance.size().width()
+            y = self["logo"].instance.size().height()
+            picture = pic.replace("\n", "").replace("\r", "")
+            resizePoster(x, y, picture)
             sc = AVSwitch().getFramebufferScale()
             self.picload = PicLoader()
-            self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
+            self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "FF000000"))
             self.picload.addCallback(self.showback)
             self.picload.startDecode(pic)
         return
@@ -682,10 +762,23 @@ class radiom80(Screen):
                 self.timer.callback.append(self.countdown)
             self.timer.start(current, False)
 
+
+    def showback2(self, picInfo=None):
+        try:
+            # ptr = self.picload.getData()
+            # if ptr is not None:
+                # self["back"].instance.setPixmap(ptr.__deref__())
+            self["back"].instance.show()
+        except Exception as err:
+            self["back"].instance.hide()
+            print("ERROR showback:", err)
+        return
+
     def openPlay(self):
         idx = self['list'].getSelectionIndex()
         if idx is None:
             return
+        self.showback2()
         name = self.names[idx]
         url = self.urls[idx]
         if self.is_playing:
@@ -715,6 +808,7 @@ class radiom80(Screen):
         if self.is_playing:
             self.timer.stop()
             try:
+                self["back"].instance.hide()
                 self.is_playing = False
                 self.session.nav.stopService()
                 self.session.nav.playService(self.srefOld)

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RadioM\n"
-"POT-Creation-Date: 2023-12-02 15:41+0100\n"
+"POT-Creation-Date: 2023-12-31 19:23+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,62 +13,65 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: plugin.py\n"
 
-#: plugin.py:129 plugin.py:255 plugin.py:320 plugin.py:415
+#: plugin.py:122 plugin.py:236 plugin.py:296 plugin.py:385
 msgid "Exit"
 msgstr "Esci"
 
-#: plugin.py:130 plugin.py:256 plugin.py:321
+#: plugin.py:123 plugin.py:237 plugin.py:297 plugin.py:387
 msgid "Select"
 msgstr "Seleziona"
 
-#: plugin.py:417 plugin.py:438
-msgid "Player 1"
+#: plugin.py:386 plugin.py:413
+msgid "Player 1-2-3"
 msgstr ""
 
-#: plugin.py:435
-msgid "Player 2"
+#: plugin.py:407
+msgid "Player 3-2-1"
 msgstr ""
 
-#: plugin.py:614 plugin.py:703
+#: plugin.py:410
+msgid "Player 2-3-1"
+msgstr ""
+
+#: plugin.py:577 plugin.py:661
 msgid "Online: "
 msgstr ""
 
-#: plugin.py:617
+#: plugin.py:580
 msgid "Dj: "
 msgstr ""
 
-#: plugin.py:621
+#: plugin.py:585
 msgid "Select and Play"
 msgstr "Seleziona e Ascolta"
 
-#: plugin.py:623
-msgid "Nothing ... Retry"
-msgstr "Niente.. riprova"
-
-#: plugin.py:877
+#: plugin.py:836
 msgid "4:3 Letterbox"
 msgstr ""
 
-#: plugin.py:878
+#: plugin.py:837
 msgid "4:3 PanScan"
 msgstr ""
 
-#: plugin.py:879
+#: plugin.py:838
 msgid "16:9"
 msgstr ""
 
-#: plugin.py:880
+#: plugin.py:839
 msgid "16:9 always"
 msgstr ""
 
-#: plugin.py:881
+#: plugin.py:840
 msgid "16:10 Letterbox"
 msgstr ""
 
-#: plugin.py:882
+#: plugin.py:841
 msgid "16:10 PanScan"
 msgstr ""
 
-#: plugin.py:883
+#: plugin.py:842
 msgid "16:9 Letterbox"
 msgstr ""
+
+#~ msgid "Nothing ... Retry"
+#~ msgstr "Niente.. riprova"
