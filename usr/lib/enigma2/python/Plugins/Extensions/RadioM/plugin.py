@@ -22,9 +22,9 @@ from Screens.InfoBarGenerics import InfoBarMenu, \
     InfoBarSeek, InfoBarNotifications, InfoBarShowHide
 from Screens.Screen import Screen
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from enigma import eServiceReference  #, gPixmapPtr  # , ePicLoad
+from enigma import eServiceReference  # , gPixmapPtr  # , ePicLoad
 from .PicLoader import PicLoader
-from enigma import getDesktop, eTimer
+from enigma import getDesktop, eTimer  # , eDVBVolumecontrol
 import os
 import sys
 # import json
@@ -81,17 +81,8 @@ class radioList(MenuList):
 
 def RListEntry(download):
     res = [(download)]
-    white = 0xffffff
-    grey = 0xb3b3b9
-    green = 0x389416
-    black = 0x000000
-    yellow = 0xe5b243
-    blue = 0x002d39
-    red = 0xf07655
     col = 0xffffff
     colsel = 0xf07655
-    backcol = 0x000000
-    backsel = 0x000000
     if screenWidth >= 1920:
         res.append(MultiContentEntryText(pos=(0, 0), size=(1900, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
@@ -105,7 +96,7 @@ def showlist(data, list):
     for line in data:
         name = data[icount]
         plist.append(RListEntry(name))
-        icount = icount+1
+        icount = icount + 1
     list.setList(plist)
 
 
@@ -166,15 +157,15 @@ class radiom1(Screen):
                                           'ColorActions',
                                           'TimerEditActions',
                                           'DirectionActions'], {
-                                                                'red': self.close,
-                                                                'green': self.okClicked,
-                                                                'cancel': self.cancel,
-                                                                'up': self.up,
-                                                                'down': self.down,
-                                                                'left': self.left,
-                                                                'right': self.right,
-                                                                'ok': self.okClicked
-                                                                }, -2)
+            'red': self.close,
+            'green': self.okClicked,
+            'cancel': self.cancel,
+            'up': self.up,
+            'down': self.down,
+            'left': self.left,
+            'right': self.right,
+            'ok': self.okClicked
+        },        -2)
         self.onLayoutFinish.append(self.openTest)
 
     def openTest(self):
@@ -298,11 +289,11 @@ class radiom2(Screen):
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions'], {
-                                                                'red': self.close,
-                                                                'green': self.okClicked,
-                                                                'cancel': self.cancel,
-                                                                'ok': self.okClicked
-                                                                }, -2)
+            'red': self.close,
+            'green': self.okClicked,
+            'cancel': self.cancel,
+            'ok': self.okClicked,
+        },        -2)
         self.onLayoutFinish.append(self.openTest)
 
     def openTest(self):
@@ -352,6 +343,8 @@ class radiom3(Screen):
         self["logo"] = Pixmap()
         self["back"] = Pixmap()
         self["back"].hide()
+        self.srefOld = self.session.nav.getCurrentlyPlayingServiceReference()
+        self.is_playing = False
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         # self.picload.setPara([fhd(430), fhd(430), sc[0], sc[1], 0, 1, "FF000000"])
@@ -362,21 +355,44 @@ class radiom3(Screen):
             x = 640
             y = 640
         resizePoster(x, y, picture)
+        # try:
+            # self.volctrl = eDVBVolumecontrol.getInstance()  # volume control # dirty
+        # except:
+            # print("eDVBVolumecontrol.getInstance() failed")
+            # self.volctrl = None
+        # self.preMute_muteState = None
         # self.picload.setPara([fhd(340), fhd(340), sc[0], sc[1], 0, 1, "FF000000"])
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
         self.picload.startDecode(picture)
 
-        self['setupActions'] = ActionMap(['SetupActions', 'ColorActions',
-                                          'TimerEditActions'], {'red': self.close,
-                                                                'green': self.okClicked,
-                                                                'cancel': self.cancel,
-                                                                'ok': self.okClicked}, -2)
+        self['setupActions'] = ActionMap(['SetupActions',
+                                          'ColorActions',
+                                          'TimerEditActions'], {
+            'red': self.close,
+            'green': self.okClicked,
+            'cancel': self.cancel,
+            'ok': self.okClicked,
+        },        -2)
         self.onLayoutFinish.append(self.openTest)
+
+    # def isMuted(self):
+        # if self.volctrl is not None:
+            # return self.volctrl.isMuted()
+        # else:
+            # return None
+
+    # def volumeMute(self):
+        # if self.volctrl is not None:
+            # self.volctrl.volumeMute()
+
+    # def volumeUnMute(self):
+        # if self.volctrl is not None:
+            # self.volctrl.volumeUnMute()
 
     def openTest(self):
         uLists = THISPLUG + '/Playlists'
-        file1 = uLists + '/' + self.name
+        file1 = str(uLists) + '/' + str(self.name)
         print('Here in showContentA2 file1 = ', file1)
         self.names = []
         self.urls = []
@@ -398,9 +414,45 @@ class radiom3(Screen):
             return
         name = self.names[idx]
         url = self.urls[idx]
+        # pic = ''
+        # # self.session.open(radiom80, name, url, pic)
+        # self.session.open(Playstream2, name, url)
+        # return
         self.session.open(Playstream2, name, url)
         return
 
+        # if self.is_playing:
+            # self.stop()
+            # return
+
+        # url = url.replace(':', '%3a').replace(' ', '%20')
+        # tv = False
+        # if tv is False:
+            # ref = '4097:0:1:0:0:0:0:0:0:0:' + str(url)  # tv
+        # else:
+            # ref = '4097:0:2:0:0:0:0:0:0:0:' + str(url)  # radio
+        # print('final reference:   ', ref)
+        # sref = eServiceReference(ref)
+        # sref.setName(name)
+        
+        # # if self.preMute_muteState is None:
+            # # self.preMute_muteState = self.isMuted()
+            # # self.volumeMute()
+        
+        # self.session.nav.stopService()
+        # self.session.nav.playService(sref)
+        # self.is_playing = True
+
+    # def stop(self, text=''):
+        # if self.is_playing:
+            # try:
+                # self.is_playing = False
+                # self.session.nav.stopService()
+                # self.session.nav.playService(self.srefOld)
+                # return
+            # except TypeError as e:
+                # print(e)
+                # self.close()
     def showback(self, picInfo=None):
         try:
             ptr = self.picload.getData()
@@ -468,14 +520,14 @@ class radiom80(Screen):
                                      'EPGSelectActions',
                                      'InfoActions',
                                      'CancelActions'], {
-                                                        'red': self.cancel,
-                                                        'back': self.cancel,
-                                                        'blue': self.typeplayer,
-                                                        'green': self.openPlay,
-                                                        'info': self.countdown,
-                                                        'cancel': self.cancel,
-                                                        'ok': self.openPlay,
-                                                        }, -2)
+            'red': self.cancel,
+            'back': self.cancel,
+            'blue': self.typeplayer,
+            'green': self.openPlay,
+            'info': self.countdown,
+            'cancel': self.cancel,
+            'ok': self.openPlay,
+        },        -2)
         self.onShow.append(self.openTest)
 
     def typeplayer(self):
@@ -762,12 +814,8 @@ class radiom80(Screen):
                 self.timer.callback.append(self.countdown)
             self.timer.start(current, False)
 
-
     def showback2(self, picInfo=None):
         try:
-            # ptr = self.picload.getData()
-            # if ptr is not None:
-                # self["back"].instance.setPixmap(ptr.__deref__())
             self["back"].instance.show()
         except Exception as err:
             self["back"].instance.hide()
