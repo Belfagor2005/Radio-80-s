@@ -76,7 +76,7 @@ class radioList(MenuList):
             self.l.setFont(0, gFont('Regular', 38))
         else:
             self.l.setItemHeight(40)
-            self.l.setFont(0, gFont('Regular', 36))
+            self.l.setFont(0, gFont('Regular', 34))
 
 
 def RListEntry(download):
@@ -521,7 +521,6 @@ class radiom80(Screen):
                                      'InfoActions',
                                      'CancelActions'], {
             'red': self.cancel,
-            'back': self.cancel,
             'blue': self.typeplayer,
             'green': self.openPlay,
             'info': self.countdown,

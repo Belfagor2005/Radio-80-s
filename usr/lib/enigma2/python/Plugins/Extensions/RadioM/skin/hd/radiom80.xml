@@ -1,14 +1,14 @@
 <screen name="radiom80" position="0,0" size="1280,720" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
     <!-- <ePixmap position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/hd/foreg.jpg" scale="1" zPosition="-2" /> -->
     <ePixmap                    position="0,453" size="1280,266" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/hd/80bar.png" alphatest="blend" zPosition="-1" />
-    <widget name="back"         position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/soloanni80/skin/hd/foreg.jpg" scale="1" zPosition="-2" />
+    <widget name="back"         position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/hd/foreg.jpg" scale="stretch" zPosition="-2" />
     <widget name="logo"         position="13,465" size="240,240" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
     <widget name="info"         position="253,480" size="0,0" font="Regular;26" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
     <widget name="format"       position="266,476" size="1000,26" font="Regular;22" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
-    <widget name="list"         position="266,506" size="400,33" zPosition="4" scrollbarMode="showOnDemand" foregroundColorSelected="#ffffff" backgroundColorSelected="#1b3c85" transparent="1" />
+    <widget name="list"         position="266,506" size="400,40" zPosition="4" scrollbarMode="showOnDemand" foregroundColorSelected="#ffffff" backgroundColorSelected="#1b3c85" transparent="1" />
     <widget name="description"  position="266,544" zPosition="4" size="633,92" font="Regular; 20" foregroundColor="#a0a0a0" backgroundColor="#000000" transparent="1" halign="left" valign="center" />
     <widget name="djs"          position="266,636" zPosition="4" size="666,33" font="Regular; 20" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" />
-    <widget name="current_song" position="586,526" zPosition="4" size="666,120" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="#000000" halign="right" valign="center" transparent="1" />
+    <widget name="current_song" position="586,526" zPosition="4" size="666,130" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="#000000" halign="right" valign="center" transparent="1" />
     <widget name="listeners"    position="586,673" zPosition="4" render="Label" size="666,26" font="Regular; 20" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="right" valign="center" />
     <eLabel position="266,666"  zPosition="1" size="986,2" backgroundColor="#404040" />
     <eLabel position="266,680"  zPosition="1" size="20,20" backgroundColor="red" cornerRadius="10" />
