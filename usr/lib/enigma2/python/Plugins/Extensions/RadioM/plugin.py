@@ -14,6 +14,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import InfoBarBase
+from Components.MultiContent import MultiContentEntryPixmapAlphaTest
 from Components.MultiContent import MultiContentEntryText
 from enigma import eListboxPythonMultiContent, gFont
 from Components.config import config
@@ -21,16 +22,23 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBarGenerics import InfoBarMenu, \
     InfoBarSeek, InfoBarNotifications, InfoBarShowHide
 from Screens.Screen import Screen
+try:
+    from Tools.Directories import SCOPE_GUISKIN as SCOPE_SKIN
+except ImportError:
+    from Tools.Directories import SCOPE_SKIN
+from Tools.Directories import resolveFilename
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from enigma import eServiceReference
 from .PicLoader import PicLoader
+from enigma import ePicLoad
 from enigma import getDesktop, eTimer
+from enigma import loadPNG
 import os
 import sys
 import six
 import requests
 import codecs
-version = '1.0_r3'
+version = '1.0_r4'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 HD = getDesktop(0).size()
@@ -82,9 +90,12 @@ def RListEntry(download):
     res = [(download)]
     col = 0xffffff
     colsel = 0xf07655
+    pngx = os.path.join(skin_path, "folder.png")
     if screenWidth >= 1920:
-        res.append(MultiContentEntryText(pos=(0, 0), size=(1900, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1200, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))        
         res.append(MultiContentEntryText(pos=(0, 0), size=(1000, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
@@ -142,8 +153,8 @@ class radiom1(Screen):
         x = 430
         y = 430
         if screenWidth >= 1920:
-            x = 640
-            y = 640
+            x = 400
+            y = 400
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -211,8 +222,8 @@ class radiom1(Screen):
         x = 430
         y = 430
         if screenWidth >= 1920:
-            x = 640
-            y = 640
+            x = 400
+            y = 400
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -269,8 +280,8 @@ class radiom2(Screen):
         x = 430
         y = 430
         if screenWidth >= 1920:
-            x = 640
-            y = 640
+            x = 400
+            y = 400
         resizePoster(x, y, picture)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -338,11 +349,11 @@ class radiom3(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = skin_path + "/ft.jpg"
-        x = 430
-        y = 430
+        x = 350
+        y = 350
         if screenWidth >= 1920:
-            x = 640
-            y = 640
+            x = 400
+            y = 400
         resizePoster(x, y, picture)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -468,7 +479,7 @@ class radiom80(Screen):
             self.init_aspect = 0
         self.new_aspect = self.init_aspect
         self['key_red'] = Button(_('Exit'))
-        self['key_blue'] = Label(_('Player 1-2-3'))
+        self['key_blue'] = Label('Player 1-2-3')
         self['key_green'] = Button(_('Select'))
         self['key_green'].hide()
         self['actions'] = ActionMap(['OkActions',
@@ -489,14 +500,15 @@ class radiom80(Screen):
 
     def typeplayer(self):
         if self.player == '2':
-            self["key_blue"].setText(_("Player 3-2-1"))
+            self["key_blue"].setText("Player 3-2-1")
             self.player = '3'
         elif self.player == '1':
-            self["key_blue"].setText(_("Player 2-3-1"))
+            self["key_blue"].setText("Player 2-3-1")
             self.player = '2'
         else:
-            self["key_blue"].setText(_("Player 1-2-3"))
+            self["key_blue"].setText("Player 1-2-3")
             self.player = '1'
+        return
 
     def showback(self, picInfo=None):
         try:
