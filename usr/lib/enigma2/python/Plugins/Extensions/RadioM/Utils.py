@@ -62,21 +62,6 @@ if sys.version_info >= (2, 7, 9):
         sslContext = None
 
 
-def getEncodedString(value):
-	returnValue = ""
-	try:
-		returnValue = value.encode("utf-8", 'ignore')
-	except UnicodeDecodeError:
-		try:
-			returnValue = value.encode("iso8859-1", 'ignore')
-		except UnicodeDecodeError:
-			try:
-				returnValue = value.decode("cp1252").encode("utf-8")
-			except UnicodeDecodeError:
-				returnValue = "n/a"
-	return returnValue
-
-
 def ensure_str(text, encoding='utf-8', errors='strict'):
     if type(text) is str:
         return text
@@ -381,6 +366,7 @@ def downloadFilest(url, target):
         print('URL Error: ', e.reason)
 
 
+
 def defaultMoviePath():
     result = config.usage.default_path.value
     if not isdir(result):
@@ -388,16 +374,21 @@ def defaultMoviePath():
         return Directories.defaultRecordingLocation(config.usage.default_path.value)
     return result
 
+
 if not isdir(config.movielist.last_videodir.value):
     try:
         config.movielist.last_videodir.value = defaultMoviePath()
         config.movielist.last_videodir.save()
     except:
         pass
+
+
 downloadm3u = config.movielist.last_videodir.value
 
 
 # this def returns the current playing service name and stream_url from give sref
+
+
 def getserviceinfo(sref):
     try:
         from ServiceReference import ServiceReference
@@ -595,10 +586,10 @@ def b64decoder(s):
     s = str(s).strip()
     try:
         outp = base64.b64decode(s)
-        # print('outp1 ', outp)
+        print('outp1 ', outp)
         if PY3:
             outp = outp.decode('utf-8')
-            # print('outp2 ', outp)
+            print('outp2 ', outp)
         return outp
 
     except TypeError:
@@ -611,10 +602,10 @@ def b64decoder(s):
         elif padding == 3:
             s += b'='
         outp = base64.b64decode(s)
-        # print('outp1 ', outp)
+        print('outp1 ', outp)
         if PY3:
             outp = outp.decode('utf-8')
-            # print('outp2 ', outp)
+            print('outp2 ', outp)
         return outp
 
 
@@ -864,9 +855,14 @@ def isExtEplayer3Available():
 
 
 def AdultUrl(url):
-    req = Request(url)
+    import sys
+    if sys.version_info.major == 3:
+        import urllib.request as urllib2
+    elif sys.version_info.major == 2:
+        import urllib2
+    req = urllib2.Request(url)
     req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-    r = urlopen(req, None, 15)
+    r = urllib2.urlopen(req, None, 15)
     link = r.read()
     r.close()
     tlink = link
@@ -968,6 +964,11 @@ def make_request(url):
 
 
 def ReadUrl2(url, referer):
+    if sys.version_info.major == 3:
+        import urllib.request as urllib2
+    elif sys.version_info.major == 2:
+        import urllib2
+
     try:
         import ssl
         CONTEXT = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
@@ -978,15 +979,15 @@ def ReadUrl2(url, referer):
     print('ReadUrl1:\n  url = %s' % url)
     try:
 
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         req.add_header('Referer', referer)
         # req = urllib2.Request(url)
         # req.add_header('User-Agent', RequestAgent())
         try:
-            r = urlopen(req, None, TIMEOUT_URL, context=CONTEXT)
+            r = urllib2.urlopen(req, None, TIMEOUT_URL, context=CONTEXT)
         except Exception as e:
-            r = urlopen(req, None, TIMEOUT_URL)
+            r = urllib2.urlopen(req, None, TIMEOUT_URL)
             print('CreateLog Codifica ReadUrl: %s.' % str(e))
         link = r.read()
         r.close()
@@ -1030,6 +1031,11 @@ def ReadUrl2(url, referer):
 
 
 def ReadUrl(url):
+    if sys.version_info.major == 3:
+        import urllib.request as urllib2
+    elif sys.version_info.major == 2:
+        import urllib2
+
     try:
         import ssl
         CONTEXT = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
@@ -1039,12 +1045,12 @@ def ReadUrl(url):
     TIMEOUT_URL = 30
     print('ReadUrl1:\n  url = %s' % url)
     try:
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         try:
-            r = urlopen(req, None, TIMEOUT_URL, context=CONTEXT)
+            r = urllib2.urlopen(req, None, TIMEOUT_URL, context=CONTEXT)
         except Exception as e:
-            r = urlopen(req, None, TIMEOUT_URL)
+            r = urllib2.urlopen(req, None, TIMEOUT_URL)
             print('CreateLog Codifica ReadUrl: %s.' % str(e))
         link = r.read()
         r.close()
@@ -1088,8 +1094,14 @@ def ReadUrl(url):
 
 
 if PY3:
+    import sys
+    if sys.version_info.major == 3:
+        import urllib.request as urllib2
+    elif sys.version_info.major == 2:
+        import urllib2
+
     def getUrl(url):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         try:
             response = urlopen(req, timeout=20)
@@ -1105,7 +1117,7 @@ if PY3:
         return link
 
     def getUrl2(url, referer):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         req.add_header('Referer', referer)
         try:
@@ -1122,7 +1134,7 @@ if PY3:
         return link
 
     def getUrlresp(url):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         try:
             response = urlopen(req, timeout=20)
@@ -1133,9 +1145,14 @@ if PY3:
             response = urlopen(req, timeout=20, context=gcontext)
         return response
 else:
+    import sys
+    if sys.version_info.major == 3:
+        import urllib.request as urllib2
+    elif sys.version_info.major == 2:
+        import urllib2
 
     def getUrl(url):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         try:
             response = urlopen(req, timeout=20)
@@ -1151,7 +1168,7 @@ else:
         return link
 
     def getUrl2(url, referer):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         req.add_header('Referer', referer)
         try:
@@ -1168,7 +1185,7 @@ else:
         return link
 
     def getUrlresp(url):
-        req = Request(url)
+        req = urllib2.Request(url)
         req.add_header('User-Agent', RequestAgent())
         try:
             response = urlopen(req, timeout=20)
