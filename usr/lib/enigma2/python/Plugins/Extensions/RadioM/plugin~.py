@@ -54,9 +54,7 @@ def fhd(num, factor=1.5):
     return int(round(prod))
 
 
-if screenWidth == 2560:
-    skin_path = THISPLUG + '/skin/wqhd'
-elif screenWidth == 1920:
+if screenWidth >= 1920:
     skin_path = THISPLUG + '/skin/fhd'
 else:
     skin_path = THISPLUG + '/skin/hd'
@@ -80,10 +78,7 @@ def geturl(url):
 class radioList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        if screenWidth == 2560:
-            self.l.setItemHeight(50)
-            self.l.setFont(0, gFont('Regular', 42))
-        elif screenWidth == 1920:
+        if screenWidth >= 1920:
             self.l.setItemHeight(50)
             self.l.setFont(0, gFont('Regular', 38))
         else:
@@ -96,16 +91,12 @@ def RListEntry(download):
     col = 0xffffff
     colsel = 0xf07655
     pngx = os.path.join(skin_path, "folder.png")
-
-    if screenWidth == 2560:
+    if screenWidth >= 1920:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(800, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-    elif screenWidth == 1920:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(600, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1200, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))        
-        res.append(MultiContentEntryText(pos=(0, 0), size=(400, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(1000, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -159,19 +150,11 @@ class radiom1(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         pic = skin_path + "/ft.jpg"
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
-        x = 220
-        y = 220
-        if screenWidth == 1920:
-            x = 340
-            y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 400
+            y = 400
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -236,19 +219,11 @@ class radiom1(Screen):
         pic = self.pics[idx]
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
-        x = 220
-        y = 220
-        if screenWidth == 1920:
-            x = 340
-            y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 400
+            y = 400
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -302,23 +277,16 @@ class radiom2(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = skin_path + "/ft.jpg"
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
-        x = 220
-        y = 220
-        if screenWidth == 1920:
-            x = 340
-            y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
+        x = 430
+        y = 430
+        if screenWidth >= 1920:
+            x = 400
+            y = 400
         resizePoster(x, y, picture)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
         self.picload.startDecode(picture)
+
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions'], {
@@ -381,19 +349,11 @@ class radiom3(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = skin_path + "/ft.jpg"
-        # x = 350
-        # y = 350
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
-        x = 220
-        y = 220
-        if screenWidth == 1920:
-            x = 340
-            y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
+        x = 350
+        y = 350
+        if screenWidth >= 1920:
+            x = 400
+            y = 400
         resizePoster(x, y, picture)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -502,19 +462,11 @@ class radiom80(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = pic.replace("\n", "").replace("\r", "")
-        # x = 240
-        # y = 240
-        # if screenWidth >= 1920:
-            # x = 340
-            # y = 340
-        x = 220
-        y = 220
-        if screenWidth == 1920:
+        x = 240
+        y = 240
+        if screenWidth >= 1920:
             x = 340
             y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
         resizePoster(x, y, picture)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
