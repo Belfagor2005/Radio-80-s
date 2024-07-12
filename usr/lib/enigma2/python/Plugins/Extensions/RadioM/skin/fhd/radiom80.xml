@@ -1,6 +1,6 @@
 <screen name="radiom80" position="0,0" size="1920,1080" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
     <!-- <ePixmap position="0,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/fhd/foreg.jpg" scale="1" zPosition="-2" /> -->
-    <ePixmap                    position="0,680" size="1920,400" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/fhd/80bar.png" alphatest="blend" zPosition="-1" />
+    <ePixmap                    position="0,680" size="1920,400" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/fhd/80bar.png" alphatest="off" zPosition="-1" />
     <widget name="back"         position="0,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/fhd/foreg.jpg" scale="1" zPosition="-2" />
     <widget name="logo"         position="20,720" size="340,340" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
     <widget name="info"         position="380,720" size="0,0" font="Regular;40" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />

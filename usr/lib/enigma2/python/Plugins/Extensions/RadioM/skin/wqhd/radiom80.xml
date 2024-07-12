@@ -1,7 +1,7 @@
 <screen name="radiom80" position="0,0" size="2560,1440" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
-    <ePixmap                    position="0,907" size="2560,534" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/wqhd/80bar.png" alphatest="blend" zPosition="-1" />
+    <ePixmap                    position="0,907" size="2560,534" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/wqhd/80bar.png" alphatest="off" zPosition="-1" />
     <widget name="back"         position="0,0" size="2560,1440" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/RadioM/skin/wqhd/foreg.jpg" scale="1" zPosition="-2" />
-    <widget name="logo"         position="27,960" size="454,454" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
+    <widget name="logo"         position="27,960" size="454,454" zPosition="0" alphatest="off" scale="stretch" transparent="1" />
     <widget name="info"         position="507,960" size="0,0" font="Regular;54" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
     <widget name="format"       position="534,954" size="2000,54" font="Regular;46" foregroundColor="yellow" backgroundColor="#000000" transparent="1" halign="left" valign="center" zPosition="4" />
     <widget name="list"         position="534,1014" size="800,67" zPosition="4" scrollbarMode="showOnDemand" foregroundColorSelected="#ffffff" backgroundColorSelected="#1b3c85" transparent="1" />

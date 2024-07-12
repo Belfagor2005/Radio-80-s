@@ -7,6 +7,7 @@ from Lululla to Mmark
 """
 from __future__ import print_function
 from . import _, Utils
+from .PicLoader import PicLoader
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -16,28 +17,38 @@ from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import InfoBarBase
 from Components.MultiContent import MultiContentEntryPixmapAlphaTest
 from Components.MultiContent import MultiContentEntryText
-from enigma import eListboxPythonMultiContent, gFont
 from Components.config import config
 from Plugins.Plugin import PluginDescriptor
-from Screens.InfoBarGenerics import InfoBarMenu, \
-    InfoBarSeek, InfoBarNotifications, InfoBarShowHide
+from Screens.InfoBarGenerics import (
+    InfoBarMenu,
+    InfoBarSeek,
+    InfoBarNotifications,
+    InfoBarShowHide,
+)
 from Screens.Screen import Screen
-try:
-    from Tools.Directories import SCOPE_GUISKIN as SCOPE_SKIN
-except ImportError:
-    from Tools.Directories import SCOPE_SKIN
-from Tools.Directories import resolveFilename
-from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from enigma import eServiceReference
-from .PicLoader import PicLoader
-from enigma import ePicLoad
-from enigma import getDesktop, eTimer
-from enigma import loadPNG
+from enigma import (
+    RT_HALIGN_LEFT,
+    RT_VALIGN_CENTER,
+    eServiceReference,
+    getDesktop,
+    eTimer,
+    loadPNG,
+    eListboxPythonMultiContent,
+    gFont,
+)
 import os
 import sys
 import six
 import requests
 import codecs
+'''
+# try:
+    # from Tools.Directories import SCOPE_GUISKIN as SCOPE_SKIN
+# except ImportError:
+    # from Tools.Directories import SCOPE_SKIN
+# from Tools.Directories import resolveFilename
+'''
+
 version = '1.0_r4'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
@@ -104,7 +115,7 @@ def RListEntry(download):
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(600, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))        
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(0, 0), size=(400, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
@@ -159,11 +170,6 @@ class radiom1(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         pic = skin_path + "/ft.jpg"
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
         x = 220
         y = 220
         if screenWidth == 1920:
@@ -236,11 +242,6 @@ class radiom1(Screen):
         pic = self.pics[idx]
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
         x = 220
         y = 220
         if screenWidth == 1920:
@@ -302,11 +303,6 @@ class radiom2(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = skin_path + "/ft.jpg"
-        # x = 430
-        # y = 430
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
         x = 220
         y = 220
         if screenWidth == 1920:
@@ -381,11 +377,6 @@ class radiom3(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = skin_path + "/ft.jpg"
-        # x = 350
-        # y = 350
-        # if screenWidth >= 1920:
-            # x = 400
-            # y = 400
         x = 220
         y = 220
         if screenWidth == 1920:
@@ -502,11 +493,6 @@ class radiom80(Screen):
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
         picture = pic.replace("\n", "").replace("\r", "")
-        # x = 240
-        # y = 240
-        # if screenWidth >= 1920:
-            # x = 340
-            # y = 340
         x = 220
         y = 220
         if screenWidth == 1920:
@@ -580,7 +566,7 @@ class radiom80(Screen):
             self.picload.addCallback(self.showback)
             self.picload.startDecode(pic)
         return
-
+    '''
     # http://radio.garden/api/ara/content/places
     # "results": [
         # {
@@ -614,7 +600,7 @@ class radiom80(Screen):
             # "country": "USA",
             # "currency": "USD",
             # "primaryGenreName": "Rock"
-        # },
+        # },'''
 
     def downloadCover(self, title):
         try:

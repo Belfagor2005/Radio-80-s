@@ -934,7 +934,7 @@ std_headers = {
                'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                'Accept-Language': 'en-us,en;q=0.5',
-               }
+              }
 
 
 ListAgent = [
@@ -1424,8 +1424,8 @@ def decodeHtml(text):
     from re import sub as re_sub
     text = re_sub('<[^>]+>', '', text)
     if PY3:
-        text = text.encode('utf-8').decode('unicode_escape')  
-    return str(text) # str needed for PLi
+        text = text.encode('utf-8').decode('unicode_escape')
+    return str(text)  # str needed for PLi
 
 
 conversion = {
