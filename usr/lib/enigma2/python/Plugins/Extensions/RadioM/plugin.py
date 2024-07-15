@@ -8,6 +8,7 @@ from Lululla to Mmark
 from __future__ import print_function
 from . import _, Utils
 from .PicLoader import PicLoader
+from .Console import Console as xConsole
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -18,6 +19,7 @@ from Components.ServiceEventTracker import InfoBarBase
 from Components.MultiContent import (MultiContentEntryPixmapAlphaTest, MultiContentEntryText)
 from Components.config import config
 from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
 from Screens.InfoBarGenerics import (
     InfoBarMenu,
     InfoBarSeek,
@@ -50,7 +52,7 @@ from datetime import datetime
 # from Tools.Directories import resolveFilename
 '''
 
-version = '1.1'
+currversion = '1.1'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 HD = getDesktop(0).size()
@@ -279,7 +281,6 @@ class radiom1(Screen):
     def myCallback(self, result=None):
         print('result:', result)
         return
-
 
     def openTest(self):
         self.names = []
@@ -1125,4 +1126,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    return PluginDescriptor(name='RadioM', description='RadioM from around the world V. ' + version, where=PluginDescriptor.WHERE_PLUGINMENU, icon='plugin.png', fnc=main)
+    return PluginDescriptor(name='RadioM', description='RadioM from around the world V. ' + currversion, where=PluginDescriptor.WHERE_PLUGINMENU, icon='plugin.png', fnc=main)
