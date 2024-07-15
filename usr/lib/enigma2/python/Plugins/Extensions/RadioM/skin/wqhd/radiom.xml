@@ -3,6 +3,7 @@
     <widget name="logo"         position="0,0" size="854,854" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
     <widget name="info"         position="0,983" zPosition="4" size="854,54" font="Regular;51" foregroundColor="#ffffff" backgroundColor="#000000" transparent="1" halign="center" valign="center" />
     <widget name="list"         position="0,654" size="854,200" zPosition="4" scrollbarMode="showOnDemand" transparent="0" />
-    <widget name="key_red"      position="-4,900" size="280,80" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;40" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
-    <widget name="key_green"    position="570,906" size="280,80" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;40" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
+    <widget name="key_red" position="0,895" size="280,80" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;40" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
+    <widget name="key_green" position="285,895" size="280,80" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;40" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
+    <widget name="key_yellow" position="570,895" size="280,80" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;40" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
 </screen>
