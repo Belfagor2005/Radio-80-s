@@ -44,24 +44,17 @@ import requests
 import codecs
 import json
 from datetime import datetime
-'''
-# try:
-    # from Tools.Directories import SCOPE_GUISKIN as SCOPE_SKIN
-# except ImportError:
-    # from Tools.Directories import SCOPE_SKIN
-# from Tools.Directories import resolveFilename
-'''
-
+global skin_path, x, y
 currversion = '1.1'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
-HD = getDesktop(0).size()
 iconpic = 'plugin.png'
 screenWidth = getDesktop(0).size().width()
 installer_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0JlbGZhZ29yMjAwNS9SYWRpby04MC1zL21haW4vaW5zdGFsbGVyLnNo'
 developer_url = 'aHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9CZWxmYWdvcjIwMDUvUmFkaW8tODAtcw=='
 
-
+x = 220
+y = 220
 PY3 = False
 PY3 = sys.version_info.major >= 3
 
@@ -70,20 +63,18 @@ if PY3:
     unidecode = str
 
 
-def fhd(num, factor=1.5):
-    if screenWidth and screenWidth >= 1920:
-        prod = num * factor
-    else:
-        prod = num
-    return int(round(prod))
-
-
 if screenWidth == 2560:
     skin_path = THISPLUG + '/skin/wqhd'
+    x = 450
+    y = 450
 elif screenWidth == 1920:
     skin_path = THISPLUG + '/skin/fhd'
+    x = 340
+    y = 340
 else:
     skin_path = THISPLUG + '/skin/hd'
+    x = 220
+    y = 220
 
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0',
@@ -120,7 +111,6 @@ def RListEntry(download):
     col = 0xffffff
     colsel = 0xf07655
     pngx = os.path.join(skin_path, "folder.png")
-
     if screenWidth == 2560:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(80, 0), size=(800, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
@@ -173,49 +163,49 @@ class radiom1(Screen):
         self.session = session
         self.list = []
         self['list'] = radioList([])
-        self['info'] = Label()
+        self['info'] = Label('HOME RADIO VIEW')
         self['key_red'] = Button(_('Exit'))
         self['key_green'] = Button(_('Select'))
         self['key_yellow'] = Button('Update')
-        self['info'].setText('HOME RADIO VIEW')
         self.currentList = 'list'
         self["logo"] = Pixmap()
         self["back"] = Pixmap()
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
+        global x, y
         pic = skin_path + "/ft.jpg"
-        x = 220
-        y = 220
+        x = 430
+        y = 430
         if screenWidth == 1920:
-            x = 340
-            y = 340
+            x = 640
+            y = 640
         if screenWidth == 2560:
-            x = 450
-            y = 450
+            x = 850
+            y = 850
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
         self.picload.startDecode(pic)
         self.Update = False
-        self['actions'] = ActionMap(['OkCancelActions',
-                                     'ColorActions',
-                                     'DirectionActions',
-                                     'HotkeyActions',
-                                     'InfobarEPGActions',
-                                     'ChannelSelectBaseActions'], {'ok': self.okClicked,
-                                                                   'back': self.close,
-                                                                   'cancel': self.close,
-                                                                   'yellow': self.update_me,  # update_me,
-                                                                   'green': self.okClicked,
-                                                                   'up': self.up,
-                                                                   'down': self.down,
-                                                                   'left': self.left,
-                                                                   'right': self.right,
-                                                                   'yellow_long': self.update_dev,
-                                                                   'info_long': self.update_dev,
-                                                                   'infolong': self.update_dev,
-                                                                   'showEventInfoPlugin': self.update_dev,
-                                                                   'red': self.close}, -1)
+        self['setupActions'] = ActionMap(['OkCancelActions',
+                                          'ColorActions',
+                                          'DirectionActions',
+                                          'HotkeyActions',
+                                          'InfobarEPGActions',
+                                          'ChannelSelectBaseActions'], {'ok': self.okClicked,
+                                                                        'back': self.close,
+                                                                        'cancel': self.close,
+                                                                        'yellow': self.update_me,  # update_me,
+                                                                        'green': self.okClicked,
+                                                                        'up': self.up,
+                                                                        'down': self.down,
+                                                                        'left': self.left,
+                                                                        'right': self.right,
+                                                                        'yellow_long': self.update_dev,
+                                                                        'info_long': self.update_dev,
+                                                                        'infolong': self.update_dev,
+                                                                        'showEventInfoPlugin': self.update_dev,
+                                                                        'red': self.close}, -1)
         self.timer = eTimer()
         if os.path.exists('/var/lib/dpkg/status'):
             self.timer_conn = self.timer.timeout.connect(self.check_vers)
@@ -327,14 +317,6 @@ class radiom1(Screen):
         pic = self.pics[idx]
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        x = 220
-        y = 220
-        if screenWidth == 1920:
-            x = 340
-            y = 340
-        if screenWidth == 2560:
-            x = 450
-            y = 450
         resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
@@ -388,19 +370,20 @@ class radiom2(Screen):
         self["back"].hide()
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        picture = skin_path + "/ft.jpg"
-        x = 220
-        y = 220
+        global x, y
+        pic = skin_path + "/ft.jpg"
+        x = 430
+        y = 430
         if screenWidth == 1920:
-            x = 340
-            y = 340
+            x = 640
+            y = 640
         if screenWidth == 2560:
-            x = 450
-            y = 450
-        resizePoster(x, y, picture)
+            x = 850
+            y = 850
+        resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(picture)
+        self.picload.startDecode(pic)
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
                                           'TimerEditActions'], {
@@ -463,19 +446,20 @@ class radiom3(Screen):
         self.is_playing = False
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        picture = skin_path + "/ft.jpg"
-        x = 220
-        y = 220
+        global x, y
+        pic = skin_path + "/ft.jpg"
+        x = 430
+        y = 430
         if screenWidth == 1920:
-            x = 340
-            y = 340
+            x = 640
+            y = 640
         if screenWidth == 2560:
-            x = 450
-            y = 450
-        resizePoster(x, y, picture)
+            x = 850
+            y = 850
+        resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
-        self.picload.startDecode(picture)
+        self.picload.startDecode(pic)
 
         self['setupActions'] = ActionMap(['SetupActions',
                                           'ColorActions',
@@ -579,16 +563,17 @@ class radiom80(Screen):
         self.player = '1'
         sc = AVSwitch().getFramebufferScale()
         self.picload = PicLoader()
-        picture = pic.replace("\n", "").replace("\r", "")
-        x = 220
-        y = 220
+        global x, y
+        pic = pic.replace("\n", "").replace("\r", "")
+        x = 430
+        y = 430
         if screenWidth == 1920:
-            x = 340
-            y = 340
+            x = 640
+            y = 640
         if screenWidth == 2560:
-            x = 450
-            y = 450
-        resizePoster(x, y, picture)
+            x = 850
+            y = 850
+        resizePoster(x, y, pic)
         self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#00000000"))
         self.picload.addCallback(self.showback)
         self.picload.startDecode(self.pic)
@@ -645,14 +630,15 @@ class radiom80(Screen):
             pic = '/tmp/artist.jpg'
             x = self["logo"].instance.size().width()
             y = self["logo"].instance.size().height()
-            picture = pic.replace("\n", "").replace("\r", "")
-            resizePoster(x, y, picture)
+            pic = pic.replace("\n", "").replace("\r", "")
+            resizePoster(x, y, pic)
             sc = AVSwitch().getFramebufferScale()
             self.picload = PicLoader()
             self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "FF000000"))
             self.picload.addCallback(self.showback)
             self.picload.startDecode(pic)
         return
+
     '''
     # http://radio.garden/api/ara/content/places
     # "results": [
