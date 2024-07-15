@@ -6,7 +6,7 @@ version='1.1'
 changelog='\nAdd Live Upgrade\nFix conponent stream'
 ##############################################################
 
-TMPPATH=/tmp/RadioM-main
+TMPPATH=/tmp/Radio-80-s-main
 FILEPATH=/tmp/main.tar.gz
 
 if [ ! -d /usr/lib64 ]; then
@@ -90,7 +90,7 @@ sleep 2
 
 wget --no-check-certificate --no-cache --no-dns-cache 'https://github.com/Belfagor2005/Radio-80-s/archive/refs/heads/main.tar.gz'
 tar -xzf main.tar.gz
-cp -r 'RadioM-main/usr' '/'
+cp -r 'Radio-80-s-main/usr' '/'
 set +e
 cd
 sleep 2
