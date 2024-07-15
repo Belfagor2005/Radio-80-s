@@ -15,8 +15,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import InfoBarBase
-# from Components.MultiContent import MultiContentEntryPixmapAlphaTest
-from Components.MultiContent import MultiContentEntryText
+from Components.MultiContent import (MultiContentEntryPixmapAlphaTest, MultiContentEntryText)
 from Components.config import config
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBarGenerics import (
