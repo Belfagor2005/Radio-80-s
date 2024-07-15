@@ -59,6 +59,15 @@ screenWidth = getDesktop(0).size().width()
 installer_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0JlbGZhZ29yMjAwNS9SYWRpby04MC1zL21haW4vaW5zdGFsbGVyLnNo'
 developer_url = 'aHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9CZWxmYWdvcjIwMDUvUmFkaW8tODAtcw=='
 
+
+PY3 = False
+PY3 = sys.version_info.major >= 3
+
+if PY3:
+    PY3 = True
+    unidecode = str
+
+
 def fhd(num, factor=1.5):
     if screenWidth and screenWidth >= 1920:
         prod = num * factor
