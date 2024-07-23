@@ -9,14 +9,15 @@ from __future__ import print_function
 from . import _, Utils
 from .PicLoader import PicLoader
 from .Console import Console as xConsole
+
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.MultiContent import (MultiContentEntryPixmapAlphaTest, MultiContentEntryText)
 from Components.Pixmap import Pixmap
 from Components.ServiceEventTracker import InfoBarBase
-from Components.MultiContent import (MultiContentEntryPixmapAlphaTest, MultiContentEntryText)
 from Components.config import config
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
@@ -166,7 +167,7 @@ class radiom1(Screen):
         self['info'] = Label('HOME RADIO VIEW')
         self['key_red'] = Button(_('Exit'))
         self['key_green'] = Button(_('Select'))
-        self['key_yellow'] = Button('Update')
+        self['key_yellow'] = Button(_('Update'))
         self.currentList = 'list'
         self["logo"] = Pixmap()
         self["back"] = Pixmap()
