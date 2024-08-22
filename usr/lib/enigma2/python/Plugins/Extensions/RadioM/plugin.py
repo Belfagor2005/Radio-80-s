@@ -189,7 +189,6 @@ class radiom1(Screen):
         self.picload.startDecode(pic)
         self.Update = False
         self['setupActions'] = ActionMap(['OkCancelActions',
-                                          'ColorActions',
                                           'DirectionActions',
                                           'HotkeyActions',
                                           'InfobarEPGActions',
