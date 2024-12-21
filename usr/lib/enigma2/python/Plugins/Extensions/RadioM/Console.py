@@ -8,7 +8,7 @@ from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
-from Components.Sources.StaticText import StaticText
+# from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from enigma import getDesktop
 import sys
@@ -29,7 +29,8 @@ def isHD():
 
 class Console(Screen):
     if isHD():
-        skin = '''<screen position="17,center" size="1245,681" title="Command execution..." backgroundColor="#16000000" flags="wfNoBorder">
+        skin = '''
+        <screen position="17,center" size="1245,681" title="Command execution..." backgroundColor="#16000000" flags="wfNoBorder">
             <widget name="text" position="9,48" size="1237,587" backgroundColor="#16000000" foregroundColor="#00ffffff" font="Console;24"/>
             <eLabel text="Command execution..." font="Regular;30" size="1000,40" position="8,3" foregroundColor="#00ffffff" backgroundColor="#16000000" zPosition="4"/>
             <eLabel position="10,674" size="165,5" backgroundColor="#00ff2525" zPosition="1"/>

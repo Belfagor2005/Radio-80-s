@@ -28,6 +28,11 @@ from Screens.InfoBarGenerics import (
     InfoBarShowHide,
 )
 from Screens.Screen import Screen
+try:
+    from Tools.Directories import SCOPE_GUISKIN as SCOPE_SKIN
+except ImportError:
+    from Tools.Directories import SCOPE_SKIN
+from requests.adapters import HTTPAdapter
 from enigma import (
     RT_HALIGN_LEFT,
     RT_VALIGN_CENTER,
@@ -44,9 +49,9 @@ import six
 import requests
 import codecs
 import json
-from datetime import datetime
+from datetime import datetime as dt
 global skin_path, x, y
-currversion = '1.1'
+currversion = '1.2'
 THISPLUG = os.path.dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 iconpic = 'plugin.png'
@@ -96,15 +101,19 @@ def geturl(url):
 class radioList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
+
         if screenWidth == 2560:
-            self.l.setItemHeight(50)
-            self.l.setFont(0, gFont('Regular', 42))
+            item_height = 50
+            font_size = 42
         elif screenWidth == 1920:
-            self.l.setItemHeight(50)
-            self.l.setFont(0, gFont('Regular', 38))
+            item_height = 50
+            font_size = 38
         else:
-            self.l.setItemHeight(40)
-            self.l.setFont(0, gFont('Regular', 34))
+            item_height = 40
+            font_size = 34
+
+        self.l.setItemHeight(item_height)
+        self.l.setFont(0, gFont('Regular', font_size))
 
 
 def RListEntry(download):
@@ -113,14 +122,21 @@ def RListEntry(download):
     colsel = 0xf07655
     pngx = os.path.join(skin_path, "folder.png")
     if screenWidth == 2560:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(800, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        icon_pos = (10, 10)
+        text_pos = (80, 0)
+        text_size = (800, 50)
     elif screenWidth == 1920:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(600, 50), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        icon_pos = (10, 10)
+        text_pos = (60, 0)
+        text_size = (600, 50)
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(30, 30), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(0, 0), size=(400, 40), font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        icon_pos = (10, 10)
+        text_pos = (0, 0)
+        text_size = (400, 40)
+
+    res.append(MultiContentEntryPixmapAlphaTest(pos=icon_pos, size=(30, 30), png=loadPNG(pngx)))
+    res.append(MultiContentEntryText(pos=text_pos, size=text_size, font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+
     return res
 
 
@@ -153,6 +169,89 @@ def resizePoster(x, y, dwn_poster):
         rimg.close()
     except Exception as e:
         print("ERROR:{}".format(e))
+
+
+def titlesong2(url):
+    try:
+        # Header HTTP
+        hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
+        # Configura HTTPAdapter
+        adapter = HTTPAdapter()
+        http = requests.Session()
+        http.mount("http://", adapter)
+        http.mount("https://", adapter)
+        # Effettua la richiesta
+        r = http.get(url, headers=hdr, timeout=10, verify=False, stream=True)
+        r.raise_for_status()
+        # Controlla lo stato della risposta
+        if r.status_code == requests.codes.ok:
+            # Ritorna i dati JSON
+            return r.json()
+    except Exception as e:
+        # Ritorna un errore in caso di problemi
+        return {"error": str(e)}
+
+
+def titlesong(url):
+    try:
+        # Header HTTP
+        hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
+        # Configura HTTPAdapter
+        adapter = HTTPAdapter()
+        http = requests.Session()
+        http.mount("http://", adapter)
+        http.mount("https://", adapter)
+
+        # Effettua la richiesta
+        r = http.get(url, headers=hdr, timeout=10, verify=False, stream=True)
+        r.raise_for_status()
+
+        # Controlla lo stato della risposta
+        if r.status_code == requests.codes.ok:
+            data = r.json()
+
+            # Variabili di default
+            title = ''
+            start = ''
+            ends = ''
+            duration = 0
+            artist = ''
+
+            # Estrai il titolo
+            if "title" in data:
+                title = data["title"].replace('()', '')
+
+            # Estrai e converti i timestamp
+            if "started_at" in data:
+                start = data["started_at"].strip(' ')[0:19]
+                start_time = dt.strptime(start, "%Y-%m-%d %H:%M:%S")
+
+            if "ends_at" in data:
+                ends = data["ends_at"].strip(' ')[0:19]
+                end_time = dt.strptime(ends, "%Y-%m-%d %H:%M:%S")
+
+                # Calcola la differenza
+                delta = end_time - start_time
+                duration = delta.total_seconds()
+
+            # Estrai l'artista
+            if "artist" in data:
+                artist = data["artist"]["name"]
+
+            # Costruisci il risultato
+            comeback = (
+                'Artist: ' + str(artist) + '\n' +
+                'Title: ' + str(title) + '\n' +
+                'Start: ' + str(start) + '\n' +
+                'End: ' + str(ends) + '\n' +
+                'Duration sec.: ' + str(duration)
+            )
+
+            return {"comeback": comeback, "artist": artist, "title": title, "start": start, "ends": ends, "duration": duration}
+
+    except Exception as e:
+        # In caso di errore, ritorna un dizionario con il messaggio di errore
+        return {"error": str(e)}
 
 
 class radiom1(Screen):
@@ -255,7 +354,7 @@ class radiom1(Screen):
             page = Utils.urlopen(req).read()
             data = json.loads(page)
             remote_date = data['pushed_at']
-            strp_remote_date = datetime.strptime(remote_date, '%Y-%m-%dT%H:%M:%SZ')
+            strp_remote_date = dt.strptime(remote_date, '%Y-%m-%dT%H:%M:%SZ')
             remote_date = strp_remote_date.strftime('%Y-%m-%d')
             self.session.openWithCallback(self.install_update, MessageBox, _("Do you want to install update ( %s ) now?") % (remote_date), MessageBox.TYPE_YESNO)
         except Exception as e:
@@ -730,65 +829,76 @@ class radiom80(Screen):
         description = ''
         djs = ''
         if a == 0:
-            from requests.adapters import HTTPAdapter
-            hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
-            adapter = HTTPAdapter()
-            http = requests.Session()
-            http.mount("http://", adapter)
-            http.mount("https://", adapter)
-            r = http.get(self.url, headers=hdr, timeout=10, verify=False, stream=True)
-            r.raise_for_status()
-            if r.status_code == requests.codes.ok:
-                y = r.json()
-                print('data y: ', y)
-                for cat in y:
-                    print('cat: ', cat)
+            data = titlesong2(self.url)
+            if "error" in data:
+                print("Errore:", data["error"])
+            else:
+                print("Dati della canzone:", data)
+
+            for cat in data:
+                print('cat: ', cat)
+                display_name = ''
+                page_url = ''
+                stream_url = ''
+                current_song = ''
+                listeners = ''
+                format = ''
+                description = ''
+                djs = ''
+                # Estrazione dei dati
+                if "stream_url" in cat:
+                    if "display_name" in cat:
+                        display_name = str(cat["display_name"])
+                        print('display_name = ', display_name)
+
+                    if "page_url" in cat:
+                        page_url = str(cat["page_url"])
+                        print('page_url = ', page_url)
+
                     if "stream_url" in cat:
+                        stream_url = str(cat["stream_url"])
+                        print('stream_url = ', stream_url)
 
-                        if "display_name" in cat:
-                            display_name = str(cat["display_name"])
-                            print('display_name = ', display_name)
+                    if "current_song" in cat["api_urls"]:
+                        urla = cat["api_urls"]["current_song"]
+                        self.backing = str(urla)
+                        print('url song = ', urla)
 
-                        if "page_url" in cat:
-                            page_url = str(cat["page_url"])
-                            print('page_url = ', page_url)
+                        current_song_data = titlesong2(urla)
+                        if "error" in current_song_data:
+                            print('Errore nel recuperare la canzone:', current_song_data["error"])
+                            current_song = _("Error retrieving song")
+                        else:
+                            current_song = current_song_data.get("title", _("Unknown Title"))
+                            print('current_song = ', current_song)
 
-                        if "stream_url" in cat:
-                            stream_url = str(cat["stream_url"])
-                            print('stream_url = ', stream_url)
+                    if "listeners" in cat["api_urls"]:
+                        urlb = str(cat["api_urls"]["listeners"])
+                        self.listen = urlb
+                        listeners = self.listener(urlb)
+                        print('listeners = ', listeners)
 
-                        if "current_song" in cat["api_urls"]:
-                            urla = cat["api_urls"]["current_song"]
-                            self.backing = str(urla)
-                            print('url song = ', urla)
-                            current_song = self.titlesong(urla)
+                    if "format" in cat:
+                        format = str(cat["format"])
+                        print('format = ', format)
 
-                        if "listeners" in cat["api_urls"]:
-                            urlb = str(cat["api_urls"]["listeners"])
-                            self.listen = urlb
-                            listeners = self.listener(urlb)
-                            print('listeners = ', listeners)
+                    if "description" in cat:
+                        description = str(cat["description"])
+                        print('description = ', description)
 
-                        if "format" in cat:
-                            format = str(cat["format"])
-                            print('format = ', format)
+                    if "djs" in cat:
+                        djs = str(cat["djs"])
+                        print('djs = ', djs)
 
-                        if "description" in cat:
-                            description = str(cat["description"])
-                            print('description = ', description)
+                    self['current_song'].setText(str(current_song))
+                    self['listeners'].setText(_('Online: ') + str(listeners))
+                    self['format'].setText(_(format))
+                    self['description'].setText(_(description))
+                    self['djs'].setText(_('Dj: ') + str(djs))
 
-                        if "djs" in cat:
-                            djs = str(cat["djs"])
-                            print('djs = ', djs)
-
-                        self['current_song'].setText(str(current_song))
-                        self['listeners'].setText(_('Online: ') + listeners)
-                        self['format'].setText(_(format))
-                        self['description'].setText(_(description))
-                        self['djs'].setText(_('Dj: ') + djs)
-                        self.names.append(display_name)
-                        self.urls.append(stream_url)
-                        self.countdown()
+                    self.names.append(display_name)
+                    self.urls.append(stream_url)
+                self.countdown()
                 print('current_song = ', current_song)
                 self['info'].setText(_('Select and Play'))
                 self['key_green'].show()
@@ -803,59 +913,6 @@ class radiom80(Screen):
             print('err:', e)
         return content
 
-    def titlesong(self, url):
-        try:
-            comeback = ' '
-            title = ' '
-            self.start = ' '
-            self.ends = ' '
-            self.duration = ' '
-            self.artist = ' '
-            delta = ' '
-            r = ' '
-            from requests.adapters import HTTPAdapter
-            hdr = {"User-Agent": "Enigma2 - RadioM Plugin"}
-            adapter = HTTPAdapter()
-            http = requests.Session()
-            http.mount("http://", adapter)
-            http.mount("https://", adapter)
-            r = http.get(url, headers=hdr, timeout=10, verify=False, stream=True)
-            r.raise_for_status()
-            if r.status_code == requests.codes.ok:
-                data = r.json()
-                print('data: ', data)
-                if "title" in data:
-                    title = data["title"]
-                    title = title.replace('()', '')
-                from datetime import datetime as dt
-                if "started_at" in data:
-                    start = data["started_at"]
-                    start_time = start.strip(' ')[0:19]
-                    self.start = dt.strptime((start_time), "%Y-%m-%d %H:%M:%S")
-                    print('self.start:', self.start)
-                if "ends_at" in data:
-                    ends = data["ends_at"]
-                    end_time = ends.strip(' ')[0:19]
-                    self.ends = dt.strptime((end_time), "%Y-%m-%d %H:%M:%S")
-                    print('self.end:', self.ends)
-                # start1 = "2023-12-01 06:00:00 +0100"
-                # end1 = "2023-12-01 06:03:40 +0100"
-                # get difference
-                delta = self.ends - self.start
-                print('delta: ', delta)
-                # delta:  0:01:00
-                self.duration = delta.total_seconds()
-                print('difference in seconds:', self.duration)
-                # difference in seconds: 60.0
-                if "artist" in data:
-                    self.artist = data["artist"]["name"]
-                    self.downloadCover(self.artist)
-                comeback = ('Artist: ' + str(self.artist) + '\n' + 'Title: ' + str(title) + '\n' + 'Start: ' + str(start) + '\nEnd: ' + str(ends) + '\nDuration sec.: ' + str(self.duration))
-                print('comeback:\n', comeback)
-        except Exception as e:
-            print(e)
-        return comeback
-
     def cancel(self):
         self.stop()
         self.close()
@@ -863,15 +920,22 @@ class radiom80(Screen):
     def countdown(self):
         try:
             live = self.listener(self.listen)
-            titlex = self.titlesong(self.backing)
+            titlex_data = titlesong(self.backing)
+            if "error" in titlex_data:
+                print("Errore nel recupero della canzone:", titlex_data["error"])
+                titlex = "Canzone non disponibile"
+                self.artist = "Artista sconosciuto"
+            else:
+                titlex = titlex_data.get("comeback", "Canzone non disponibile")
+                self.artist = titlex_data.get("artist", "Artista sconosciuto")
             self.downloadCover(self.artist)
             self['current_song'].setText(titlex)
-            self['listeners'].setText(_('Online: ') + live)
+            self['listeners'].setText(_('Online: ') + str(live))
             self.selectpic()
             self.openTest2()
             print('Countdown finished.')
         except Exception as e:
-            print(e)
+            print('Errore durante il countdown:', e)
 
     def openTest2(self):
         print('duration mmm: ', self.duration)
@@ -913,19 +977,18 @@ class radiom80(Screen):
             else:
                 url = url.replace(':', '%3a').replace(' ', '%20')
                 if self.player == '3':
-                    ref = '4097:0:1:0:0:0:0:0:0:0:' + str(url)  # tv
+                    ref = '4097:0:1:0:0:0:0:0:0:0:' + str(url)  # TV
                 else:
-                    ref = '4097:0:2:0:0:0:0:0:0:0:' + str(url)  # radio
-                print('final reference:   ', ref)
+                    ref = '4097:0:2:0:0:0:0:0:0:0:' + str(url)  # Radio
+                print('Final reference:', ref)
                 sref = eServiceReference(ref)
                 sref.setName(name)
                 self.session.nav.stopService()
                 self.session.nav.playService(sref)
                 self.is_playing = True
                 self.countdown()
-            return
-        except:
-            pass
+        except Exception as e:
+            print("Errore durante la riproduzione:", e)
 
     def stop(self, text=''):
         if self.is_playing:
