@@ -140,6 +140,14 @@ def RListEntry(download):
     return res
 
 
+def showlist(datal, list):
+    plist = []
+    for name in datal:  # Iterazione più pythonica
+        plist.append(show_list_1(name))
+    list.setList(plist)
+
+
+"""
 def showlist(data, list):
     icount = 0
     plist = []
@@ -148,6 +156,7 @@ def showlist(data, list):
         plist.append(RListEntry(name))
         icount += 1
     list.setList(plist)
+"""
 
 
 def resizePoster(x, y, dwn_poster):
