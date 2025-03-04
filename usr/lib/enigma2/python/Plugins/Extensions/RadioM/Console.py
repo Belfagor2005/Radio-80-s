@@ -8,7 +8,7 @@ from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
-# from Components.Sources.StaticText import StaticText
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from enigma import getDesktop
 import sys
@@ -29,8 +29,7 @@ def isHD():
 
 class Console(Screen):
     if isHD():
-        skin = '''
-        <screen position="17,center" size="1245,681" title="Command execution..." backgroundColor="#16000000" flags="wfNoBorder">
+        skin = '''<screen position="17,center" size="1245,681" title="Command execution..." backgroundColor="#16000000" flags="wfNoBorder">
             <widget name="text" position="9,48" size="1237,587" backgroundColor="#16000000" foregroundColor="#00ffffff" font="Console;24"/>
             <eLabel text="Command execution..." font="Regular;30" size="1000,40" position="8,3" foregroundColor="#00ffffff" backgroundColor="#16000000" zPosition="4"/>
             <eLabel position="10,674" size="165,5" backgroundColor="#00ff2525" zPosition="1"/>
@@ -61,20 +60,20 @@ class Console(Screen):
             self.skinName = [skin, 'Console']
         self.errorOcurred = False
         self['text'] = ScrollLabel('')
-        # self['key_red'] = StaticText('Cancel')
-        # self['key_green'] = StaticText('Hide')
+        self['key_red'] = StaticText(_('Cancel'))
+        self['key_green'] = StaticText(_('Hide'))
         self["actions"] = ActionMap(["WizardActions", "DirectionActions", 'ColorActions'],
                                     {
-                                    "ok": self.cancel,
-                                    "up": self["text"].pageUp,
-                                    "down": self["text"].pageDown,
-                                    "red": self.cancel,
-                                    "green": self.toggleHideShow,
-                                    "blue": self.restartenigma,
-                                    "cancel": self.cancel,
+                                        "ok": self.cancel if not self.finished else None,
+                                        "up": self["text"].pageUp,
+                                        "down": self["text"].pageDown,
+                                        "red": self.cancel,
+                                        "green": self.toggleHideShow,
+                                        "blue": self.restartenigma,
+                                        "exit": self.cancel,
                                     }, -1)
         self.cmdlist = isinstance(cmdlist, list) and cmdlist or [cmdlist]
-        self.newtitle = title == 'Console' and ('Console') or title
+        self.newtitle = title == 'Console' and _('Console') or title
         self.cancel_msg = None
         self.onShown.append(self.updateTitle)
         self.container = eConsoleAppContainer()
@@ -93,10 +92,13 @@ class Console(Screen):
 
     def startRun(self):
         if self.showStartStopText:
-            self['text'].setText('Execution progress\n\n')
-        print('[Console] executing in run', self.run, ' the command:', self.cmdlist[self.run])
+            self['text'].setText(_('Execution progress') + '\n\n')
+        print('[Console] executing in run', self.run, 'the command:', self.cmdlist[self.run])
         if self.container.execute(self.cmdlist[self.run]):
+            print('[Console] Command executed successfully')
             self.runFinished(-1)
+        else:
+            print('[Console] Command failed to execute')
 
     def runFinished(self, retval):
         if retval:
@@ -116,15 +118,15 @@ class Console(Screen):
             if self.cancel_msg:
                 self.cancel_msg.close()
             if self.showStartStopText:
-                self['text'].appendText('Execution finished!!')
+                self['text'].appendText(_('Execution finished!!'))
             if self.finishedCallback is not None:
                 self.finishedCallback()
             if not self.errorOcurred and self.closeOnSuccess:
                 self.closeConsole()
             else:
-                self['text'].appendText('\nPress OK or Exit to abort!')
-                # self['key_red'].setText('Exit')
-                # self['key_green'].setText('')
+                self['text'].appendText(_('\nPress OK or Exit to abort!'))
+                self['key_red'].setText(_('Exit'))
+                self['key_green'].setText('')
 
     def toggleHideShow(self):
         if self.finished:
@@ -138,7 +140,7 @@ class Console(Screen):
         if self.finished:
             self.closeConsole()
         else:
-            self.cancel_msg = self.session.openWithCallback(self.cancelCallback, MessageBox, 'Cancel execution?', type=MessageBox.TYPE_YESNO, default=False)
+            self.cancel_msg = self.session.openWithCallback(self.cancelCallback, MessageBox, _('Cancel execution?'), type=MessageBox.TYPE_YESNO, default=False)
 
     def cancelCallback(self, ret=None):
         self.cancel_msg = None
@@ -165,6 +167,7 @@ class Console(Screen):
             self.show()
 
     def dataAvail(self, str):
+        print("Received data:", str)  # Aggiungi un print per vedere cosa ricevi
         if PY3:
             self['text'].appendText(str.decode())
         else:
