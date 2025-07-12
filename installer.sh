@@ -30,7 +30,7 @@ if [ -f /usr/bin/wget ]; then
 else
 	if [ $OSTYPE = "DreamOs" ]; then
 		echo "dreamos"
-		apt-get update && apt-get install wget
+		apt-get update && apt-get install wget -y
 	else
 		opkg update && opkg install wget
 	fi
@@ -48,42 +48,44 @@ else
 fi
 
 if [ $PYTHON = "PY3" ]; then
-	if grep -qs "Package: $Packagesix" cat $STATUS ; then
+	if grep -qs "Package: $Packagesix" $STATUS ; then
 		echo ""
 	else
-		opkg update && opkg --force-reinstall --force-overwrite install python3-six
+		echo "Need to install $Packagesix"
+		if [ $OSTYPE = "DreamOs" ]; then
+			apt-get update && apt-get install $Packagesix -y
+		else
+			opkg update && opkg install $Packagesix
+		fi
 	fi
 fi
 echo ""
-if grep -qs "Package: $Packagerequests" cat $STATUS ; then
+
+if grep -qs "Package: $Packagerequests" $STATUS ; then
 	echo ""
 else
 	echo "Need to install $Packagerequests"
 	echo ""
 	if [ $OSTYPE = "DreamOs" ]; then
-		apt-get update && apt-get install python-requests -y
-	 
+		apt-get update && apt-get install $Packagerequests -y
 	elif [ $PYTHON = "PY3" ]; then
-		opkg update && opkg --force-reinstall --force-overwrite install python3-requests
+		opkg update && opkg install python3-requests
 	elif [ $PYTHON = "PY2" ]; then
-	  
-		opkg update && opkg --force-reinstall --force-overwrite install python-requests
-	
+		opkg update && opkg install python-requests
 	fi
 fi
 echo ""
 
 ## Remove tmp directory
-[ -r $TMPPATH ] && rm -f $TMPPATH > /dev/null 2>&1
+[ -r $TMPPATH ] && rm -rf $TMPPATH > /dev/null 2>&1
 
-## Remove tmp directory
+## Remove tmp file
 [ -r $FILEPATH ] && rm -f $FILEPATH > /dev/null 2>&1
 
 ## Remove old plugin directory
-[ -r $PLUGINPATH ] && rm -rf $PLUGINPATH
+[ -r $PLUGINPATH ] && rm -rf $PLUGINPATH > /dev/null 2>&1
 
 ## Download and install plugin
-## check depends packges
 mkdir -p $TMPPATH
 cd $TMPPATH
 set -e
@@ -96,7 +98,7 @@ else
 fi
 
 if [ $OSTYPE != "DreamOs" ]; then
-	opkg update && opkg --force-reinstall --force-overwrite install ffmpeg gstplayer exteplayer3 enigma2-plugin-systemplugins-serviceapp
+	opkg update && opkg install ffmpeg gstplayer exteplayer3 enigma2-plugin-systemplugins-serviceapp
 fi
 sleep 2
 
@@ -110,16 +112,17 @@ sleep 2
 ## Check if plugin installed correctly
 if [ ! -d $PLUGINPATH ]; then
 	echo "Some thing wrong .. Plugin not installed"
+	rm -rf $TMPPATH > /dev/null 2>&1
 	exit 1
 fi
 rm -rf $TMPPATH > /dev/null 2>&1
 sync
 
-# # Identify the box type from the hostname file
+# Identify the box type from the hostname file
 FILE="/etc/image-version"
 box_type=$(head -n 1 /etc/hostname)
-distro_value=$(grep '^distro=' "$FILE" | awk -F '=' '{print $2}')
-distro_version=$(grep '^version=' "$FILE" | awk -F '=' '{print $2}')
+distro_value=$(grep '^distro=' "$FILE" 2>/dev/null | awk -F '=' '{print $2}')
+distro_version=$(grep '^version=' "$FILE" 2>/dev/null | awk -F '=' '{print $2}')
 python_vers=$(python --version 2>&1)
 echo "#########################################################
 #               INSTALLED SUCCESSFULLY                  #
@@ -134,6 +137,7 @@ OO SYSTEM: $OSTYPE
 PYTHON: $python_vers
 IMAGE NAME: $distro_value
 IMAGE VERSION: $distro_version"
+
 sleep 5
 killall -9 enigma2
 exit 0
