@@ -19,6 +19,7 @@ import six
 from six import unichr, iteritems
 from six.moves import html_entities
 import types
+import unicodedata
 
 requests.packages.urllib3.disable_warnings(
     requests.packages.urllib3.exceptions.InsecureRequestWarning)
@@ -69,7 +70,10 @@ text_type = six.text_type  # unicode in Py2, str in Py3
 binary_type = six.binary_type  # str in Py2, bytes in Py3
 MAXSIZE = sys.maxsize  # Compatibile con entrambe le versioni
 
-_UNICODE_MAP = {k: unichr(v) for k, v in iteritems(html_entities.name2codepoint)}
+_UNICODE_MAP = {
+    k: unichr(v) for k,
+    v in iteritems(
+        html_entities.name2codepoint)}
 _ESCAPE_RE = re.compile(r"[&<>\"']")
 _UNESCAPE_RE = re.compile(r"&\s*(#?)(\w+?)\s*;")
 _ESCAPE_DICT = {
@@ -93,7 +97,7 @@ else:
 if sys.version_info >= (2, 7, 9):
     try:
         sslContext = ssl._create_unverified_context()
-    except:
+    except BaseException:
         sslContext = None
 
 
@@ -159,7 +163,8 @@ def _convert_entity(m):
     """Helper for HTML entity conversion, compatible with Python 2 and 3"""
     if m.group(1) == "#":
         try:
-            return unichr(int(m.group(2)[1:], 16)) if m.group(2)[:1].lower() == "x" else unichr(int(m.group(2)))
+            return unichr(int(m.group(2)[1:], 16)) if m.group(
+                2)[:1].lower() == "x" else unichr(int(m.group(2)))
         except ValueError:
             return "&#%s;" % m.group(2)
     return _UNICODE_MAP.get(m.group(2), "&%s;" % m.group(2))
@@ -221,23 +226,56 @@ def ssl_urlopen(url):
 
 class AspectManager:
     """Manages aspect ratio settings for the plugin"""
+
     def __init__(self):
-        self.init_aspect = self.get_current_aspect()
-        print("[INFO] Initial aspect ratio:", self.init_aspect)
+        try:
+            self.init_aspect = self.get_current_aspect()
+            print("[INFO] Initial aspect ratio:", self.init_aspect)
+        except Exception as e:
+            print("[ERROR] Failed to initialize aspect manager:", str(e))
+            self.init_aspect = 0  # Fallback
 
     def get_current_aspect(self):
         """Get current aspect ratio setting"""
         try:
-            return int(AVSwitch().getAspectRatioSetting())
-        except Exception as e:
+            aspect = AVSwitch().getAspectRatioSetting()
+            # Assicurati che sia un intero valido
+            return int(aspect) if aspect is not None else 0
+        except (ValueError, TypeError, Exception) as e:
             print("[ERROR] Failed to get aspect ratio:", str(e))
-            return 0
+            return 0  # Default 4:3
+
+    def set_aspect(self, aspect_ratio):
+        """Set aspect ratio based on string (e.g., '16:9', '4:3')"""
+        try:
+            aspect_map = {
+                "4:3": 0,
+                "16:9": 1,
+                "16:10": 2,
+                "auto": 3
+            }
+            
+            if aspect_ratio in aspect_map:
+                new_aspect = aspect_map[aspect_ratio]
+                print("[INFO] Setting aspect ratio to:", aspect_ratio, "(", new_aspect, ")")
+                AVSwitch().setAspectRatio(new_aspect)
+                return True
+            else:
+                print("[ERROR] Unknown aspect ratio:", aspect_ratio)
+                return False
+                
+        except Exception as e:
+            print("[ERROR] Failed to set aspect ratio:", str(e))
+            return False
 
     def restore_aspect(self):
         """Restore original aspect ratio"""
         try:
-            print("[INFO] Restoring aspect ratio to:", self.init_aspect)
-            AVSwitch().setAspectRatio(self.init_aspect)
+            if hasattr(self, 'init_aspect') and self.init_aspect is not None:
+                print("[INFO] Restoring aspect ratio to:", self.init_aspect)
+                AVSwitch().setAspectRatio(self.init_aspect)
+            else:
+                print("[WARNING] No initial aspect ratio to restore")
         except Exception as e:
             print("[ERROR] Failed to restore aspect ratio:", str(e))
 
@@ -251,24 +289,29 @@ def getDesktopSize():
     return (s.width(), s.height())
 
 
-# Chaneg code for support of wqhd detection
+def isWQHD():
+    """2560 x 1440 (WQHD)"""
+    width, height = getDesktopSize()
+    return width == 2560 and height == 1440
+
+
 def isUHD():
-    UHD = False
-    if screenwidth.width() == 2560:
-        UHD = True
-        return UHD
+    """3840 x 2160 (4K UHD)"""
+    width, height = getDesktopSize()
+    return width == 3840 and height == 2160
 
 
 def isFHD():
-    if screenwidth.width() == 1920:
-        FHD = True
-        return FHD
+    """1920 x 1080 (Full HD)"""
+    width, height = getDesktopSize()
+    return width == 1920 and height == 1080
 
 
 def isHD():
-    if screenwidth.width() == 1280:
-        HD = True
-        return HD
+    """1280 x 720 (HD)"""
+    width, height = getDesktopSize()
+    return width == 1280 and height == 720
+
 # End of code change
 
 
@@ -365,7 +408,7 @@ def getEnigmaVersionString():
     try:
         from enigma import getEnigmaVersionString
         return getEnigmaVersionString()
-    except:
+    except BaseException:
         return "N/A"
 
 
@@ -424,7 +467,7 @@ def getFreeMemory():
                     parts = line.strip().split()
                     mem_total = float(parts[1])
             f.close()
-    except:
+    except BaseException:
         pass
     return (mem_free, mem_total)
 
@@ -477,7 +520,7 @@ def getMointedDevice(pathname):
                     md = fields[0]
                     break
             f.close()
-    except:
+    except BaseException:
         pass
     return md
 
@@ -490,7 +533,7 @@ def getFreeSpace(path):
         stat = statvfs(device)  # @UndefinedVariable
         print(stat)
         return sizeToString(stat.f_bfree * stat.f_bsize)
-    except:
+    except BaseException:
         return "N/A"
 
 
@@ -498,7 +541,7 @@ def listDir(what):
     f = None
     try:
         f = listdir(what)
-    except:
+    except BaseException:
         pass
     return f
 
@@ -518,7 +561,7 @@ def getLanguage():
         language = config.osd.language.value
         language = language[:-3]
         # return language
-    except:
+    except BaseException:
         language = 'en'
     return language
     pass
@@ -528,7 +571,7 @@ def downloadFile(url, target):
     import socket
     try:
         from urllib.error import HTTPError, URLError
-    except:
+    except BaseException:
         from urllib2 import HTTPError, URLError
     try:
         response = urlopen(url, None, 15)
@@ -555,7 +598,9 @@ def downloadFile(url, target):
 def downloadFilest(url, target):
     try:
         req = Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        req.add_header(
+            'User-Agent',
+            'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         # context=ssl._create_unverified_context()
         response = ssl_urlopen(req)
         with open(target, 'wb') as output:
@@ -583,7 +628,7 @@ if not isdir(config.movielist.last_videodir.value):
     try:
         config.movielist.last_videodir.value = defaultMoviePath()
         config.movielist.last_videodir.save()
-    except:
+    except BaseException:
         pass
 downloadm3u = config.movielist.last_videodir.value
 
@@ -618,7 +663,8 @@ CountConnOk = 0
 def zCheckInternet(opt=1, server=None, port=None):
     global CountConnOk
     sock = False
-    checklist = [("8.8.44.4", 53), ("8.8.88.8", 53), ("www.lululla.altervista.org/", 80), ("www.linuxsat-support.com", 443), ("www.google.com", 443)]
+    checklist = [("8.8.4.4", 53), ("8.8.8.8", 53), ("www.lululla.altervista.org/",
+                                                    80), ("www.linuxsat-support.com", 443), ("www.google.com", 443)]
     if opt < 5:
         srv = checklist[opt]
     else:
@@ -630,7 +676,7 @@ def zCheckInternet(opt=1, server=None, port=None):
         sock = True
         CountConnOk = 0
         print('Status Internet: %s:%s -> OK' % (srv[0], srv[1]))
-    except:
+    except BaseException:
         sock = False
         print('Status Internet: %s:%s -> KO' % (srv[0], srv[1]))
         if CountConnOk == 0 and opt != 2 and opt != 3:
@@ -648,9 +694,11 @@ def checkInternet():
     try:
         import socket
         socket.setdefaulttimeout(0.5)
-        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(('8.8.8.8', 53))
+        socket.socket(
+            socket.AF_INET, socket.SOCK_STREAM).connect(
+            ('8.8.8.8', 53))
         return True
-    except:
+    except BaseException:
         return False
 
 
@@ -658,7 +706,7 @@ def check(url):
     import socket
     try:
         from urllib.error import HTTPError, URLError
-    except:
+    except BaseException:
         from urllib2 import HTTPError, URLError
     try:
         response = checkStr(urlopen(url, None, 15))
@@ -725,9 +773,10 @@ def freespace():
         available = float(diskSpace.f_bsize * diskSpace.f_bavail)
         fspace = round(float(available / 1048576.0), 2)
         tspace = round(float(capacity / 1048576.0), 1)
-        spacestr = 'Free space(' + str(fspace) + 'MB) Total space(' + str(tspace) + 'MB)'
+        spacestr = 'Free space(' + str(fspace) + \
+            'MB) Total space(' + str(tspace) + 'MB)'
         return spacestr
-    except:
+    except BaseException:
         return ''
 
 
@@ -763,7 +812,7 @@ def __createdir(list):
             try:
                 from os import mkdir
                 mkdir(dir)
-            except:
+            except BaseException:
                 print('Mkdir Failed', dir)
 
 
@@ -853,7 +902,7 @@ def OnclearMem():
         system('echo 1 > /proc/sys/vm/drop_caches')
         system('echo 2 > /proc/sys/vm/drop_caches')
         system('echo 3 > /proc/sys/vm/drop_caches')
-    except:
+    except BaseException:
         pass
 
 
@@ -889,7 +938,8 @@ def findSoftCamKey():
                 paths.insert(0, line.split(':')[1].strip())
     for path in paths:
         softcamkey = os_path.join(path, 'SoftCam.Key')
-        print('[key] the %s exists %d' % (softcamkey, os_path.exists(softcamkey)))
+        print('[key] the %s exists %d' %
+              (softcamkey, os_path.exists(softcamkey)))
         if os_path.exists(softcamkey):
             return softcamkey
         else:
@@ -901,7 +951,7 @@ def web_info(message):
     try:
         try:
             from urllib import quote_plus
-        except:
+        except BaseException:
             from urllib.parse import quote_plus
         message = quote_plus(message)
         cmd = "wget -qO - 'http://127.0.0.1/web/message?type=2&timeout=10&text=%s' > /dev/null 2>&1 &" % message
@@ -942,29 +992,28 @@ def ConverDateBack(data):
 
 
 def isPythonFolder():
-    path = ('/usr/lib/')
+    path = "/usr/lib/"
     for name in listdir(path):
-        fullname = path + name
-        if not isfile(fullname) and 'python' in fullname:
+        fullname = join(path, name)
+        if not isfile(fullname) and "python" in name:
             print(fullname)
-            import sys
             print("sys.version_info =", sys.version_info)
-            pythonvr = fullname
-            print('pythonvr is ', pythonvr)
-            x = ('%s/site-packages/streamlink' % pythonvr)
+            x = join(fullname, "site-packages", "streamlink")
             print(x)
-            # /usr/lib/python3.9/site-packages/streamlink
-    return x
+            if exists(x):
+                return x
+    return False
 
 
-def isStreamlinkAvailable():
-    pythonvr = isPythonFolder()
-    return pythonvr
+def is_streamlink_available():
+    streamlink_folder = isPythonFolder()
+    return streamlink_folder
 
 
-def isExtEplayer3Available():
+def is_exteplayer3_Available():
     from enigma import eEnv
-    return isfile(eEnv.resolve('$bindir/exteplayer3'))
+    path = eEnv.resolve("$bindir/exteplayer3")
+    return isfile(path)
 
 
 '''
@@ -990,7 +1039,9 @@ WHERE_CHANNEL_CONTEXT_MENU = 15
 
 def AdultUrl(url):
     req = Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
+    req.add_header(
+        'User-Agent',
+        'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
     r = urlopen(req, None, 15)
     link = r.read()
     r.close()
@@ -1009,7 +1060,6 @@ std_headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'en-us,en;q=0.5',
 }
-
 
 ListAgent = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
@@ -1065,8 +1115,7 @@ ListAgent = [
     'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2',
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.55.3 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
-    'Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko ) Version/5.1 Mobile/9B176 Safari/7534.48.3'
-]
+    'Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko ) Version/5.1 Mobile/9B176 Safari/7534.48.3']
 
 
 def RequestAgent():
@@ -1080,7 +1129,13 @@ def make_request(url):
         import requests
         response = requests.get(url, verify=False)
         if response.status_code == 200:
-            link = requests.get(url, headers={'User-Agent': RequestAgent()}, timeout=15, verify=False, stream=True).text
+            link = requests.get(
+                url,
+                headers={
+                    'User-Agent': RequestAgent()},
+                timeout=15,
+                verify=False,
+                stream=True).text
         return link
     except ImportError:
         req = Request(url)
@@ -1096,7 +1151,7 @@ def ReadUrl2(url, referer):
     try:
         import ssl
         CONTEXT = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-    except:
+    except BaseException:
         CONTEXT = None
 
     TIMEOUT_URL = 30
@@ -1158,7 +1213,7 @@ def ReadUrl(url):
     try:
         import ssl
         CONTEXT = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-    except:
+    except BaseException:
         CONTEXT = None
     link = url
     TIMEOUT_URL = 30
@@ -1212,6 +1267,29 @@ def ReadUrl(url):
     return link
 
 
+def getUrlSiVer(url, verify=True):
+    """Fetch URL content with optional SSL verification"""
+    try:
+        headers = {'User-Agent': RequestAgent()}
+        response = requests.get(url, headers=headers, timeout=10, verify=verify)
+        response.raise_for_status()
+        return response.text
+    except Exception as e:
+        print("Error fetching URL " + str(url) + ": " + str(e))
+        return None
+
+
+def getUrlNoVer(url, verify=True):
+    try:
+        headers = {'User-Agent': RequestAgent()}
+        response = requests.get(url, headers=headers, timeout=10, verify=verify)
+        response.raise_for_status()
+        return response.text
+    except Exception as e:
+        print("Error fetching URL {}: {}".format(url, str(e)))
+        return None
+
+
 def getUrl(url):
     req = Request(url)
     req.add_header('User-Agent', RequestAgent())
@@ -1252,7 +1330,7 @@ def getUrl2(url, referer):
         response = urlopen(req, timeout=10)
         link = response.read().decode()
         response.close()
-    except:
+    except BaseException:
         import ssl
         gcontext = ssl._create_unverified_context()
         response = urlopen(req, timeout=10, context=gcontext)
@@ -1266,7 +1344,7 @@ def getUrlresp(url):
     req.add_header('User-Agent', RequestAgent())
     try:
         response = urlopen(req, timeout=10)
-    except:
+    except BaseException:
         import ssl
         gcontext = ssl._create_unverified_context()
         response = urlopen(req, timeout=10, context=gcontext)
@@ -1297,11 +1375,16 @@ def normalize(title):
         import unicodedata
         try:
             return title.decode('ascii').encode("utf-8")
-        except:
+        except BaseException:
             pass
 
-        return str(''.join(c for c in unicodedata.normalize('NFKD', unicode(title.decode('utf-8'))) if unicodedata.category(c) != 'Mn'))
-    except:
+        return str(
+            ''.join(
+                c for c in unicodedata.normalize(
+                    'NFKD',
+                    unicode(
+                        title.decode('utf-8'))) if unicodedata.category(c) != 'Mn'))
+    except BaseException:
         return unicode(title)
 
 
@@ -1313,7 +1396,10 @@ def get_safe_filename(filename, fallback=''):
     name = filename.replace(' ', '_').replace('/', '_')
     if isinstance(name, six.text_type):
         name = name.encode('utf-8')
-    name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+    name = unicodedata.normalize(
+        'NFKD', six.text_type(
+            name, 'utf_8', errors='ignore')).encode(
+        'ASCII', 'ignore')
     name = re.sub(b'[^a-z0-9-_]', b'', name.lower())
     if not name:
         name = fallback
@@ -1425,7 +1511,7 @@ def cyr2lat(text):
         bukva_original = text[i]
         try:
             bukva_translit = conversion[bukva_original]
-        except:
+        except BaseException:
             bukva_translit = bukva_original
         i = i + 1
         retval += bukva_translit
@@ -1521,7 +1607,13 @@ def charRemove(text):
     for ch in char:  # .lower():
         # ch= ch #.lower()
         if text == ch:
-            myreplace = text.replace(ch, '').replace('  ', ' ').replace('   ', ' ').strip()
+            myreplace = text.replace(
+                ch,
+                '').replace(
+                '  ',
+                ' ').replace(
+                '   ',
+                ' ').strip()
     print('myreplace: ', myreplace)
     return myreplace
 
@@ -1558,11 +1650,29 @@ def cachedel(folder):
 
 def cleanName(name):
     non_allowed_characters = "/.\\:*?<>|\""
-    name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-    name = name.replace(' ', '-').replace("'", '').replace('&', 'e')
-    name = name.replace('(', '').replace(')', '')
-    name = name.strip()
-    name = ''.join(['_' if c in non_allowed_characters or ord(c) < 32 else c for c in name])
+    try:
+        if not isinstance(name, (str, bytes)):
+            name = str(name)
+
+        if sys.version_info[0] < 3:
+            if not isinstance(name, unicode):
+                name = unicode(name, "utf-8")
+        else:
+            if isinstance(name, bytes):
+                name = name.decode("utf-8", "ignore")
+
+        name = unicodedata.normalize(
+            "NFKD", name).encode(
+            "ASCII", "ignore").decode("ASCII")
+        name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+        name = name.replace(' ', '-').replace("'", '').replace('&', 'e')
+        name = name.replace('(', '').replace(')', '')
+        name = name.strip()
+        name = ''.join(
+            ['_' if c in non_allowed_characters or ord(c) < 32 else c for c in name])
+    except Exception as e:
+        print("Error in cleanName: " + str(e))
+        name = "noname"
     return name
 
 
@@ -1647,12 +1757,15 @@ def get_title(title):
         return
     # try:
         # title = title.encode('utf-8')
-    # except:
+    # except BaseException:
         # pass
     title = re.sub(r'&#(\d+);', '', title)
     title = re.sub(r'(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
     title = title.replace('&quot;', '\"').replace('&amp;', '&')
-    title = re.sub(r'\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|–|"|,|\'|\_|\.|\?)|\s', '', title).lower()
+    title = re.sub(
+        r'\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|–|"|,|\'|\_|\.|\?)|\s',
+        '',
+        title).lower()
     return title
 
 
@@ -1724,7 +1837,9 @@ def addstreamboq(bouquetname=None):
                 break
         if add is True:
             fp = open(boqfile, 'a')
-            fp.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.tv" ORDER BY bouquet\n' % bouquetname)
+            fp.write(
+                '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.tv" ORDER BY bouquet\n' %
+                bouquetname)
             fp.close()
             add = True
     return
@@ -1734,7 +1849,8 @@ def stream2bouquet(url=None, name=None, bouquetname=None):
     error = 'none'
     bouquetname = 'MyFavoriteBouquet'
     fileName = '/etc/enigma2/userbouquet.%s.tv' % bouquetname
-    out = '#SERVICE 4097:0:0:0:0:0:0:0:0:0:%s:%s\r\n' % (quote(url), quote(name))
+    out = '#SERVICE 4097:0:0:0:0:0:0:0:0:0:%s:%s\r\n' % (
+        quote(url), quote(name))
 
     try:
         addstreamboq(bouquetname)
@@ -1756,6 +1872,6 @@ def stream2bouquet(url=None, name=None, bouquetname=None):
             fp.write(out)
         fp.write('')
         fp.close()
-    except:
+    except BaseException:
         error = ('Adding to bouquet failed')
     return error

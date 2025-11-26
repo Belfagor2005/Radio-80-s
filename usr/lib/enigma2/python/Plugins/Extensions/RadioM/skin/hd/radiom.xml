@@ -1,9 +1,12 @@
-<screen name="FullHD1" position="401,11" size="430,602" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
-    <widget name="logo" position="0,0" size="430,430" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
+<screen name="radiom1" position="0,0" size="540,700" title="RadioM" backgroundColor="#FF000000" flags="wfNoBorder">
     <widget name="back" position="0,0" size="0,0" zPosition="0" alphatest="blend" transparent="1" />
-    <widget name="info" position="1,432" zPosition="4" size="426,26" font="Regular;25" foregroundColor="#ffffff" backgroundColor="#000000" transparent="1" halign="center" valign="center" />
-    <widget name="list" position="2,459" size="426,100" zPosition="4" scrollbarMode="showOnDemand" transparent="0" />
-    <widget name="key_red" position="2,559" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
-    <widget name="key_green" position="144,560" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
-    <widget name="key_yellow" position="287,560" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="#ffffff" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />
+    <widget name="logo" position="128,3" size="250,250" zPosition="0" alphatest="blend" scale="stretch" transparent="1" />
+    <widget name="info" position="3,255" zPosition="4" size="538,40" font="Regular;38" foregroundColor="#ffffff" backgroundColor="#000000" transparent="1" halign="center" valign="center" />
+    <widget name="list" position="4,301" size="536,344" zPosition="4" scrollbarMode="showOnDemand" transparent="0" />
+    <widget name="key_red" position="0,660" size="180,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" />
+    <widget name="key_green" position="180,660" size="180,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" />
+    <widget name="key_yellow" position="360,660" size="180,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" />
+    <eLabel name="" position="0,695" size="180,8" zPosition="3" backgroundColor="#fe0000" />
+    <eLabel name="" position="179,695" size="180,8" zPosition="3" backgroundColor="#fe00" />
+    <eLabel name="" position="359,695" size="180,8" zPosition="3" backgroundColor="#cccc40" />
 </screen>

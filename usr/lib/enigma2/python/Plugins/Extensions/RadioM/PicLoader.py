@@ -24,12 +24,12 @@
 
 from Components.AVSwitch import AVSwitch
 from enigma import ePicLoad
+from os.path import exists
 
-try:
-    from enigma import eMediaDatabase  # @UnresolvedImport @UnusedImport
+
+isDreamOS = False
+if exists("/usr/bin/apt-get"):
     isDreamOS = True
-except:
-    isDreamOS = False
 
 
 class PicLoader:

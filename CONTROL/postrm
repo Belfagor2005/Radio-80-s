@@ -1,7 +1,36 @@
 #!/bin/sh
 
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/RadioM ]; then
-  rm -rf /usr/lib/enigma2/python/Plugins/Extensions/RadioM > /dev/null 2>&1
+echo "================================================"
+echo "           RadioM Plugin Cleanup"
+echo "================================================"
+echo ""
+echo "► Author: Lululla"
+echo "► Modifier: Mmark"
+echo ""
+echo "================================================"
+echo "► Cleaning up installation files..."
+echo "================================================"
+
+EXTDIR="/usr/lib/enigma2/python/Plugins/Extensions/RadioM"
+
+if [ -d "$EXTDIR" ]; then
+    echo "• Removing RadioM plugin files..."
+    rm -rf "$EXTDIR" > /dev/null 2>&1
+    echo "• Plugin files removed successfully"
+else
+    echo "• No RadioM installation found"
 fi
 
+echo ""
+echo "================================================"
+echo "► Cleanup completed"
+echo "► Please restart Enigma2"
+echo "================================================"
+
+# Clear Python cache
+echo "• Cleaning Python cache..."
+find /usr/lib/enigma2/python/ -name "*.pyo" -delete > /dev/null 2>&1
+find /usr/lib/enigma2/python/ -name "*.pyc" -delete > /dev/null 2>&1
+
+echo "• All cleanup operations completed"
 exit 0

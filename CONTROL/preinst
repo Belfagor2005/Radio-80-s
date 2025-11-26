@@ -1,7 +1,30 @@
 #!/bin/sh
 
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/RadioM ]; then
-  rm -rf /usr/lib/enigma2/python/Plugins/Extensions/RadioM > /dev/null 2>&1
+echo "================================================"
+echo "           RadioM Plugin Installer"
+echo "================================================"
+echo ""
+echo "► Author: Lululla"
+echo "► Modifier: Mmark"
+echo "► License: GPL v2"
+echo ""
+echo "================================================"
+echo "► Removing previous version..."
+echo "================================================"
+
+EXTDIR="/usr/lib/enigma2/python/Plugins/Extensions/RadioM"
+
+if [ -d "$EXTDIR" ]; then
+    echo "• Removing old installation..."
+    rm -rf "$EXTDIR" > /dev/null 2>&1
+    echo "• Old version removed successfully"
+else
+    echo "• No previous version found"
 fi
 
+echo ""
+echo "================================================"
+echo "► Installation ready"
+echo "► Please restart Enigma2 after installation"
+echo "================================================"
 exit 0
