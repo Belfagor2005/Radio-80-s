@@ -119,7 +119,7 @@ This project is licensed under the GPL v2 License - see the [LICENSE](LICENSE) f
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/Belfagor2005/RadioM)
-- [Enigma2 Development Forum](https://www.world-of-satellite.com)
+- [Enigma2 Development Forum](http://www.corvoboys.org)
 
 ## 📞 Support
 
