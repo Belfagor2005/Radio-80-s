@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma 2\n"
+"PO-Revision-Date: 2026-02-08 01:27+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Portuguese <translation-team-pt@googlegroups.com>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel execution?"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr ""
+
+msgid "Console"
+msgstr ""
+
+msgid "Dj:"
+msgstr ""
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr ""
+
+msgid "Error retrieving song"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "Hide/Show"
+msgstr ""
+
+msgid "Online:"
+msgstr ""
+
+msgid "Restart"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Select and Play"
+msgstr ""
+
+msgid "Unknown Title"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update Aborted!"
+msgstr ""

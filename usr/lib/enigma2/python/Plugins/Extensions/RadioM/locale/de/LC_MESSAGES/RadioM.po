@@ -16,62 +16,50 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: plugin.py\n"
 
-#: plugin.py:129 plugin.py:255 plugin.py:320 plugin.py:415
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel execution?"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr ""
+
+msgid "Console"
+msgstr ""
+
+msgid "Dj:"
+msgstr ""
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr ""
+
+msgid "Error retrieving song"
+msgstr ""
+
 msgid "Exit"
 msgstr "Ausfahrt"
 
-#: plugin.py:130 plugin.py:256 plugin.py:321
+msgid "Hide/Show"
+msgstr ""
+
+msgid "Online:"
+msgstr ""
+
+msgid "Restart"
+msgstr ""
+
 msgid "Select"
 msgstr "Wählen"
 
-#: plugin.py:417 plugin.py:438
-msgid "Player 1"
-msgstr ""
-
-#: plugin.py:435
-msgid "Player 2"
-msgstr ""
-
-#: plugin.py:614 plugin.py:703
-msgid "Online: "
-msgstr ""
-
-#: plugin.py:617
-msgid "Dj: "
-msgstr ""
-
-#: plugin.py:621
 msgid "Select and Play"
 msgstr ""
 
-#: plugin.py:623
-msgid "Nothing ... Retry"
+msgid "Unknown Title"
 msgstr ""
 
-#: plugin.py:877
-msgid "4:3 Letterbox"
+msgid "Update"
 msgstr ""
 
-#: plugin.py:878
-msgid "4:3 PanScan"
-msgstr ""
-
-#: plugin.py:879
-msgid "16:9"
-msgstr ""
-
-#: plugin.py:880
-msgid "16:9 always"
-msgstr ""
-
-#: plugin.py:881
-msgid "16:10 Letterbox"
-msgstr ""
-
-#: plugin.py:882
-msgid "16:10 PanScan"
-msgstr ""
-
-#: plugin.py:883
-msgid "16:9 Letterbox"
+msgid "Update Aborted!"
 msgstr ""
