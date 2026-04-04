@@ -61,7 +61,7 @@ from time import time
 from PIL import Image
 import shutil
 
-from . import _, Utils
+from . import _, Utils, __version__
 from .PicLoader import PicLoader
 from .Console import Console as xConsole
 
@@ -80,7 +80,6 @@ requests_log.propagate = True
 
 global skin_path, x, y
 
-currversion = '1.4'
 THISPLUG = dirname(sys.modules[__name__].__file__)
 skin_path = THISPLUG
 iconpic = 'plugin.png'
@@ -129,7 +128,8 @@ HEADERS = {
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1"}
+    "Sec-Fetch-User": "?1"
+}
 
 
 def geturl(url):
@@ -177,19 +177,8 @@ def RListEntry(download):
         text_pos = (0, 0)
         text_size = (400, 40)
 
-    res.append(
-        MultiContentEntryPixmapAlphaTest(
-            pos=icon_pos, size=(
-                35, 35), png=loadPNG(pngx)))
-    res.append(
-        MultiContentEntryText(
-            pos=text_pos,
-            size=text_size,
-            font=0,
-            text=download,
-            color=col,
-            color_sel=colsel,
-            flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    res.append(MultiContentEntryPixmapAlphaTest(pos=icon_pos, size=(35, 35), png=loadPNG(pngx)))
+    res.append(MultiContentEntryText(pos=text_pos, size=text_size, font=0, text=download, color=col, color_sel=colsel, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
 
     return res
 
@@ -239,14 +228,8 @@ def titlesong(url):
         if real_duration <= 0:
             real_duration = 210
 
-        start_time = dt.strptime(
-            data.get(
-                "started_at", "")[
-                :19], "%Y-%m-%d %H:%M:%S")
-        end_time = dt.strptime(
-            data.get(
-                "ends_at", "")[
-                :19], "%Y-%m-%d %H:%M:%S")
+        start_time = dt.strptime(data.get("started_at", "")[:19], "%Y-%m-%d %H:%M:%S")
+        end_time = dt.strptime(data.get("ends_at", "")[:19], "%Y-%m-%d %H:%M:%S")
         timestamp_duration = int((end_time - start_time).total_seconds())
 
         real_duration = timestamp_duration if 30 < timestamp_duration < 600 else real_duration
@@ -336,9 +319,7 @@ class radiom1(Screen):
     def check_vers(self):
         remote_version = '0.0'
         remote_changelog = ''
-        req = Utils.Request(
-            Utils.b64decoder(installer_url), headers={
-                'User-Agent': 'Mozilla/5.0'})
+        req = Utils.Request(Utils.b64decoder(installer_url), headers={'User-Agent': 'Mozilla/5.0'})
         page = Utils.urlopen(req).read()
         if PY3:
             data = page.decode("utf-8")
@@ -356,68 +337,35 @@ class radiom1(Screen):
                     break
         self.new_version = remote_version
         self.new_changelog = remote_changelog
-        if currversion < remote_version:
+        if __version__ < remote_version:
             self.Update = True
             self['key_green'].show()
-            self.session.open(
-                MessageBox,
-                _('New version %s is available\n\nChangelog: %s\n\nPress info_long or yellow_long button to start force updating.') %
-                (self.new_version,
-                 self.new_changelog),
-                MessageBox.TYPE_INFO,
-                timeout=5)
+            self.session.open(MessageBox, _('New version %s is available\n\nChangelog: %s\n\nPress info_long or yellow_long button to start force updating.') % (self.new_version, self.new_changelog), MessageBox.TYPE_INFO, timeout=5)
 
     def update_me(self):
         if self.Update is True:
-            self.session.openWithCallback(
-                self.install_update,
-                MessageBox,
-                _("New version %s is available.\n\nChangelog: %s \n\nDo you want to install it now?") %
-                (self.new_version,
-                 self.new_changelog),
-                MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.install_update, MessageBox, _("New version %s is available.\n\nChangelog: %s \n\nDo you want to install it now?") % (self.new_version, self.new_changelog), MessageBox.TYPE_YESNO)
         else:
-            self.session.open(
-                MessageBox,
-                _("Congrats! You already have the latest version..."),
-                MessageBox.TYPE_INFO,
-                timeout=4)
+            self.session.open(MessageBox, _("Congrats! You already have the latest version..."),  MessageBox.TYPE_INFO, timeout=4)
 
     def update_dev(self):
         try:
-            req = Utils.Request(
-                Utils.b64decoder(developer_url), headers={
-                    'User-Agent': 'Mozilla/5.0'})
+            req = Utils.Request(Utils.b64decoder(developer_url), headers={'User-Agent': 'Mozilla/5.0'})
             page = Utils.urlopen(req).read()
             data = json_loads(page)
             remote_date = data['pushed_at']
             strp_remote_date = dt.strptime(remote_date, '%Y-%m-%dT%H:%M:%SZ')
             remote_date = strp_remote_date.strftime('%Y-%m-%d')
-            self.session.openWithCallback(
-                self.install_update,
-                MessageBox,
-                _("Do you want to install update ( %s ) now?") %
-                (remote_date),
-                MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.install_update, MessageBox, _("Do you want to install update ( %s ) now?") % (remote_date), MessageBox.TYPE_YESNO)
         except Exception as e:
             print('error xcons: ' + str(e))
 
     def install_update(self, answer=False):
         if answer:
-            cmd1 = 'wget -q "--no-check-certificate" ' + \
-                Utils.b64decoder(installer_url) + ' -O - | /bin/sh'
-            self.session.open(
-                xConsole,
-                'Upgrading...',
-                cmdlist=[cmd1],
-                finishedCallback=self.myCallback,
-                closeOnSuccess=False)
+            cmd1 = 'wget -q "--no-check-certificate" ' + Utils.b64decoder(installer_url) + ' -O - | /bin/sh'
+            self.session.open(xConsole, 'Upgrading...', cmdlist=[cmd1], finishedCallback=self.myCallback, closeOnSuccess=False)
         else:
-            self.session.open(
-                MessageBox,
-                _("Update Aborted!"),
-                MessageBox.TYPE_INFO,
-                timeout=3)
+            self.session.open(MessageBox, _("Update Aborted!"),  MessageBox.TYPE_INFO, timeout=3)
 
     def myCallback(self, result=None):
         print('result: ' + str(result))
@@ -440,30 +388,23 @@ class radiom1(Screen):
                 response = requests.get(url, headers=HEADERS, timeout=10)
                 if response.status_code == 200:
                     import re
-                    json_match = re.search(
-                        r'<script id="app-json" type="application/json">(.*?)</script>',
-                        response.text,
-                        re.DOTALL)
+                    json_match = re.search(r'<script id="app-json" type="application/json">(.*?)</script>', response.text, re.DOTALL)
 
                     if json_match:
                         json_data = json_match.group(1)
                         stations_data = json_loads(json_data)
                         page_stations = stations_data.get("stations", [])
                         all_stations.extend(page_stations)
-                        print("Page " + str(page) + " has " +
-                              str(len(page_stations)) + " stations")
+                        print("Page " + str(page) + " has " + str(len(page_stations)) + " stations")
 
             # Process all collected stations
             for station in all_stations:
-                display_name = station.get(
-                    "display_name", station.get("name", ""))
+                display_name = station.get("display_name", station.get("name", ""))
                 if display_name:
                     self.names.append(str(display_name))
                     self.urls.append(str(station.get("stream_url", "")))
-                    self.pics.append(
-                        str(station.get("images", {}).get("station_120x120", "")))
-                    self.descriptions.append(
-                        str(station.get("description", "")))
+                    self.pics.append(str(station.get("images", {}).get("station_120x120", "")))
+                    self.descriptions.append(str(station.get("description", "")))
 
             # ADD DEFAULT STATIONS AT THE BEGINNING
             self.names.insert(0, 'PLAYLIST')
@@ -554,7 +495,7 @@ class radiom1(Screen):
                 else:
                     pic = skin_path + "/ft.jpg"
                     print("Using fallback image")
-            except BaseException:
+            except:
                 pic = skin_path + "/ft.jpg"
                 print("Error downloading, using fallback")
         else:
@@ -570,8 +511,7 @@ class radiom1(Screen):
         try:
             import hashlib
             # Create a unique filename based on the URL
-            filename = hashlib.md5(
-                image_url.encode('utf-8')).hexdigest() + ".jpg"
+            filename = hashlib.md5(image_url.encode('utf-8')).hexdigest() + ".jpg"
             cache_path = "/tmp/radiom_cache/"
 
             # Create cache directory if it doesn't exist
@@ -864,8 +804,7 @@ class radiom80(Screen):
         self.is_playing = False
         self.cover_timer = eTimer()
         if exists('/var/lib/dpkg/status'):
-            self.cover_timer_conn = self.cover_timer.timeout.connect(
-                self.countdown)
+            self.cover_timer_conn = self.cover_timer.timeout.connect(self.countdown)
         else:
             self.cover_timer.callback.append(self.countdown)
 
@@ -876,8 +815,7 @@ class radiom80(Screen):
 
         self.update_timer = eTimer()
         if exists('/var/lib/dpkg/status'):
-            self.update_timer_conn = self.update_timer.timeout.connect(
-                self.countdown)
+            self.update_timer_conn = self.update_timer.timeout.connect(self.countdown)
         else:
             self.update_timer.callback.append(self.countdown)
         self.update_timer.start(10000, False)
@@ -893,21 +831,19 @@ class radiom80(Screen):
         self['key_blue'] = Label("Player 1-2-3")
         self['key_green'] = Button(_('Select'))
         self['key_green'].hide()
-        self["actions"] = ActionMap(["OkActions",
-                                     "SetupActions",
-                                     "ColorActions",
-                                     "EPGSelectActions",
-                                     "InfoActions",
-                                     "CancelActions"],
-                                    {"red": self.cancel,
-                                     "back": self.cancel,
-                                     "blue": self.typeplayer,
-                                     "green": self.openPlay,
-                                     "info": self.countdown,
-                                     "cancel": self.cancel,
-                                     "ok": self.openPlay,
-                                     },
-                                    -2)
+        self["actions"] = ActionMap(
+            ["OkActions", "SetupActions", "ColorActions", "EPGSelectActions", "InfoActions", "CancelActions"],
+            {
+                "red": self.cancel,
+                "back": self.cancel,
+                "blue": self.typeplayer,
+                "green": self.openPlay,
+                "info": self.countdown,
+                "cancel": self.cancel,
+                "ok": self.openPlay,
+            },
+            -2
+        )
         self.onShow.append(self.openTest)
 
     def typeplayer(self):
@@ -949,8 +885,7 @@ class radiom80(Screen):
                     try:
                         with Image.open(final_path) as img:
                             if img.format != 'JPEG':
-                                img.convert('RGB').save(
-                                    temp_path, 'JPEG', quality=90)
+                                img.convert('RGB').save(temp_path, 'JPEG', quality=90)
                                 shutil.move(temp_path, final_path)
                     except Exception as conv_err:
                         print("Error conversion: " + str(conv_err))
@@ -964,8 +899,7 @@ class radiom80(Screen):
                     self["logo"].instance.setPixmap(None)
                     resizePoster(x, y, final_path)
                     self.picload = PicLoader()
-                    self.picload.setPara(
-                        (x, y, sc[0], sc[1], 0, 1, "#FF000000"))
+                    self.picload.setPara((x, y, sc[0], sc[1], 0, 1, "#FF000000"))
 
                     def safe_callback(picInfo=None):
                         try:
@@ -1012,16 +946,13 @@ class radiom80(Screen):
         try:
             self.okcoverdown = 'failed'
             clean_title = sub(r'\([^)]*\)', '', title).strip()
-            search_query = self.current_artist + " " + \
-                clean_title if self.current_artist else clean_title
-            itunes_url = 'https://itunes.apple.com/search?term=' + \
-                quote(search_query) + '&entity=album&limit=1'
+            search_query = self.current_artist + " " + clean_title if self.current_artist else clean_title
+            itunes_url = 'https://itunes.apple.com/search?term=' + quote(search_query) + '&entity=album&limit=1'
             res = requests.get(itunes_url, timeout=10)
             data = res.json()
             if data.get('resultCount', 0) == 0:
                 # Fallback to song search
-                itunes_url = 'https://itunes.apple.com/search?term=' + \
-                    quote(search_query) + '&entity=song&limit=1'
+                itunes_url = 'https://itunes.apple.com/search?term=' + quote(search_query) + '&entity=song&limit=1'
                 res = requests.get(itunes_url, timeout=10)
                 data = res.json()
 
@@ -1038,7 +969,7 @@ class radiom80(Screen):
         self.timer = eTimer()
         try:
             self.timer_conn = self.timer.timeout.connect(self.loadPlaylist)
-        except BaseException:
+        except:
             self.timer.callback.append(self.loadPlaylist)
         self.timer.start(250, True)
 
@@ -1081,13 +1012,10 @@ class radiom80(Screen):
                     print('url song = ' + self.backing)
                     current_song_data = titlesong2(urla)
                     if "error" in current_song_data:
-                        print(
-                            'Error getting song: ' +
-                            current_song_data["error"])
+                        print('Error getting song: ' + current_song_data["error"])
                         current_song = _("Error retrieving song")
                     else:
-                        current_song = current_song_data.get(
-                            "title", _("Unknown Title"))
+                        current_song = current_song_data.get("title", _("Unknown Title"))
                         print('current_song = ' + current_song)
 
                         if hasattr(self, 'last_song'):
@@ -1175,7 +1103,7 @@ class radiom80(Screen):
             self.timer = eTimer()
             try:
                 self.timer_conn = self.timer.timeout.connect(self.countdown)
-            except BaseException:
+            except:
                 self.timer.callback.append(self.countdown)
             self.timer.start(duration_seconds * 1000, False)
 
@@ -1239,13 +1167,7 @@ class radiom80(Screen):
             aspect_manager.restore_aspect()
 
 
-class Playstream2(
-        Screen,
-        InfoBarMenu,
-        InfoBarBase,
-        InfoBarSeek,
-        InfoBarNotifications,
-        InfoBarShowHide):
+class Playstream2(Screen, InfoBarMenu, InfoBarBase, InfoBarSeek, InfoBarNotifications, InfoBarShowHide):
     STATE_PLAYING = 1
     STATE_PAUSED = 2
 
@@ -1259,7 +1181,7 @@ class Playstream2(
         InfoBarShowHide.__init__(self)
         try:
             self.init_aspect = int(self.getAspect())
-        except BaseException:
+        except:
             self.init_aspect = 0
         self.new_aspect = self.init_aspect
         self['actions'] = ActionMap(
@@ -1357,7 +1279,7 @@ def main(session, **kwargs):
 def Plugins(**kwargs):
     return PluginDescriptor(
         name="RadioM",
-        description="RadioM from around the world V. " + currversion,
+        description="RadioM from around the world V. " + __version__,
         where=PluginDescriptor.WHERE_PLUGINMENU,
         icon="plugin.png",
         fnc=main

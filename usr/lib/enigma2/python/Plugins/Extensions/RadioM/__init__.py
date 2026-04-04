@@ -5,7 +5,7 @@ __author__ = "Lululla"
 __email__ = "ekekaz@gmail.com"
 __copyright__ = 'Copyright (c) 2024 Lululla'
 __license__ = "GPL-v2"
-__version__ = "1.0.0"
+__version__ = "1.4"
 
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
@@ -25,11 +25,7 @@ def localeInit():
     if isDreamOS:
         lang = language.getLanguage()[:2]
         os.environ["LANGUAGE"] = lang
-    gettext.bindtextdomain(
-        PluginLanguageDomain,
-        resolveFilename(
-            SCOPE_PLUGINS,
-            PluginLanguagePath))
+    gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
 
 
 if isDreamOS:
@@ -41,8 +37,7 @@ else:
         if translated:
             return translated
         else:
-            print(("[%s] fallback to default translation for %s" %
-                  (PluginLanguageDomain, txt)))
+            print(("[%s] fallback to default translation for %s" % (PluginLanguageDomain, txt)))
             return gettext.gettext(txt)
 
 localeInit()
