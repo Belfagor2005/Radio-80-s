@@ -55,6 +55,7 @@ from os import walk, remove
 import sys
 import requests
 import codecs
+import six
 from json import loads as json_loads
 from datetime import datetime as dt
 from time import time
@@ -96,12 +97,7 @@ PY3 = sys.version_info.major >= 3
 if PY3:
     unidecode = str
 
-if not PY3:
-    # Python 2
-    unicode = unicode
-else:
-    # Python 3
-    unicode = str
+unicode = six.text_type
 
 
 if screenWidth == 2560:
