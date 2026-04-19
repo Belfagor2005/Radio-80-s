@@ -1,27 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-"""
-#########################################################
-#                                                       #
-#  RadioM Plugin                                        #
-#  Version: 1.4                                         #
-#  Created by Lululla (https://github.com/Belfagor2005) #
-#  Modified by Mmark                                    #
-#  License: Gnu Gpl v2                                  #
-#  https://creativecommons.org/licenses/by-nc-sa/4.0    #
-#  Last Modified: "17:38 - 20251125"                    #
-#                                                       #
-#  Credits:                                             #
-#  - Original concept by Lululla                        #
-#  - Development by Mmark                               #
-#  Usage of this code without proper attribution        #
-#  is strictly prohibited.                              #
-#  For modifications and redistribution,                #
-#  please maintain this credit header.                  #
-#########################################################
-"""
 
+from __future__ import print_function
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -65,6 +45,27 @@ import shutil
 from . import _, Utils, __version__
 from .PicLoader import PicLoader
 from .Console import Console as xConsole
+
+"""
+#########################################################
+#                                                       #
+#  RadioM Plugin                                        #
+#  Version: 1.4                                         #
+#  Created by Lululla (https://github.com/Belfagor2005) #
+#  Modified by Mmark                                    #
+#  License: Gnu Gpl v2                                  #
+#  https://creativecommons.org/licenses/by-nc-sa/4.0    #
+#  Last Modified: "17:38 - 20251125"                    #
+#                                                       #
+#  Credits:                                             #
+#  - Original concept by Lululla                        #
+#  - Development by Mmark                               #
+#  Usage of this code without proper attribution        #
+#  is strictly prohibited.                              #
+#  For modifications and redistribution,                #
+#  please maintain this credit header.                  #
+#########################################################
+"""
 
 
 try:
