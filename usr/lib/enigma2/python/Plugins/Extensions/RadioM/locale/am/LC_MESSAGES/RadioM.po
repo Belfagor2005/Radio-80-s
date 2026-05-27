@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ሰርዝ"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "ማስፈጸሚያ ይሰረዝ?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "እንኳን ደስ ያለህ! ቀደም ሲል የቅርብ ጊዜ ስሪት አለህ..."
 
 msgid "Console"
-msgstr ""
+msgstr "ኮንሶል"
 
 msgid "Dj:"
-msgstr ""
+msgstr "ዲጄ፡"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "ማሻሻያ (%s) አሁን መጫን ይፈልጋሉ?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "ዘፈን ሰርስሮ ማውጣት ላይ ስህተት"
 
 msgid "Exit"
-msgstr ""
+msgstr "ውጣ"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "ደብቅ/ አሳይ"
 
 msgid "Online:"
-msgstr ""
+msgstr "መስመር ላይ፡"
 
 msgid "Restart"
-msgstr ""
+msgstr "እንደገና ጀምር"
 
 msgid "Select"
-msgstr ""
+msgstr "ይምረጡ"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "ይምረጡ እና ይጫወቱ"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "ያልታወቀ ርዕስ"
 
 msgid "Update"
-msgstr ""
+msgstr "አዘምን"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "ዝማኔ ተቋርጧል!"

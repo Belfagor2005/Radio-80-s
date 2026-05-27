@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulować"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Anulować wykonanie?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Gratulacje! Masz już najnowszą wersję..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsola"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Czy chcesz teraz zainstalować aktualizację ( %s )?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Błąd podczas pobierania utworu"
 
 msgid "Exit"
-msgstr ""
+msgstr "Wyjście"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Ukryj/pokaż"
 
 msgid "Online:"
-msgstr ""
+msgstr "W internecie:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Uruchom ponownie"
 
 msgid "Select"
-msgstr ""
+msgstr "Wybierać"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Wybierz i graj"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Nieznany tytuł"
 
 msgid "Update"
-msgstr ""
+msgstr "Aktualizacja"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Aktualizacja przerwana!"

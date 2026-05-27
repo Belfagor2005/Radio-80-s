@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ବାତିଲ୍ କରନ୍ତୁ |"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "ନିଷ୍ପାଦନ ବାତିଲ କରନ୍ତୁ?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "ଅଭିନନ୍ଦନ! ଆପଣଙ୍କ ପାଖରେ ସର୍ବଶେଷ ସଂସ୍କରଣ ଅଛି ..."
 
 msgid "Console"
-msgstr ""
+msgstr "କନସୋଲ୍"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "ଆପଣ ବର୍ତ୍ତମାନ ଅଦ୍ୟତନ (% s) ସଂସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "ଗୀତ ପୁନରୁଦ୍ଧାରରେ ତ୍ରୁଟି |"
 
 msgid "Exit"
-msgstr ""
+msgstr "ପ୍ରସ୍ଥାନ"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "ଲୁଚାନ୍ତୁ / ଦେଖାନ୍ତୁ |"
 
 msgid "Online:"
-msgstr ""
+msgstr "ଅନଲାଇନ୍:"
 
 msgid "Restart"
-msgstr ""
+msgstr "ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |"
 
 msgid "Select"
-msgstr ""
+msgstr "ଚୟନ କରନ୍ତୁ |"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "ଚୟନ ଏବଂ ଚଲାନ୍ତୁ |"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "ଅଜ୍ଞାତ ଆଖ୍ୟା |"
 
 msgid "Update"
-msgstr ""
+msgstr "ଅଦ୍ୟତନ କରନ୍ତୁ |"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "ପରିତ୍ୟାଗ କରାଯାଇଥିବା ଅଦ୍ୟତନ!"

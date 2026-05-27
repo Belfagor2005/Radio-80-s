@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Цуцлах"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Гүйцэтгэлийг цуцлах уу?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Баяр хүргэе! Танд хамгийн сүүлийн хувилбар байгаа..."
 
 msgid "Console"
-msgstr ""
+msgstr "Консол"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Та одоо шинэчлэлтийг ( %s ) суулгахыг хүсэж байна уу?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Дууг сэргээхэд алдаа гарлаа"
 
 msgid "Exit"
-msgstr ""
+msgstr "Гарах"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Нуух/Үзүүлэх"
 
 msgid "Online:"
-msgstr ""
+msgstr "Онлайн:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Дахин эхлүүлэх"
 
 msgid "Select"
-msgstr ""
+msgstr "Сонго"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Сонгоод тоглуулаарай"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Үл мэдэгдэх гарчиг"
 
 msgid "Update"
-msgstr ""
+msgstr "Шинэчлэх"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Шинэчлэлтийг зогсоосон!"

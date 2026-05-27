@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Atšaukti vykdymą?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Sveikiname! Jau turite naujausią versiją..."
 
 msgid "Console"
-msgstr ""
+msgstr "konsolė"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Ar norite įdiegti naujinimą ( %s ) dabar?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Klaida nuskaitant dainą"
 
 msgid "Exit"
-msgstr ""
+msgstr "Išeiti"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Slėpti/Rodyti"
 
 msgid "Online:"
-msgstr ""
+msgstr "Prisijungę:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Paleisti iš naujo"
 
 msgid "Select"
-msgstr ""
+msgstr "Pasirinkite"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Pasirinkite ir paleiskite"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Nežinomas pavadinimas"
 
 msgid "Update"
-msgstr ""
+msgstr "Atnaujinti"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Atnaujinimas nutrauktas!"

@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Otkazati izvršenje?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Congrats! Već imate najnoviju verziju..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konzola"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Želite li sada instalirati ažuriranje ( %s )?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Greška pri preuzimanju pjesme"
 
 msgid "Exit"
-msgstr ""
+msgstr "Izađi"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Sakrij/Prikaži"
 
 msgid "Online:"
 msgstr ""
 
 msgid "Restart"
-msgstr ""
+msgstr "Ponovo pokreni"
 
 msgid "Select"
-msgstr ""
+msgstr "Odaberite"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Odaberite i igrajte"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Nepoznati naslov"
 
 msgid "Update"
-msgstr ""
+msgstr "Ažuriraj"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Ažuriranje je prekinuto!"

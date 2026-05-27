@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "실행을 취소하시겠습니까?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "축하해요! 이미 최신 버전이 있습니다..."
 
 msgid "Console"
-msgstr ""
+msgstr "콘솔"
 
 msgid "Dj:"
-msgstr ""
+msgstr "디제이:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "지금 업데이트( %s )를 설치하시겠습니까?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "노래를 검색하는 중에 오류가 발생했습니다."
 
 msgid "Exit"
-msgstr ""
+msgstr "출구"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "숨기기/보이기"
 
 msgid "Online:"
-msgstr ""
+msgstr "온라인:"
 
 msgid "Restart"
-msgstr ""
+msgstr "다시 시작"
 
 msgid "Select"
-msgstr ""
+msgstr "선택하다"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "선택하고 플레이하세요"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "알 수 없는 제목"
 
 msgid "Update"
-msgstr ""
+msgstr "업데이트"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "업데이트가 중단되었습니다!"

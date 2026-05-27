@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Tühista"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Kas tühistada täitmine?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Õnnitlused! Teil on juba uusim versioon..."
 
 msgid "Console"
-msgstr ""
+msgstr "konsool"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Kas soovite värskenduse ( %s ) kohe installida?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Viga laulu toomisel"
 
 msgid "Exit"
-msgstr ""
+msgstr "Välju"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Peida/Kuva"
 
 msgid "Online:"
-msgstr ""
+msgstr "Internetis:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Taaskäivitage"
 
 msgid "Select"
-msgstr ""
+msgstr "Valige"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Valige ja mängige"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Tundmatu pealkiri"
 
 msgid "Update"
-msgstr ""
+msgstr "Värskenda"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Värskendus katkestatud!"

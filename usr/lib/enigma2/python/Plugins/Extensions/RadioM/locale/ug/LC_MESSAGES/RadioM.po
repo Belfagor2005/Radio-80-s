@@ -10,13 +10,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "بىكار قىلىش"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "ئىجرا قىلىشنى ئەمەلدىن قالدۇرامسىز؟"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "مۇبارەك بولسۇن! سىزدە ئەڭ يېڭى نەشرى بار ..."
 
 msgid "Console"
 msgstr ""
@@ -25,34 +25,34 @@ msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "ھازىر يېڭىلاش (% s) نى قاچىلىماقچىمۇ؟"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "ناخشىنى ئەسلىگە كەلتۈرۈشتە خاتالىق"
 
 msgid "Exit"
-msgstr ""
+msgstr "چىقىش"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "يوشۇرۇش / كۆرسىتىش"
 
 msgid "Online:"
-msgstr ""
+msgstr "توردا:"
 
 msgid "Restart"
-msgstr ""
+msgstr "قايتا قوزغىتىڭ"
 
 msgid "Select"
-msgstr ""
+msgstr "تاللاڭ"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "تاللاڭ ۋە ئويناڭ"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "نامەلۇم ماۋزۇ"
 
 msgid "Update"
-msgstr ""
+msgstr "يېڭىلاش"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "يېڭىلانغان ئەمەلدىن قالدۇرۇلدى!"

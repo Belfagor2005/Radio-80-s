@@ -10,31 +10,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Bişûndekirin"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "îdamê betal bike?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Pîroz be! Berê te guhertoya herî dawî heye..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsolê"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Tu dixwazî ​​nûvekirina ( %s ) niha saz bikî?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Di vegerandina stranê de çewtî"
 
 msgid "Exit"
-msgstr ""
+msgstr "Derî"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Veşêre / Nîşan bide"
 
 msgid "Online:"
 msgstr ""
@@ -43,16 +43,16 @@ msgid "Restart"
 msgstr ""
 
 msgid "Select"
-msgstr ""
+msgstr "Neqandin"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Hilbijêre û Play"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Sernav nenas"
 
 msgid "Update"
-msgstr ""
+msgstr "Nûvekirin"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Nûvekirin hate betal kirin!"

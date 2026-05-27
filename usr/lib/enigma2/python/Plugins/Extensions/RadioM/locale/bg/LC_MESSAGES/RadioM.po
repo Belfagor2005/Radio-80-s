@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Анулиране на изпълнението?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "честито Вече имате най-новата версия..."
 
 msgid "Console"
-msgstr ""
+msgstr "Конзола"
 
 msgid "Dj:"
-msgstr ""
+msgstr "диджей:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Искате ли да инсталирате актуализация ( %s ) сега?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Грешка при извличането на песента"
 
 msgid "Exit"
-msgstr ""
+msgstr "Изход"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Скриване/Показване"
 
 msgid "Online:"
-msgstr ""
+msgstr "Онлайн:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Рестартирайте"
 
 msgid "Select"
-msgstr ""
+msgstr "Изберете"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Изберете и играйте"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Неизвестно заглавие"
 
 msgid "Update"
-msgstr ""
+msgstr "Актуализация"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Актуализацията е прекъсната!"

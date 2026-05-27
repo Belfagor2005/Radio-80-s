@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Hủy bỏ"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Hủy thực thi?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Xin chúc mừng! Bạn đã có phiên bản mới nhất..."
 
 msgid "Console"
-msgstr ""
+msgstr "Bảng điều khiển"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Bạn có muốn cài đặt bản cập nhật ( %s ) ngay bây giờ không?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Lỗi khi truy xuất bài hát"
 
 msgid "Exit"
-msgstr ""
+msgstr "Ra"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Ẩn/Hiển thị"
 
 msgid "Online:"
-msgstr ""
+msgstr "Trực tuyến:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Khởi động lại"
 
 msgid "Select"
-msgstr ""
+msgstr "Lựa chọn"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Chọn và chơi"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Tiêu đề không xác định"
 
 msgid "Update"
-msgstr ""
+msgstr "Cập nhật"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Cập nhật bị hủy bỏ!"

@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Бекор кардан"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Иҷроро бекор кунед?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Табрик! Шумо аллакай версияи охиринро доред..."
 
 msgid "Console"
-msgstr ""
+msgstr "Консол"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Оё шумо мехоҳед навсозиро ( %s ) ҳозир насб кунед?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Хатогӣ ҳангоми дарёфти суруд"
 
 msgid "Exit"
-msgstr ""
+msgstr "Баромадгоҳ"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Пинҳон / Намоиш"
 
 msgid "Online:"
-msgstr ""
+msgstr "Онлайн:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Оғози дубора"
 
 msgid "Select"
-msgstr ""
+msgstr "Интихоб кунед"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Интихоб кунед ва бозӣ кунед"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Унвони номаълум"
 
 msgid "Update"
-msgstr ""
+msgstr "Навсозӣ"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Навсозӣ қатъ карда шуд!"

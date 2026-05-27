@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "لغوه کړئ"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "اعدام لغوه کړئ؟"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "مبارک شه! تاسو لا دمخه وروستۍ نسخه لرئ ..."
 
 msgid "Console"
-msgstr ""
+msgstr "کنسول"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "ایا تاسو غواړئ اوسمهال (%s) نصب کړئ؟"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "د سندرې په ترلاسه کولو کې تېروتنه"
 
 msgid "Exit"
-msgstr ""
+msgstr "وتل"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "پټول / ښکاره کول"
 
 msgid "Online:"
-msgstr ""
+msgstr "آنلاین:"
 
 msgid "Restart"
-msgstr ""
+msgstr "بیا پیل کړئ"
 
 msgid "Select"
-msgstr ""
+msgstr "وټاکئ"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "غوره کړئ او لوبه وکړئ"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "نامعلوم عنوان"
 
 msgid "Update"
-msgstr ""
+msgstr "تازه کول"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "تازه کول لغوه شوي!"

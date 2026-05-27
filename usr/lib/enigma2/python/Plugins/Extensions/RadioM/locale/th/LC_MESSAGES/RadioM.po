@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "ยกเลิกการดำเนินการใช่ไหม"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "ยินดีด้วย! คุณมีเวอร์ชันล่าสุดแล้ว..."
 
 msgid "Console"
-msgstr ""
+msgstr "คอนโซล"
 
 msgid "Dj:"
-msgstr ""
+msgstr "ดีเจ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "คุณต้องการติดตั้งการอัปเดต ( %s ) ตอนนี้หรือไม่?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดในการเรียกเพลง"
 
 msgid "Exit"
-msgstr ""
+msgstr "ออก"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "ซ่อน/แสดง"
 
 msgid "Online:"
-msgstr ""
+msgstr "ออนไลน์:"
 
 msgid "Restart"
-msgstr ""
+msgstr "รีสตาร์ท"
 
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "เลือกและเล่น"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "ไม่ทราบชื่อ"
 
 msgid "Update"
-msgstr ""
+msgstr "อัปเดต"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "การอัปเดตถูกยกเลิก!"

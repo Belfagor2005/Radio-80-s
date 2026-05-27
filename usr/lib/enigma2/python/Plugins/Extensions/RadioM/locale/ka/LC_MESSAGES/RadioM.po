@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "გააუქმოს შესრულება?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "გილოცავ! თქვენ უკვე გაქვთ უახლესი ვერსია..."
 
 msgid "Console"
-msgstr ""
+msgstr "კონსოლი"
 
 msgid "Dj:"
-msgstr ""
+msgstr "დიჯეი:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "გსურთ განახლების ( %s) ინსტალაცია ახლა?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "შეცდომა სიმღერის აღდგენისას"
 
 msgid "Exit"
-msgstr ""
+msgstr "გასვლა"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "დამალვა/ჩვენება"
 
 msgid "Online:"
-msgstr ""
+msgstr "ონლაინ:"
 
 msgid "Restart"
-msgstr ""
+msgstr "გადატვირთეთ"
 
 msgid "Select"
-msgstr ""
+msgstr "აირჩიეთ"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "აირჩიეთ და ითამაშეთ"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "უცნობი სათაური"
 
 msgid "Update"
-msgstr ""
+msgstr "განახლება"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "განახლება შეწყდა!"

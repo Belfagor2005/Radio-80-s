@@ -10,13 +10,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Sguir dheth"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Sguir dheth buileachadh?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Mealaibh ur naidheachd! Tha an tionndadh as ùire agad mu thràth ..."
 
 msgid "Console"
 msgstr ""
@@ -25,34 +25,34 @@ msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "A bheil thu airson ùrachadh ( %s ) a stàladh an-dràsta?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Thachair mearachd leis an òran a luchdadh a-nuas"
 
 msgid "Exit"
-msgstr ""
+msgstr "Ar-a-mach"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Falaich/Seall"
 
 msgid "Online:"
-msgstr ""
+msgstr "Air-loidhne:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Ath-thòisich"
 
 msgid "Select"
-msgstr ""
+msgstr "Tagh"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Tagh agus Cluich"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Tiotal neo-aithnichte"
 
 msgid "Update"
-msgstr ""
+msgstr "Ùraich"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Ùrachadh air a sguireadh!"

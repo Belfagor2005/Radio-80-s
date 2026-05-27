@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்து செய்"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "செயல்படுத்துவதை ரத்து செய்யவா?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "வாழ்த்துக்கள்! உங்களிடம் ஏற்கனவே சமீபத்திய பதிப்பு உள்ளது..."
 
 msgid "Console"
-msgstr ""
+msgstr "பணியகம்"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "புதுப்பிப்பை (%s) இப்போது நிறுவ விரும்புகிறீர்களா?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "பாடலை மீட்டெடுப்பதில் பிழை"
 
 msgid "Exit"
-msgstr ""
+msgstr "வெளியேறு"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "மறை/காட்டு"
 
 msgid "Online:"
-msgstr ""
+msgstr "ஆன்லைன்:"
 
 msgid "Restart"
-msgstr ""
+msgstr "மறுதொடக்கம்"
 
 msgid "Select"
-msgstr ""
+msgstr "தேர்ந்தெடு"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "தேர்ந்தெடுத்து விளையாடு"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "தெரியாத தலைப்பு"
 
 msgid "Update"
-msgstr ""
+msgstr "புதுப்பிக்கவும்"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "புதுப்பிப்பு நிறுத்தப்பட்டது!"

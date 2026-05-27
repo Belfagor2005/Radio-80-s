@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "実行をキャンセルしますか?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "おめでとうございます！すでに最新バージョンをお持ちです..."
 
 msgid "Console"
-msgstr ""
+msgstr "コンソール"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "今すぐアップデート ( %s ) をインストールしますか?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "曲の取得​​中にエラーが発生しました"
 
 msgid "Exit"
-msgstr ""
+msgstr "出口"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "非表示/表示"
 
 msgid "Online:"
-msgstr ""
+msgstr "オンライン："
 
 msgid "Restart"
-msgstr ""
+msgstr "再起動"
 
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "選択して再生"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "タイトル不明"
 
 msgid "Update"
-msgstr ""
+msgstr "アップデート"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "アップデートが中止されました!"

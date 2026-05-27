@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "يلغي"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "إلغاء التنفيذ؟"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "تهاني! لديك بالفعل الإصدار الأخير ..."
 
 msgid "Console"
-msgstr ""
+msgstr "وحدة التحكم"
 
 msgid "Dj:"
-msgstr ""
+msgstr "دي جي:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "هل تريد تثبيت التحديث ( %s ) الآن؟"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "حدث خطأ أثناء استرداد الأغنية"
 
 msgid "Exit"
-msgstr ""
+msgstr "مخرج"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "إخفاء/إظهار"
 
 msgid "Online:"
-msgstr ""
+msgstr "متصل:"
 
 msgid "Restart"
-msgstr ""
+msgstr "إعادة تشغيل"
 
 msgid "Select"
-msgstr ""
+msgstr "يختار"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "اختر والتشغيل"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "عنوان غير معروف"
 
 msgid "Update"
-msgstr ""
+msgstr "تحديث"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "تم إحباط التحديث!"

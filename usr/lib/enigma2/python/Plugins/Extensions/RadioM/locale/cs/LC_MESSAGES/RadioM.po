@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Zrušit provedení?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "gratuluji! Už máte nejnovější verzi..."
 
 msgid "Console"
-msgstr ""
+msgstr "Utěšit"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Chcete nyní nainstalovat aktualizaci ( %s )?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Chyba při načítání skladby"
 
 msgid "Exit"
-msgstr ""
+msgstr "Výstup"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Skrýt/Zobrazit"
 
 msgid "Online:"
-msgstr ""
+msgstr "online:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Restartujte"
 
 msgid "Select"
-msgstr ""
+msgstr "Vybrat"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Vyberte a přehrajte"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Neznámý název"
 
 msgid "Update"
-msgstr ""
+msgstr "Aktualizovat"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Aktualizace zrušena!"

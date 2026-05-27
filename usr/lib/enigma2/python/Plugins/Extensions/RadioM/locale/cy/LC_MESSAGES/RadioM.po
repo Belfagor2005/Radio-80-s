@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Canslo"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Canslo gweithrediad?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Llongyfarchiadau! Mae gennych y fersiwn diweddaraf yn barod..."
 
 msgid "Console"
-msgstr ""
+msgstr "Consol"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Ydych chi am osod diweddariad ( %s ) nawr?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Gwall wrth adalw cân"
 
 msgid "Exit"
-msgstr ""
+msgstr "Ymadael"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Cuddio/Dangos"
 
 msgid "Online:"
-msgstr ""
+msgstr "Ar-lein:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Ailgychwyn"
 
 msgid "Select"
-msgstr ""
+msgstr "Dewiswch"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Dewis a Chwarae"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Teitl Anhysbys"
 
 msgid "Update"
-msgstr ""
+msgstr "Diweddariad"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Diweddariad wedi'i Erthylu!"

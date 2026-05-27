@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Elatyr"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Executionerine ýetirmekligi ýatyrmalymy?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Gutlaýarys! Sizde iň soňky wersiýa bar ..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Indi täzelenme (% s) gurmak isleýärsiňizmi?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Aýdym almakda säwlik"
 
 msgid "Exit"
-msgstr ""
+msgstr "Çyk"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Gizlemek / görkezmek"
 
 msgid "Online:"
-msgstr ""
+msgstr "Onlaýn:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Gaýtadan açyň"
 
 msgid "Select"
-msgstr ""
+msgstr "Saýlaň"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Saýlaň we oýnaň"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Näbelli at"
 
 msgid "Update"
-msgstr ""
+msgstr "Täzelen"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Täzelenme ýatyryldy!"

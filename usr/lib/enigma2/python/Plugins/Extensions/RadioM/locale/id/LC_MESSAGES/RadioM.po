@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Membatalkan"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Batalkan eksekusi?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Selamat! Anda sudah memiliki versi terbaru..."
 
 msgid "Console"
-msgstr ""
+msgstr "Menghibur"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Apakah Anda ingin menginstal pembaruan ( %s ) sekarang?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Terjadi kesalahan saat mengambil lagu"
 
 msgid "Exit"
-msgstr ""
+msgstr "KELUAR"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Sembunyikan/Tampilkan"
 
 msgid "Online:"
-msgstr ""
+msgstr "On line:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Mulai ulang"
 
 msgid "Select"
-msgstr ""
+msgstr "Memilih"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Pilih dan Mainkan"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Judul Tidak Diketahui"
 
 msgid "Update"
-msgstr ""
+msgstr "Memperbarui"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Pembaruan Dibatalkan!"

@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Peruuttaa"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Peruutetaanko suoritus?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Onnittelut! Sinulla on jo uusin versio..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsoli"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Haluatko asentaa päivityksen ( %s ) nyt?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Virhe kappaleen noutamisessa"
 
 msgid "Exit"
-msgstr ""
+msgstr "Poistu"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Piilota/Näytä"
 
 msgid "Online:"
 msgstr ""
 
 msgid "Restart"
-msgstr ""
+msgstr "Käynnistä uudelleen"
 
 msgid "Select"
-msgstr ""
+msgstr "Valitse"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Valitse ja pelaa"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Tuntematon otsikko"
 
 msgid "Update"
-msgstr ""
+msgstr "Päivittää"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Päivitys keskeytetty!"

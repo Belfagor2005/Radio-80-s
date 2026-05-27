@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "မလုပ်တော့"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "လုပ်ဆောင်မှုကို ပယ်ဖျက်မလား။"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "ဂုဏ်ပြုပါသည်။ သင့်တွင် နောက်ဆုံးထွက်ဗားရှင်းရှိနေပြီဖြစ်သည်။"
 
 msgid "Console"
-msgstr ""
+msgstr "ဖြေသိမ့်"
 
 msgid "Dj:"
-msgstr ""
+msgstr "Dj-"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "အပ်ဒိတ် (%s) ကို ယခု ထည့်သွင်းလိုပါသလား။"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "သီချင်းပြန်ယူရာတွင် အမှားအယွင်းရှိသည်။"
 
 msgid "Exit"
-msgstr ""
+msgstr "ထွက်ပေါက်"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "ဖျောက်/ပြပါ။"
 
 msgid "Online:"
-msgstr ""
+msgstr "အွန်လိုင်း-"
 
 msgid "Restart"
-msgstr ""
+msgstr "ပြန်စတင်သည်"
 
 msgid "Select"
-msgstr ""
+msgstr "ရွေးချယ်ပါ။"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "ရွေးချယ်ပြီး ကစားပါ။"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "အမည်မသိ"
 
 msgid "Update"
-msgstr ""
+msgstr "အပ်ဒိတ်"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "အပ်ဒိတ်ကို ဖျက်သိမ်းလိုက်ပါပြီ။"

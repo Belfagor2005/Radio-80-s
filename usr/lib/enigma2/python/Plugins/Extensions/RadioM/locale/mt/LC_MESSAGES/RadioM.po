@@ -10,13 +10,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Ikkanċella"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Ikkanċella l-eżekuzzjoni?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Prosit! Diġà għandek l-aħħar verżjoni..."
 
 msgid "Console"
 msgstr ""
@@ -25,34 +25,34 @@ msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Trid tinstalla l-aġġornament ( %s ) issa?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Żball fl-irkuprar tal-kanzunetta"
 
 msgid "Exit"
-msgstr ""
+msgstr "Ħruġ"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Aħbi/Uri"
 
 msgid "Online:"
 msgstr ""
 
 msgid "Restart"
-msgstr ""
+msgstr "Ibda mill-ġdid"
 
 msgid "Select"
-msgstr ""
+msgstr "Agħżel"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Agħżel u Play"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Titolu mhux magħruf"
 
 msgid "Update"
-msgstr ""
+msgstr "Aġġornament"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Aġġornament Abortat!"

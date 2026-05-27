@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Exekuzioa bertan behera utzi?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Zorionak! Dagoeneko duzu azken bertsioa..."
 
 msgid "Console"
-msgstr ""
+msgstr "Kontsola"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Eguneraketa ( %s ) instalatu nahi duzu orain?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Errore bat gertatu da abestia berreskuratzean"
 
 msgid "Exit"
-msgstr ""
+msgstr "Irten"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Ezkutatu/Erakutsi"
 
 msgid "Online:"
-msgstr ""
+msgstr "Sarean:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Berrabiarazi"
 
 msgid "Select"
-msgstr ""
+msgstr "Hautatu"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Hautatu eta Erreproduzitu"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Izenburu ezezaguna"
 
 msgid "Update"
-msgstr ""
+msgstr "Eguneratu"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Eguneratzea bertan behera utzi da!"

@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Ləğv et"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "İcra ləğv edilsin?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Təbriklər! Sizdə artıq ən son versiya var..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Güncəlləməni ( %s ) indi quraşdırmaq istəyirsiniz?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Mahnını əldə edərkən xəta baş verdi"
 
 msgid "Exit"
-msgstr ""
+msgstr "Çıx"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Gizlət/göstər"
 
 msgid "Online:"
-msgstr ""
+msgstr "Onlayn:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Yenidən başladın"
 
 msgid "Select"
-msgstr ""
+msgstr "seçin"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Seçin və Oynayın"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Naməlum Başlıq"
 
 msgid "Update"
-msgstr ""
+msgstr "Yeniləyin"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Yeniləmə dayandırıldı!"

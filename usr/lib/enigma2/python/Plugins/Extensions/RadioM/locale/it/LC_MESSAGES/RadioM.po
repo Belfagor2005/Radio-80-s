@@ -14,37 +14,37 @@ msgstr ""
 "X-Poedit-SearchPath-0: plugin.py\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancellare"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Annullare l'esecuzione?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Congratulazioni! Hai già l'ultima versione..."
 
 msgid "Console"
-msgstr ""
+msgstr "Consolle"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Vuoi installare l'aggiornamento (%s) adesso?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Errore durante il recupero del brano"
 
 msgid "Exit"
 msgstr "Esci"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Nascondi/Mostra"
 
 msgid "Online:"
-msgstr ""
+msgstr "In linea:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Ricomincia"
 
 msgid "Select"
 msgstr "Seleziona"
@@ -53,13 +53,13 @@ msgid "Select and Play"
 msgstr "Seleziona e Ascolta"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Titolo sconosciuto"
 
 msgid "Update"
-msgstr ""
+msgstr "Aggiornamento"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Aggiornamento interrotto!"
 
 #~ msgid "Nothing ... Retry"
 #~ msgstr "Niente.. riprova"

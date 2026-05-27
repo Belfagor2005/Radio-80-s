@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "取消执行？"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "恭喜！您已经拥有最新版本..."
 
 msgid "Console"
-msgstr ""
+msgstr "安慰"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ："
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "您想立即安装更新 (%s) 吗？"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "检索歌曲时出错"
 
 msgid "Exit"
-msgstr ""
+msgstr "出口"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "隐藏/显示"
 
 msgid "Online:"
-msgstr ""
+msgstr "在线的："
 
 msgid "Restart"
-msgstr ""
+msgstr "重新启动"
 
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "选择并播放"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "未知标题"
 
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "更新中止！"

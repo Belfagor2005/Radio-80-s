@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Uitvoering annuleren?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Gefeliciteerd! Je beschikt al over de nieuwste versie..."
 
 msgid "Console"
-msgstr ""
+msgstr "Troosten"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Wilt u update ( %s ) nu installeren?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Fout bij ophalen van nummer"
 
 msgid "Exit"
-msgstr ""
+msgstr "Uitgang"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Verbergen/Tonen"
 
 msgid "Online:"
 msgstr ""
 
 msgid "Restart"
-msgstr ""
+msgstr "Opnieuw opstarten"
 
 msgid "Select"
-msgstr ""
+msgstr "Selecteer"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Selecteer en speel"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Onbekende titel"
 
 msgid "Update"
 msgstr ""
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Update afgebroken!"

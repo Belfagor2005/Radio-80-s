@@ -11,49 +11,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "לְבַטֵל"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "לבטל את הביצוע?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "מזל טוב! כבר יש לך את הגרסה האחרונה..."
 
 msgid "Console"
-msgstr ""
+msgstr "לְנַחֵם"
 
 msgid "Dj:"
-msgstr ""
+msgstr "תַקלִיטָן:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "האם ברצונך להתקין עדכון ( %s ) כעת?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "שגיאה באחזור השיר"
 
 msgid "Exit"
-msgstr ""
+msgstr "יְצִיאָה"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "הסתר/הצג"
 
 msgid "Online:"
-msgstr ""
+msgstr "באינטרנט:"
 
 msgid "Restart"
-msgstr ""
+msgstr "הפעל מחדש"
 
 msgid "Select"
-msgstr ""
+msgstr "לִבחוֹר"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "בחר והפעל"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "כותרת לא ידועה"
 
 msgid "Update"
-msgstr ""
+msgstr "לְעַדְכֵּן"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "העדכון בוטל!"

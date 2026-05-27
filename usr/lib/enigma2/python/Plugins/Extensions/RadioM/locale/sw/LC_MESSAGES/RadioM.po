@@ -10,13 +10,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Ghairi"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Ungependa kughairi utekelezaji?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Hongera! Tayari una toleo jipya zaidi..."
 
 msgid "Console"
 msgstr ""
@@ -25,34 +25,34 @@ msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Je, ungependa kusakinisha sasisho ( %s ) sasa?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Hitilafu katika kurejesha wimbo"
 
 msgid "Exit"
-msgstr ""
+msgstr "Utgång"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Ficha/Onyesha"
 
 msgid "Online:"
-msgstr ""
+msgstr "Mtandaoni:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Anzisha upya"
 
 msgid "Select"
-msgstr ""
+msgstr "Chagua"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Chagua na Cheza"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Kichwa kisichojulikana"
 
 msgid "Update"
-msgstr ""
+msgstr "Sasisha"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Usasishaji Umeghairiwa!"

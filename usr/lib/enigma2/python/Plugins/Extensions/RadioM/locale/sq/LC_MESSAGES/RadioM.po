@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulo"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Të anulohet ekzekutimi?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "urime! Ju tashmë keni versionin më të fundit..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Dëshiron të instalosh përditësimin ( %s ) tani?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Gabim gjatë marrjes së këngës"
 
 msgid "Exit"
-msgstr ""
+msgstr "Dilni"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Fsheh/Shfaq"
 
 msgid "Online:"
 msgstr ""
 
 msgid "Restart"
-msgstr ""
+msgstr "Rinis"
 
 msgid "Select"
-msgstr ""
+msgstr "Zgjidhni"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Zgjidhni dhe luani"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Titulli i panjohur"
 
 msgid "Update"
-msgstr ""
+msgstr "Përditëso"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Përditësimi u ndërpre!"

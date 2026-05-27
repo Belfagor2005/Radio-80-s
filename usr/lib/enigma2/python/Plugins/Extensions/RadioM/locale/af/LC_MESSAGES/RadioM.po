@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselleer"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Kanselleer uitvoering?"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Geluk! Jy het reeds die nuutste weergawe..."
 
 msgid "Console"
-msgstr ""
+msgstr "Konsole"
 
 msgid "Dj:"
-msgstr ""
+msgstr "DJ:"
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Wil jy opdatering ( %s ) nou installeer?"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Kon nie liedjie haal nie"
 
 msgid "Exit"
-msgstr ""
+msgstr "Verlaat"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Versteek/Wys"
 
 msgid "Online:"
-msgstr ""
+msgstr "Aanlyn:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Herbegin"
 
 msgid "Select"
-msgstr ""
+msgstr "Kies"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Kies en speel"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Onbekende titel"
 
 msgid "Update"
-msgstr ""
+msgstr "Dateer op"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Opdatering afgelas!"

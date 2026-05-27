@@ -10,49 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Չեղարկել"
 
 msgid "Cancel execution?"
-msgstr ""
+msgstr "Չեղարկե՞լ կատարումը:"
 
 msgid "Congrats! You already have the latest version..."
-msgstr ""
+msgstr "Շնորհավորում եմ Դուք արդեն ունեք վերջին տարբերակը..."
 
 msgid "Console"
-msgstr ""
+msgstr "Վահանակ"
 
 msgid "Dj:"
 msgstr ""
 
 msgid "Do you want to install update ( %s ) now?"
-msgstr ""
+msgstr "Ցանկանու՞մ եք տեղադրել թարմացում ( %s ) հիմա:"
 
 msgid "Error retrieving song"
-msgstr ""
+msgstr "Երգը առբերելիս սխալ առաջացավ"
 
 msgid "Exit"
-msgstr ""
+msgstr "Ելք"
 
 msgid "Hide/Show"
-msgstr ""
+msgstr "Թաքցնել/Ցուցադրել"
 
 msgid "Online:"
-msgstr ""
+msgstr "Առցանց:"
 
 msgid "Restart"
-msgstr ""
+msgstr "Վերագործարկեք"
 
 msgid "Select"
-msgstr ""
+msgstr "Ընտրել"
 
 msgid "Select and Play"
-msgstr ""
+msgstr "Ընտրել և խաղալ"
 
 msgid "Unknown Title"
-msgstr ""
+msgstr "Անհայտ վերնագիր"
 
 msgid "Update"
-msgstr ""
+msgstr "Թարմացնել"
 
 msgid "Update Aborted!"
-msgstr ""
+msgstr "Թարմացումը ընդհատվեց:"
