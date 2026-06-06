@@ -212,16 +212,18 @@ def resizePoster(x, y, dwn_poster):
         print("ERROR resizePoster: " + str(e))
 
 
+def slugify(name):
+    return sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
 def titlesong2(url):
     try:
-        print("DEBUG titlesong2: Fetching URL: " + str(url))
-        r = requests.get(url, headers=HEADERS, timeout=10, verify=False)
-        print("DEBUG titlesong2: Status code: " + str(r.status_code))
-        data = r.json()
-        print("DEBUG titlesong2: JSON data type: " + str(type(data)))
-        return data
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+        r = requests.get(url, headers=headers, timeout=10)
+        return r.json()
     except Exception as e:
-        print("DEBUG titlesong2: Error: " + str(e))
         return {"error": str(e)}
 
 
@@ -424,95 +426,50 @@ class radiom1(Screen):
         self.urls = []
         self.pics = []
         self.descriptions = []
-        try:
-            # Download multiple pages
-            all_stations = []
 
-            # Download first 3 pages
-            for page in range(1, 4):
-                url = "https://laut.fm/stations/all?l=50&page=" + str(page)
-                print("Downloading page: " + str(page))
+        all_stations = []
+        page = 1
+        while True:
+            api_url = f"https://api.laut.fm/stations?limit=50&page={page}&order=click&reverse=1"
+            try:
+                resp = requests.get(api_url, headers=HEADERS, timeout=10)
+                if resp.status_code != 200:
+                    break
+                data = resp.json()
+                stations = data if isinstance(data, list) else data.get("stations", [])
+                if not stations:
+                    break
+                all_stations.extend(stations)
+                print(f"Page {page}: added {len(stations)} stations")
+                page += 1
+                if page > 50:
+                    print("Safety limit of 50 pages reached")
+                    break
+            except Exception as e:
+                print(f"Error: {e}")
+                break
 
-                response = requests.get(url, headers=HEADERS, timeout=10)
-                if response.status_code == 200:
-                    import re
-                    json_match = re.search(
-                        r'<script id="app-json" type="application/json">(.*?)</script>',
-                        response.text,
-                        re.DOTALL)
+        print(f"Total stations loaded: {len(all_stations)}")
 
-                    if json_match:
-                        json_data = json_match.group(1)
-                        stations_data = json_loads(json_data)
-                        page_stations = stations_data.get("stations", [])
-                        all_stations.extend(page_stations)
-                        print("Page " + str(page) + " has " +
-                              str(len(page_stations)) + " stations")
+        for station in all_stations:
+            name = station.get("display_name") or station.get("name")
+            if name:
+                self.names.append(str(name))
+                self.urls.append(str(station.get("stream_url", "")))
+                pics = station.get("images", {})
+                pic_url = pics.get("station_120x120", "") or pics.get("station", "")
+                self.pics.append(pic_url if pic_url else skin_path + "/ft.jpg")
+                self.descriptions.append(station.get("description", ""))
 
-            # Process all collected stations
-            for station in all_stations:
-                display_name = station.get(
-                    "display_name", station.get("name", ""))
-                if display_name:
-                    self.names.append(str(display_name))
-                    self.urls.append(str(station.get("stream_url", "")))
-                    self.pics.append(
-                        str(station.get("images", {}).get("station_120x120", "")))
-                    self.descriptions.append(
-                        str(station.get("description", "")))
+        self.names.insert(0, 'PLAYLIST')
+        self.urls.insert(0, 'http://75.119.158.76:8090/radio.mp3')
+        self.pics.insert(0, skin_path + "/ft.jpg")
 
-            # ADD DEFAULT STATIONS AT THE BEGINNING
-            self.names.insert(0, 'PLAYLIST')
-            self.urls.insert(0, 'http://75.119.158.76:8090/radio.mp3')
-            self.pics.insert(0, skin_path + "/ft.jpg")
+        self.names.insert(1, 'RADIO CYRUS')
+        self.urls.insert(1, 'http://75.119.158.76:8090/radio.mp3')
+        self.pics.insert(1, skin_path + "/ft.jpg")
 
-            self.names.insert(1, 'RADIO CYRUS')
-            self.urls.insert(1, 'http://75.119.158.76:8090/radio.mp3')
-            self.pics.insert(1, skin_path + "/ft.jpg")
-
-            print("Loaded " + str(len(self.names)) + " total stations")
-
-        except Exception as e:
-            print("Error loading stations: " + str(e))
-            import traceback
-            traceback.print_exc()
-            self.load_fallback_stations()
-
-        print("Final stations count: " + str(len(self.names)))
         showlist(self.names, self['list'])
-
-    def load_fallback_stations(self):
-        """Load fallback stations if JSON loading fails"""
-        self.names.append('PLAYLIST')
-        self.urls.append('http://75.119.158.76:8090/radio.mp3')
-        self.pics.append(skin_path + "/ft.jpg")
-        self.names.append('RADIO 80')
-        self.urls.append('http://laut.fm/fm-api/stations/soloanni80')
-        self.pics.append(skin_path + "/80s.png")
-        self.names.append('80ER')
-        self.urls.append('http://laut.fm/fm-api/stations/80er')
-        self.pics.append(skin_path + "/80er.png")
-        self.names.append('SCHLAGER-RADIO')
-        self.urls.append('http://laut.fm/fm-api/stations/schlager-radio')
-        self.pics.append(skin_path + "/shclager.png")
-        self.names.append('1000OLDIES')
-        self.urls.append('http://laut.fm/fm-api/stations/1000oldies')
-        self.pics.append(skin_path + "/1000oldies.png")
-        self.names.append('REGGAETON')
-        self.urls.append('https://laut.fm/fm-api/stations/reggaeton')
-        self.pics.append(skin_path + "/reggaeton.png")
-        self.names.append('FLASHBASS-FM')
-        self.urls.append('https://laut.fm/fm-api/stations/flashbass-fm')
-        self.pics.append(skin_path + "/flashbass.png")
-        self.names.append('1000GOLD')
-        self.urls.append('https://laut.fm/fm-api/stations/1000goldschlager')
-        self.pics.append(skin_path + "/1000gold.png")
-        self.names.append('SIMLIVERADIO')
-        self.urls.append('https://laut.fm/fm-api/stations/simliveradio')
-        self.pics.append(skin_path + "/simliveradio.png")
-        self.names.append('RADIO CYRUS')
-        self.urls.append('http://75.119.158.76:8090/radio.mp3')
-        self.pics.append(skin_path + "/ft.jpg")
 
     def okClicked(self):
         idx = self['list'].getSelectionIndex()
@@ -1040,99 +997,61 @@ class radiom80(Screen):
 
     def loadPlaylist(self):
         try:
-            self.names = []
-            self.urls = []
-            display_name = ''
-            page_url = ''
-            stream_url = ''
-            current_song = ''
-            listeners = ''
-            format = ''
-            description = ''
-            djs = ''
+            # Build the name as in the API (lowercase, hyphens, already passed in self.name)
+            station_name = self.name.lower().replace(" ", "-")
 
-            print("DEBUG: Calling titlesong2 with API URL: " + str(self.api_url))
-            data = titlesong2(self.api_url)
-
-            if "error" in data:
-                print("Error: " + data["error"])
-                self.okcoverdown = 'failed'
+            # 1) General station data
+            station_url = f"https://api.laut.fm/station/{station_name}"
+            data_station = titlesong2(station_url)
+            if "error" in data_station:
+                print("Station error:", data_station["error"])
                 return
 
-            if "stream_url" in data:
-                if "display_name" in data:
-                    display_name = str(data["display_name"])
+            display_name = data_station.get("display_name", self.name)
+            stream_url = data_station.get("stream_url", "")
+            listeners = data_station.get("listeners", 0)
+            fmt = data_station.get("format", "")
+            description = data_station.get("description", "")
+            djs = data_station.get("djs", "")
 
-                if "page_url" in data:
-                    page_url = str(data["page_url"])
-                    print('page_url = ' + page_url)
+            # 2) Current song
+            song_url = f"https://api.laut.fm/station/{station_name}/current_song"
+            data_song = titlesong2(song_url)
+            if "error" in data_song:
+                current_song = _("No song")
+            else:
+                artist = data_song.get("artist", {}).get("name", "")
+                title = data_song.get("title", "")
+                current_song = f"{artist} - {title}".strip(" -")
+                if not current_song:
+                    current_song = _("Unknown")
 
-                if "stream_url" in data:
-                    stream_url = str(data["stream_url"])
-                    print('stream_url = ' + stream_url)
+                # Update cover if changed
+                if hasattr(self, 'last_song') and self.last_song != current_song:
+                    self.downloadCover(current_song)
+                    self.selectpic()
+                elif not hasattr(self, 'last_song'):
+                    self.downloadCover(current_song)
+                    self.selectpic()
+                self.last_song = current_song
 
-                if "current_song" in data.get("api_urls", {}):
-                    urla = data["api_urls"]["current_song"]
-                    self.backing = str(urla)
-                    print('url song = ' + self.backing)
-                    current_song_data = titlesong2(urla)
-                    if "error" in current_song_data:
-                        print(
-                            'Error getting song: ' +
-                            current_song_data["error"])
-                        current_song = _("Error retrieving song")
-                    else:
-                        current_song = current_song_data.get(
-                            "title", _("Unknown Title"))
-                        print('current_song = ' + current_song)
+            # Update widgets
+            self['current_song'].setText(current_song)
+            self['listeners'].setText(_('Online: ') + str(listeners))
+            self['format'].setText(fmt)
+            self['description'].setText(description)
+            self['djs'].setText(_('Dj: ') + str(djs))
 
-                        if hasattr(self, 'last_song'):
-                            if self.last_song != current_song:
-                                self.downloadCover(current_song)
-                                self.selectpic()
-                        else:
-                            self.downloadCover(current_song)
-                            self.selectpic()
-
-                        self.last_song = current_song
-
-                if "listeners" in data.get("api_urls", {}):
-                    urlb = str(data["api_urls"]["listeners"])
-                    print("Type of data listeners: " + str(type(urlb)))
-                    listeners = self.listener(urlb)
-                    print('listeners = ' + str(listeners))
-
-                if "format" in data:
-                    format = str(data["format"])
-                    print('format = ' + format)
-
-                if "description" in data:
-                    description = str(data["description"])
-
-                if "djs" in data:
-                    djs = str(data["djs"])
-                    print('djs = ' + djs)
-
-                self['current_song'].setText(str(current_song))
-                self['listeners'].setText(_('Online: ') + str(listeners))
-                self['format'].setText(_(format))
-                self['description'].setText(_(description))
-                self['djs'].setText(_('Dj: ') + str(djs))
-
-                self.names.append(display_name)
-                self.urls.append(stream_url)
-
-            self.countdown()
-            print('current_song = ' + current_song)
+            self.names = [display_name]
+            self.urls = [stream_url]
             self['info'].setText(_('Select and Play'))
             self['key_green'].show()
             showlist(self.names, self['list'])
 
         except Exception as e:
-            print("Error loadPlaylist: " + str(e))
+            print("Error in loadPlaylist:", e)
             import traceback
             traceback.print_exc()
-            self.okcoverdown = 'failed'
 
     def countdown(self):
         try:

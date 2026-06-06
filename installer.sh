@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version='1.4'
+version='1.5'
 changelog='\nRecoded tag stream'
 
 TMPPATH=/tmp/Radio-80-s-install
