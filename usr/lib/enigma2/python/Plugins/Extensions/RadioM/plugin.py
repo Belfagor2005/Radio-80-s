@@ -219,8 +219,7 @@ def slugify(name):
 def titlesong2(url):
     try:
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
         r = requests.get(url, headers=headers, timeout=10)
         return r.json()
     except Exception as e:
@@ -436,7 +435,9 @@ class radiom1(Screen):
                 if resp.status_code != 200:
                     break
                 data = resp.json()
-                stations = data if isinstance(data, list) else data.get("stations", [])
+                stations = data if isinstance(
+                    data, list) else data.get(
+                    "stations", [])
                 if not stations:
                     break
                 all_stations.extend(stations)
@@ -457,7 +458,9 @@ class radiom1(Screen):
                 self.names.append(str(name))
                 self.urls.append(str(station.get("stream_url", "")))
                 pics = station.get("images", {})
-                pic_url = pics.get("station_120x120", "") or pics.get("station", "")
+                pic_url = pics.get(
+                    "station_120x120", "") or pics.get(
+                    "station", "")
                 self.pics.append(pic_url if pic_url else skin_path + "/ft.jpg")
                 self.descriptions.append(station.get("description", ""))
 
@@ -997,7 +1000,8 @@ class radiom80(Screen):
 
     def loadPlaylist(self):
         try:
-            # Build the name as in the API (lowercase, hyphens, already passed in self.name)
+            # Build the name as in the API (lowercase, hyphens, already passed
+            # in self.name)
             station_name = self.name.lower().replace(" ", "-")
 
             # 1) General station data
@@ -1027,7 +1031,9 @@ class radiom80(Screen):
                     current_song = _("Unknown")
 
                 # Update cover if changed
-                if hasattr(self, 'last_song') and self.last_song != current_song:
+                if hasattr(
+                        self,
+                        'last_song') and self.last_song != current_song:
                     self.downloadCover(current_song)
                     self.selectpic()
                 elif not hasattr(self, 'last_song'):
