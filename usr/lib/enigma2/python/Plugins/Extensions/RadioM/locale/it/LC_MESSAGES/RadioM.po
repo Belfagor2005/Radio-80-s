@@ -31,14 +31,14 @@ msgstr "DJ:"
 msgid "Do you want to install update ( %s ) now?"
 msgstr "Vuoi installare l'aggiornamento (%s) adesso?"
 
-msgid "Error retrieving song"
-msgstr "Errore durante il recupero del brano"
-
 msgid "Exit"
 msgstr "Esci"
 
 msgid "Hide/Show"
 msgstr "Nascondi/Mostra"
+
+msgid "No song"
+msgstr "Nessuna canzone"
 
 msgid "Online:"
 msgstr "In linea:"
@@ -52,7 +52,8 @@ msgstr "Seleziona"
 msgid "Select and Play"
 msgstr "Seleziona e Ascolta"
 
-msgid "Unknown Title"
+#, fuzzy
+msgid "Unknown"
 msgstr "Titolo sconosciuto"
 
 msgid "Update"
@@ -60,6 +61,9 @@ msgstr "Aggiornamento"
 
 msgid "Update Aborted!"
 msgstr "Aggiornamento interrotto!"
+
+#~ msgid "Error retrieving song"
+#~ msgstr "Errore durante il recupero del brano"
 
 #~ msgid "Nothing ... Retry"
 #~ msgstr "Niente.. riprova"

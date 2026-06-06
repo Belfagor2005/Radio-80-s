@@ -27,14 +27,14 @@ msgstr "DJ:"
 msgid "Do you want to install update ( %s ) now?"
 msgstr "Wil jy opdatering ( %s ) nou installeer?"
 
-msgid "Error retrieving song"
-msgstr "Kon nie liedjie haal nie"
-
 msgid "Exit"
 msgstr "Verlaat"
 
 msgid "Hide/Show"
 msgstr "Versteek/Wys"
+
+msgid "No song"
+msgstr "Geen liedjie nie"
 
 msgid "Online:"
 msgstr "Aanlyn:"
@@ -48,7 +48,8 @@ msgstr "Kies"
 msgid "Select and Play"
 msgstr "Kies en speel"
 
-msgid "Unknown Title"
+#, fuzzy
+msgid "Unknown"
 msgstr "Onbekende titel"
 
 msgid "Update"
@@ -56,3 +57,6 @@ msgstr "Dateer op"
 
 msgid "Update Aborted!"
 msgstr "Opdatering afgelas!"
+
+#~ msgid "Error retrieving song"
+#~ msgstr "Kon nie liedjie haal nie"

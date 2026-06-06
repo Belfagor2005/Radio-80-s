@@ -29,14 +29,14 @@ msgstr "Dj:"
 msgid "Do you want to install update ( %s ) now?"
 msgstr "Do you want to install update ( %s ) now?"
 
-msgid "Error retrieving song"
-msgstr "Error retrieving song"
-
 msgid "Exit"
 msgstr "Exit"
 
 msgid "Hide/Show"
 msgstr "Hide/Show"
+
+msgid "No song"
+msgstr ""
 
 msgid "Online:"
 msgstr "Online:"
@@ -50,7 +50,8 @@ msgstr "Select"
 msgid "Select and Play"
 msgstr "Select and Play"
 
-msgid "Unknown Title"
+#, fuzzy
+msgid "Unknown"
 msgstr "Unknown Title"
 
 msgid "Update"
@@ -58,3 +59,6 @@ msgstr "Update"
 
 msgid "Update Aborted!"
 msgstr "Update Aborted!"
+
+#~ msgid "Error retrieving song"
+#~ msgstr "Error retrieving song"

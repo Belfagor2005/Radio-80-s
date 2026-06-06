@@ -27,14 +27,14 @@ msgstr ""
 msgid "Do you want to install update ( %s ) now?"
 msgstr "Gusto mo bang mag-install ng update ( %s ) ngayon?"
 
-msgid "Error retrieving song"
-msgstr "Error sa pagbawi ng kanta"
-
 msgid "Exit"
 msgstr "Lumabas"
 
 msgid "Hide/Show"
 msgstr "Itago/Ipakita"
+
+msgid "No song"
+msgstr "Walang kanta"
 
 msgid "Online:"
 msgstr ""
@@ -48,7 +48,8 @@ msgstr "Pumili"
 msgid "Select and Play"
 msgstr "Piliin at I-play"
 
-msgid "Unknown Title"
+#, fuzzy
+msgid "Unknown"
 msgstr "Hindi Alam na Pamagat"
 
 msgid "Update"
@@ -56,3 +57,6 @@ msgstr ""
 
 msgid "Update Aborted!"
 msgstr "Na-abort ang Update!"
+
+#~ msgid "Error retrieving song"
+#~ msgstr "Error sa pagbawi ng kanta"

@@ -27,14 +27,14 @@ msgstr ""
 msgid "Do you want to install update ( %s ) now?"
 msgstr "Adakah anda mahu memasang kemas kini ( %s ) sekarang?"
 
-msgid "Error retrieving song"
-msgstr "Ralat mengambil semula lagu"
-
 msgid "Exit"
 msgstr "Keluar"
 
 msgid "Hide/Show"
 msgstr "Sembunyikan/Tunjukkan"
+
+msgid "No song"
+msgstr "Tiada lagu"
 
 msgid "Online:"
 msgstr "dalam talian:"
@@ -48,7 +48,8 @@ msgstr "Pilih"
 msgid "Select and Play"
 msgstr "Pilih dan Main"
 
-msgid "Unknown Title"
+#, fuzzy
+msgid "Unknown"
 msgstr "Tajuk tidak diketahui"
 
 msgid "Update"
@@ -56,3 +57,6 @@ msgstr "Kemas kini"
 
 msgid "Update Aborted!"
 msgstr "Kemas Kini Dibatalkan!"
+
+#~ msgid "Error retrieving song"
+#~ msgstr "Ralat mengambil semula lagu"

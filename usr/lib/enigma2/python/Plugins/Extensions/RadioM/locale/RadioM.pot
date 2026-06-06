@@ -22,6 +22,7 @@
 
 
 
+
 msgid "Cancel"
 msgstr ""
 
@@ -40,13 +41,13 @@ msgstr ""
 msgid "Do you want to install update ( %s ) now?"
 msgstr ""
 
-msgid "Error retrieving song"
-msgstr ""
-
 msgid "Exit"
 msgstr ""
 
 msgid "Hide/Show"
+msgstr ""
+
+msgid "No song"
 msgstr ""
 
 msgid "Online:"
@@ -61,7 +62,7 @@ msgstr ""
 msgid "Select and Play"
 msgstr ""
 
-msgid "Unknown Title"
+msgid "Unknown"
 msgstr ""
 
 msgid "Update"
