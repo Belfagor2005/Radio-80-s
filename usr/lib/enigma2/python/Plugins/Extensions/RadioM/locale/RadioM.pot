@@ -1,35 +1,5 @@
 #, fuzzy
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 msgid "Cancel"
 msgstr ""
 
